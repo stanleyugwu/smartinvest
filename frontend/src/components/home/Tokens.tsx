@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function Tokens() {
+  useEffect(() => {
+    /**
+     * The variables `__CHART_CONSTRUCTOR`,`__Chart_App_Info`, `JQuery`
+     * should be made available by `charts.js`, `scripts.js`, and `jquery` library respectively
+     * They're hopeully loaded in follwowing order: jquery.js, scripts.js, charts.js
+     */
+
+    // We manually initialise and draw chart when our component has rendered
+    // @ts-expect-error
+    const chart = __CHART_CONSTRUCTOR(__Chart_App_Info,jQuery,window);
+    chart.Chart.ChartJs();
+
+  }, [])
+  
   return (
     <section className="section" id="tokensale">
       <div className="container">
@@ -212,8 +226,9 @@ function Tokens() {
           </div>
         </div>
       </div>
+      <div id="__chartScriptWrapper" />
     </section>
   );
 }
 
-export default Tokens;
+export default React.memo(Tokens);
