@@ -1,4 +1,11 @@
 import React from "react";
+import bull from '../../assets/images/board/bull.jpeg';
+import madaz from '../../assets/images/board/madaz.jpeg';
+import mm from '../../assets/images/board/mm.jpeg';
+import marc from '../../assets/images/board/marc.png';
+import astrones from '../../assets/images/board/astrones.jpeg';
+import michael from '../../assets/images/board/michael.jpeg';
+
 
 function BoardMembers() {
   return (
@@ -32,7 +39,7 @@ function BoardMembers() {
                 data-delay="0.3"
               >
                 <div className="team-photo team-photo-s2">
-                  <img src="sla.jpeg" alt="" />
+                  <img src={bull} alt="" />
                 </div>
                 <h5 className="team-name title title-sm">Bull Sayler</h5>
                 <ul className="team-social team-social-s2">
@@ -61,7 +68,7 @@ function BoardMembers() {
                 data-delay="0.3"
               >
                 <div className="team-photo team-photo-s2">
-                  <img src="ma.jpeg" alt="" />
+                  <img src={madaz} alt="" />
                 </div>
                 <h5 className="team-name title title-sm">Madaz</h5>
                 <ul className="team-social team-social-s2">
@@ -90,7 +97,7 @@ function BoardMembers() {
                 data-delay="0.3"
               >
                 <div className="team-photo team-photo-s2">
-                  <img src="mm.jpeg" alt="" />
+                  <img src={mm} alt="" />
                 </div>
                 <h5 className="team-name title title-sm">MM Crypto</h5>
                 <ul className="team-social team-social-s2">
@@ -119,7 +126,7 @@ function BoardMembers() {
                 data-delay="0.3"
               >
                 <div className="team-photo team-photo-s2">
-                  <img src="marc.png" alt="" />
+                  <img src={marc} alt="" />
                 </div>
                 <h5 className="team-name title title-sm">Marc Nieto</h5>
                 <ul className="team-social team-social-s2">
@@ -148,7 +155,7 @@ function BoardMembers() {
                 data-delay="0.3"
               >
                 <div className="team-photo team-photo-s2">
-                  <img src="pro.jpeg" alt="" />
+                  <img src={astrones} alt="" />
                 </div>
                 <h5 className="team-name title title-sm">Professor Astrones</h5>
                 <ul className="team-social team-social-s2">
@@ -177,7 +184,7 @@ function BoardMembers() {
                 data-delay="0.3"
               >
                 <div className="team-photo team-photo-s2">
-                  <img src="m.jpeg" alt="" />
+                  <img src={michael} alt="" />
                 </div>
                 <h5 className="team-name title title-sm">
                   Michaël van de Poppe

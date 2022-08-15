@@ -34,13 +34,8 @@ code {
 .mgm a {
   font-weight: 700;
   display: block;
-  color: #f2d516;
-}
-
-.mgm a,
-.mgm a:active {
   transition: all 0.2s ease;
-  color: #f2d516;
+  color: #bd0d01;
 }
 
 /* Chart.js style */

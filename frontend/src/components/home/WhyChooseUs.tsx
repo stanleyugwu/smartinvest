@@ -1,4 +1,9 @@
 import React from "react";
+import chartScreenImageBig from '../../assets/images/sc-medium.png'
+import chartScreenImageSmall from '../../assets/images/sc-small.jpg'
+import circleShape from '../../assets/images/circle.png'
+import polygonShape from '../../assets/images/polygon-line.png'
+import triangleShape from '../../assets/images/triangle.png'
 
 function WhyChooseUs() {
   return (
@@ -33,27 +38,27 @@ function WhyChooseUs() {
               >
                 <img
                   className="shadow rounded"
-                  src="images/app-screens/sc-medium-b.png"
+                  src={chartScreenImageBig}
                   alt=""
                 />
                 <img
                   className="nk-block-img-plx plx-screen shadow rounded"
-                  src="images/app-screens/sc-small-d.jpg"
+                  src={chartScreenImageSmall}
                   alt=""
                 />
                 <img
                   className="nk-block-img-plx plx-circle plx-circle-s1"
-                  src="images/gfx/circle-a.png"
+                  src={circleShape}
                   alt=""
                 />
                 <img
                   className="nk-block-img-plx plx-polygon plx-polygon-s1"
-                  src="images/gfx/polygon-a.png"
+                  src={polygonShape}
                   alt=""
                 />
                 <img
                   className="nk-block-img-plx plx-triangle plx-triangle-s1"
-                  src="images/gfx/triangle-a.png"
+                  src={triangleShape}
                   alt=""
                 />
               </div>

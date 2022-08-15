@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import headerImg from "../assets/images/gfx-e.png";
+import logo from "../assets/images/logo.png";
 
 function Header() {
+  const [activeSection, setActiveSection] = useState("root");
+  const onMenuLinkClick = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(sectionId);
+  };
   return (
     <header
       className="nk-header page-header is-transparent is-sticky is-dark"
@@ -17,7 +24,7 @@ function Header() {
               data-delay=".6"
             >
               <a href="index.html" className="logo-link">
-                <img className="logo-light" src="images/logo.png" alt="logo" />
+                <img className="logo-light" src={logo} alt="logo" />
               </a>
             </div>
             {/* Menu Toogle @s */}
@@ -42,47 +49,77 @@ function Header() {
                 <ul className="menu">
                   <li className="menu-item">
                     <a
-                      className="menu-link nav-link menu-toggle"
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "root" ? " active" : ""
+                      }`}
+                      onClick={() => onMenuLinkClick("root")}
                       href="index.html"
                     >
                       Home
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a className="menu-link nav-link menu-toggle" href="#about">
+                    <a
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "about" ? " active" : ""
+                      }`}
+                      onClick={() => onMenuLinkClick("about")}
+                      href="#"
+                    >
                       About
                     </a>
                   </li>
                   <li className="menu-item">
                     <a
-                      className="menu-link nav-link menu-toggle"
-                      href="#ecosystems"
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "ecosystems" ? " active" : ""
+                      }`}
+                      onClick={() => onMenuLinkClick("ecosystems")}
+                      href="#"
                     >
                       Our Services
                     </a>
                   </li>
                   <li className="menu-item">
                     <a
-                      className="menu-link nav-link menu-toggle"
-                      href="#features"
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "features" ? " active" : ""
+                      }`}
+                      onClick={() => onMenuLinkClick("features")}
+                      href="#"
                     >
                       Features
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a className="menu-link nav-link menu-toggle" href="#plans">
+                    <a
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "plans" ? " active" : ""
+                      }`}
+                      href="#"
+                      onClick={() => onMenuLinkClick("plans")}
+                    >
                       Investment Plans
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a className="menu-link nav-link menu-toggle" href="#faq">
+                    <a
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "faq" ? " active" : ""
+                      }`}
+                      href="#"
+                      onClick={() => onMenuLinkClick("faq")}
+                    >
                       FAQ
                     </a>
                   </li>
                   <li className="menu-item">
                     <a
-                      className="menu-link nav-link menu-toggle"
-                      href="#contact"
+                      className={`menu-link nav-link menu-toggle ${
+                        activeSection === "contact" ? " active" : ""
+                      }`}
+                      href="#"
+                      onClick={() => onMenuLinkClick("contact")}
                     >
                       Contact Us
                     </a>
@@ -91,7 +128,7 @@ function Header() {
                 <ul className="menu-btns">
                   <li>
                     <a
-                      href="Meg-Villa/"
+                      href="/signup"
                       className="btn btn-sm btn-thin btn-outline btn-auto"
                     >
                       <span>Login</span>
@@ -99,7 +136,7 @@ function Header() {
                   </li>
                   <li>
                     <a
-                      href="Meg-Villa/"
+                      href="/signup"
                       className="btn btn-sm btn-thin btn-outline btn-auto"
                     >
                       <span>Register</span>
@@ -154,7 +191,7 @@ function Header() {
                   data-animate="fadeInUp"
                   data-delay=".7"
                 >
-                  <img src="gfx-e.png" alt="header" />
+                  <img src={headerImg} alt="header" />
                 </div>
               </div>
               {/* .col */}
@@ -184,7 +221,7 @@ function Header() {
                     data-animate="fadeInUp"
                     data-delay={1}
                   >
-                    <a href="Meg-Villa/" className="btn btn-primary btn-round">
+                    <a href="/signup" className="btn btn-primary btn-round">
                       SIGN IN
                     </a>
                   </div>

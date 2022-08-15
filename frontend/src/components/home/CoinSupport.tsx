@@ -1,8 +1,19 @@
 import React from "react";
+import btc from '../../assets/images/coins/btc.png';
+import eth from '../../assets/images/coins/eth.png';
+import bch from '../../assets/images/coins/bch.png';
+import lit from '../../assets/images/coins/lit.png';
+import tet from '../../assets/images/coins/tet.png';
+import shib from '../../assets/images/coins/shib.png';
+import doge from '../../assets/images/coins/doge.png';
+import bnb from '../../assets/images/coins/bnb.png';
+import sol from '../../assets/images/coins/sol.png';
+import crypto from '../../assets/images/coins/crypto.png';
+import cad from '../../assets/images/coins/cad.png';
 
 function CoinSupport() {
   return (
-    <section className="section section-l" id="roadmap">
+    <section className="section section-l pt-0" id="coin_support">
       <div className="container">
         <div className="row justify-content-center text-center">
           <div className="col-lg-6">
@@ -11,7 +22,7 @@ function CoinSupport() {
                 className="title title-xl animated"
                 data-animate="fadeInUp"
                 data-delay="0.1"
-                title="Timeline"
+                title="Payment Methods"
               >
                 At Mega Trade Villa We Support
               </h3>
@@ -38,14 +49,14 @@ function CoinSupport() {
             >
               <div className="roadmap ">
                 <img
-                  src="coin/btc.png"
+                  src={btc}
                   alt=""
                   style={{ width: "200px", borderRadius: "10px" }}
                 />
               </div>
               <div className="roadmap  roadmap-i1  ">
                 <img
-                  src="coin/eth.png"
+                  src={eth}
                   alt=""
                   style={{
                     width: "200px",
@@ -56,7 +67,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap  roadmap-i1  ">
                 <img
-                  src="coin/bch.png"
+                  src={bch}
                   alt=""
                   style={{
                     width: "200px",
@@ -67,7 +78,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap  roadmap-i1 ">
                 <img
-                  src="coin/lit.png"
+                  src={lit}
                   alt=""
                   style={{
                     width: "200px",
@@ -78,7 +89,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/tet.png"
+                  src={tet}
                   alt=""
                   style={{
                     width: "200px",
@@ -89,7 +100,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/shib.png"
+                  src={shib}
                   alt=""
                   style={{
                     width: "200px",
@@ -100,7 +111,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/doge.png"
+                  src={doge}
                   alt=""
                   style={{
                     width: "200px",
@@ -111,7 +122,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/bnb.png"
+                  src={bnb}
                   alt=""
                   style={{
                     width: "200px",
@@ -122,7 +133,7 @@ function CoinSupport() {
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/sol.png"
+                  src={sol}
                   alt=""
                   style={{
                     width: "200px",
@@ -133,22 +144,22 @@ function CoinSupport() {
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/crypto.png"
+                  src={crypto}
                   alt=""
                   style={{
                     width: "200px",
-                    borderRadius: "10px",
+                    borderRadius: "100%",
                     padding: "10px",
                   }}
                 />
               </div>
               <div className="roadmap roadmap-i1  ">
                 <img
-                  src="coin/cad.png"
+                  src={cad}
                   alt=""
                   style={{
                     width: "200px",
-                    borderRadius: "10px",
+                    borderRadius: "100%",
                     padding: "10px",
                   }}
                 />

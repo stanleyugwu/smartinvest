@@ -1,4 +1,7 @@
 import React from "react";
+import bronzeImg from '../../assets/images/investment_packages/bronze.jpg'
+import silverImg from '../../assets/images/investment_packages/silver.jpg'
+import goldImg from '../../assets/images/investment_packages/gold.jpg'
 
 function InvestmentPlans() {
   return (
@@ -34,7 +37,7 @@ function InvestmentPlans() {
                 data-delay="0.3"
               >
                 <div className="doc-photo doc-shape doc-shape-a">
-                  <img src="images/azalea/doc-a.jpg" alt="" />
+                  <img src={bronzeImg} alt="" />
                 </div>
                 <div className="doc-text">
                   <h5 className="doc-title title-sm">Minimum Deposit $1,000</h5>
@@ -57,7 +60,7 @@ function InvestmentPlans() {
                 data-delay="0.4"
               >
                 <div className="doc-photo doc-shape doc-shape-b">
-                  <img src="images/azalea/doc-b.jpg" alt="" />
+                  <img src={silverImg} alt="" />
                 </div>
                 <div className="doc-text">
                   <h5 className="doc-title title-sm">
@@ -82,7 +85,7 @@ function InvestmentPlans() {
                 data-delay="0.5"
               >
                 <div className="doc-photo doc-shape doc-shape-c">
-                  <img src="images/azalea/doc-c.jpg" alt="" />
+                  <img src={goldImg} alt="" />
                 </div>
                 <div className="doc-text">
                   <h5 className="doc-title title-sm">
@@ -105,10 +108,8 @@ function InvestmentPlans() {
       </div>
       <div className="d-block text-center">
         <br />
-        <a href="Meg-Villa/">
-          <button type="submit" className="btn btn-lg">
+        <a href="/signup" className="btn btn-lg">
             Sign up for more higher Investment plans today
-          </button>
         </a>
       </div>
     </section>

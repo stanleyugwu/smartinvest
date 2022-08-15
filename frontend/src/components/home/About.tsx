@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import InjectScript from "../../utils/injectScriptTag";
 
 function About() {
   return (
@@ -73,7 +74,7 @@ function About() {
                     style={{ visibility: "visible", animationDelay: "0.6s" }}
                   >
                     <a
-                      href="Meg-Villa/"
+                      href="/signup"
                       className="menu-link btn btn-primary btn-round btn-lg"
                     >
                       <span>Get Started</span>{" "}

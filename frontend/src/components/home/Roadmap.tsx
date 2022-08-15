@@ -13,7 +13,7 @@ function Roadmap() {
                 data-delay="0.1"
                 title="Timeline"
               >
-                ROADMAY
+                ROADMAP
               </h2>
               <p className="animated" data-animate="fadeInUp" data-delay="0.2">
                 ICO Crypto is developing a global data-driven platform for the

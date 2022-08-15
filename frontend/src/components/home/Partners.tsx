@@ -1,4 +1,9 @@
 import React from "react";
+import tokenlot from '../../assets/images/partners/tokenlot.png';
+import blockchainil from '../../assets/images/partners/blockchainil.png';
+import blockex from '../../assets/images/partners/blockex.png';
+import stockholms from '../../assets/images/partners/stockholm.png';
+import bancor from '../../assets/images/partners/bancor.png';
 
 function Partners() {
   return (
@@ -12,7 +17,7 @@ function Partners() {
                   className="title animated"
                   data-animate="fadeInUp"
                   data-delay="0.1"
-                  title="Press"
+                  title="Partners"
                 >
                   Our Partners
                 </h2>
@@ -31,7 +36,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.2"
                         >
-                          <img src="images/partners/a-light.png" alt="" />
+                          <img src={tokenlot} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -40,7 +45,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.25"
                         >
-                          <img src="images/partners/b-light.png" alt="" />
+                          <img src={blockex} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -49,7 +54,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.3"
                         >
-                          <img src="images/partners/c-light.png" alt="" />
+                          <img src={blockchainil} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -58,7 +63,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.35"
                         >
-                          <img src="images/partners/d-light.png" alt="" />
+                          <img src={stockholms} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -67,7 +72,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.4"
                         >
-                          <img src="images/partners/e-light.png" alt="" />
+                          <img src={tokenlot} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -76,7 +81,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.45"
                         >
-                          <img src="images/partners/f-light.png" alt="" />
+                          <img src={bancor} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -85,7 +90,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.5"
                         >
-                          <img src="images/partners/a-light.png" alt="" />
+                          <img src={tokenlot} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -94,7 +99,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.55"
                         >
-                          <img src="images/partners/b-light.png" alt="" />
+                          <img src={blockex} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -103,7 +108,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.6"
                         >
-                          <img src="images/partners/c-light.png" alt="" />
+                          <img src={blockchainil} alt="" />
                         </div>
                       </div>
                     </div>
@@ -116,7 +121,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.2"
                         >
-                          <img src="images/partners/a-light.png" alt="" />
+                          <img src={tokenlot} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -125,7 +130,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.25"
                         >
-                          <img src="images/partners/b-light.png" alt="" />
+                          <img src={blockex} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -134,7 +139,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.3"
                         >
-                          <img src="images/partners/c-light.png" alt="" />
+                          <img src={blockchainil} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -143,7 +148,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.35"
                         >
-                          <img src="images/partners/d-light.png" alt="" />
+                          <img src={stockholms} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -152,7 +157,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.4"
                         >
-                          <img src="images/partners/e-light.png" alt="" />
+                          <img src={tokenlot} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -161,7 +166,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.45"
                         >
-                          <img src="images/partners/f-light.png" alt="" />
+                          <img src={bancor} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -170,7 +175,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.5"
                         >
-                          <img src="images/partners/a-light.png" alt="" />
+                          <img src={tokenlot} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -179,7 +184,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.55"
                         >
-                          <img src="images/partners/b-light.png" alt="" />
+                          <img src={blockex} alt="" />
                         </div>
                       </div>
                       <div className="col-6 col-sm-4">
@@ -188,7 +193,7 @@ function Partners() {
                           data-animate="fadeInUp"
                           data-delay="0.6"
                         >
-                          <img src="images/partners/c-light.png" alt="" />
+                          <img src={blockchainil} alt="" />
                         </div>
                       </div>
                     </div>
@@ -203,7 +208,7 @@ function Partners() {
                   className="title animated"
                   data-animate="fadeInUp"
                   data-delay="0.7"
-                  title="Update"
+                  title="Updates"
                 >
                   NEWS
                 </h2>
