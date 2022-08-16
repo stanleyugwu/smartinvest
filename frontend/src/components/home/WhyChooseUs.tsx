@@ -146,7 +146,7 @@ function WhyChooseUs() {
                   data-animate="fadeInUp"
                   data-delay="0.9"
                 >
-                  <a href="Meg-Villa/" className="btn">
+                  <a href="/signup" className="btn">
                     Get Started
                   </a>
                 </div>

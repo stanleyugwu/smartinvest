@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import About from "./components/home/About";
@@ -24,6 +24,29 @@ import './assets/js/GetButton';
  * The home page is a spa, so elements are arranged accordingly
  */
 function App() {
+  useEffect(() => {
+    /**
+     * Below undefined variables should be made available by `charts.js`, `scripts.js`, 
+     * and `jquery` library.
+     * They're hopeully loaded in follwowing order: jquery.js, scripts.js, charts.js.
+     * 
+     * The scripts: `scripts.js` and `charts.js` both have initialisation logics and they're supposed to
+     * automatically when the scripts are loaded. We've however prevented those initialisations until our app
+     * renders because the scripts will be loaded/executed before our app renders
+     */
+    try {
+      // @ts-ignore
+      let appInfo = App_Info(jQuery, window, document); // get app info object
+      // @ts-ignore
+    appInfo = Script_Init(appInfo,jQuery,window,document) // run scripts.js initialisation
+    // @ts-ignore
+    var AppInfo = __CHART_INIT(appInfo,jQuery,window); // run charts.js initialisation
+    AppInfo.Chart.ChartJs(); // draw chart
+    } catch (error) {
+      console.log(error);
+      console.log("ERROR WITH THREE SCRIPTS LOADED IN INDEX.HTML");
+    }
+  },[])
   return (
     <div className="App">
       {/* Main Page */}
@@ -76,4 +99,4 @@ function App() {
   );
 }
 
-export default React.memo(App);
+export default App;

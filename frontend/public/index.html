@@ -30,9 +30,9 @@
     <div id="root"></div>
     <!-- JavaScript -->
     <!-- 
-      The position of below scripts are intentional because we want to load the scripts
-      after mounting our react app in the above div as some logics in the scripts assumes
-      some elements are already rendered.
+      Even tho these scripts are loaded here, no action will be taken by them until `App.tsx`
+      which is our page fully renders its children. It's intentional.
+      We can import these scripts in our app but they're big so
     -->
     <script src="%PUBLIC_URL%/assets/js/jquery.bundle.js"></script>
     <script src="%PUBLIC_URL%/assets/js/scripts.js"></script>

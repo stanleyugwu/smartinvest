@@ -1,16 +1,13 @@
 /**
- * UPDATES
- * we stop below function from self-invoking and change the variable name to NAP from NioApp
- * What we want is to initialise below function in `Token.tsx` component
- * via `__CHART_CONSTRUCTOR(__Chart_App_Info, JQuery, window)`, then manually draw the chart via `Chart.ChartJs()`
- * The whole essence is to stop automatic drawing of chart on page load, till our `Token` component
- * renders which will render the elements required for the chart to work
+ * Note that we're not initialising or calling the function, we'll call it in `App.tsx`
+ * sequentially when we're sure the expected arguments and elements are available
  */
 
 /*!
  * Charts - ICOCrypto v1.6.0 by Softnio.
  **/
-var __CHART_CONSTRUCTOR = function(a, t, o) {
+// Below function will take App Info object and also return App Info object which will be available globally
+var __CHART_INIT = function(a, t, o) {
     "use strict";
     var n = t(".chart-data"),
         e = t(".chart-data-s2"),

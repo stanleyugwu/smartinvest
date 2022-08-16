@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import headerImg from "../assets/images/gfx-e.png";
-import logo from "../assets/images/logo.png";
+import headerImg from '../assets/images/gfx-e.png'
+import logo from '../assets/images/logo.png';
 
 function Header() {
-  const [activeSection, setActiveSection] = useState("root");
-  const onMenuLinkClick = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    setActiveSection(sectionId);
-  };
+  const [menuOpen, setMenuOpen] = useState(false);
+  const handleMenuToggle = () => {
+   setMenuOpen(!menuOpen)
+  }
+
   return (
     <header
       className="nk-header page-header is-transparent is-sticky is-dark"
@@ -31,7 +31,8 @@ function Header() {
             <div className="header-nav-toggle">
               <a
                 href="#"
-                className="navbar-toggle"
+                className={`navbar-toggle ${menuOpen ? 'navbar-active' : ''}`}
+                onClick={handleMenuToggle}
                 data-menu-toggle="header-menu"
               >
                 <div className="toggle-line">
@@ -41,7 +42,7 @@ function Header() {
             </div>
             {/* Menu @s */}
             <div
-              className="header-navbar animated"
+              className={`header-navbar animated ${menuOpen ? 'menu-shown' : ''}`}
               data-animate="fadeInDown"
               data-delay=".6"
             >
@@ -49,77 +50,47 @@ function Header() {
                 <ul className="menu">
                   <li className="menu-item">
                     <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "root" ? " active" : ""
-                      }`}
-                      onClick={() => onMenuLinkClick("root")}
+                      className="menu-link nav-link menu-toggle"
                       href="index.html"
                     >
                       Home
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "about" ? " active" : ""
-                      }`}
-                      onClick={() => onMenuLinkClick("about")}
-                      href="#"
-                    >
+                    <a className="menu-link nav-link menu-toggle" href="#about">
                       About
                     </a>
                   </li>
                   <li className="menu-item">
                     <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "ecosystems" ? " active" : ""
-                      }`}
-                      onClick={() => onMenuLinkClick("ecosystems")}
-                      href="#"
+                      className="menu-link nav-link menu-toggle"
+                      href="/#ecosystems"
                     >
                       Our Services
                     </a>
                   </li>
                   <li className="menu-item">
                     <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "features" ? " active" : ""
-                      }`}
-                      onClick={() => onMenuLinkClick("features")}
-                      href="#"
+                      className="menu-link nav-link menu-toggle"
+                      href="#features"
                     >
                       Features
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "plans" ? " active" : ""
-                      }`}
-                      href="#"
-                      onClick={() => onMenuLinkClick("plans")}
-                    >
+                    <a className="menu-link nav-link menu-toggle" href="#plans">
                       Investment Plans
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "faq" ? " active" : ""
-                      }`}
-                      href="#"
-                      onClick={() => onMenuLinkClick("faq")}
-                    >
+                    <a className="menu-link nav-link menu-toggle" href="#faq">
                       FAQ
                     </a>
                   </li>
                   <li className="menu-item">
                     <a
-                      className={`menu-link nav-link menu-toggle ${
-                        activeSection === "contact" ? " active" : ""
-                      }`}
-                      href="#"
-                      onClick={() => onMenuLinkClick("contact")}
+                      className="menu-link nav-link menu-toggle"
+                      href="#contact"
                     >
                       Contact Us
                     </a>
@@ -191,7 +162,7 @@ function Header() {
                   data-animate="fadeInUp"
                   data-delay=".7"
                 >
-                  <img src={headerImg} alt="header" />
+                  <img src={headerImg}alt="header" />
                 </div>
               </div>
               {/* .col */}
