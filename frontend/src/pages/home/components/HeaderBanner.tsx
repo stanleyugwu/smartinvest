@@ -9,7 +9,7 @@ const HeaderBanner = () => {
           <div className="row align-items-center justify-content-center justify-content-lg-between gutter-vr-30px">
             <div className="col-lg-6 order-lg-last">
               <div
-                className="banner-gfx banner-gfx-auto animated"
+                className="banner-gfx banner-gfx-auto animated toMakeVisible"
                 data-animate="fadeInUp"
                 data-delay=".7"
               >

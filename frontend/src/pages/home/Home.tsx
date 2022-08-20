@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PreloaderAnimation from "../../components/PreloaderAnimation";
 import About from "./components/About";
 import BoardMembers from "./components/BoardMembers";

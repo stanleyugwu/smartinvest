@@ -1,11 +1,26 @@
-import React, { useState } from "react";
-import logo from '../assets/images/logo.png';
+import React, {
+  useCallback,
+  useState,
+} from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const handleMenuToggle = () => {
-   setMenuOpen(!menuOpen)
-  }
+    setMenuOpen(!menuOpen);
+  };
+
+  // below section will links navigate back to home page
+  // when user is in signup page
+  const navigate = useNavigate();
+  const location = useLocation();
+  const handleMenuClick = useCallback(() => {
+    if (location.pathname === "/signup") {
+      navigate("/");
+      window.location.reload();
+    }
+  }, [navigate, location]);
 
   return (
     <header
@@ -14,7 +29,7 @@ function Header() {
     >
       {/* Header @s */}
       <div className="header-main">
-        <div className="header-container container container-xxl">
+        <div className="header-contain er container container-xxl">
           <div className="header-wrap">
             {/* Logo @s */}
             <div
@@ -30,7 +45,7 @@ function Header() {
             <div className="header-nav-toggle">
               <a
                 href="#"
-                className={`navbar-toggle ${menuOpen ? 'navbar-active' : ''}`}
+                className={`navbar-toggle ${menuOpen ? "navbar-active" : ""}`}
                 onClick={handleMenuToggle}
                 data-menu-toggle="header-menu"
               >
@@ -41,76 +56,94 @@ function Header() {
             </div>
             {/* Menu @s */}
             <div
-              className={`header-navbar animated ${menuOpen ? 'menu-shown' : ''}`}
+              className={`header-navbar animated ${
+                menuOpen ? "menu-shown" : ""
+              }`}
               data-animate="fadeInDown"
-              data-delay=".6"
+              data-delay=".3"
             >
               <nav className="header-menu" id="header-menu">
                 <ul className="menu">
                   <li className="menu-item">
-                    <a
+                    <Link
                       className="menu-link nav-link menu-toggle"
-                      href="index.html"
+                      to={"/"}
+                      onClick={handleMenuClick}
                     >
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li className="menu-item">
-                    <a className="menu-link nav-link menu-toggle" href="#about">
-                      About
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a
+                    <Link
                       className="menu-link nav-link menu-toggle"
-                      href="/#ecosystems"
+                      to="#about"
+                      onClick={handleMenuClick}
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li className="menu-item">
+                    <Link
+                      className="menu-link nav-link menu-toggle"
+                      to="#ecosystems"
+                      onClick={handleMenuClick}
                     >
                       Our Services
-                    </a>
+                    </Link>
                   </li>
                   <li className="menu-item">
-                    <a
+                    <Link
                       className="menu-link nav-link menu-toggle"
-                      href="#features"
+                      to="#features"
+                      onClick={handleMenuClick}
                     >
                       Features
-                    </a>
+                    </Link>
                   </li>
                   <li className="menu-item">
-                    <a className="menu-link nav-link menu-toggle" href="#plans">
-                      Investment Plans
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a className="menu-link nav-link menu-toggle" href="#faq">
-                      FAQ
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a
+                    <Link
                       className="menu-link nav-link menu-toggle"
-                      href="#contact"
+                      to="#plans"
+                      onClick={handleMenuClick}
+                    >
+                      Investment Plans
+                    </Link>
+                  </li>
+                  <li className="menu-item">
+                    <Link
+                      className="menu-link nav-link menu-toggle"
+                      to="#faq"
+                      onClick={handleMenuClick}
+                    >
+                      FAQ
+                    </Link>
+                  </li>
+                  <li className="menu-item">
+                    <Link
+                      className="menu-link nav-link menu-toggle"
+                      to="#contact"
+                      onClick={handleMenuClick}
                     >
                       Contact Us
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <ul className="menu-btns">
                   <li>
-                    <a
-                      href="/signup"
+                    <Link
+                      to="/signup"
                       className="btn btn-sm btn-thin btn-outline btn-auto"
                     >
                       <span>Login</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/signup"
+                    <Link
+                      to="/signup"
                       className="btn btn-sm btn-thin btn-outline btn-auto"
                     >
                       <span>Register</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>

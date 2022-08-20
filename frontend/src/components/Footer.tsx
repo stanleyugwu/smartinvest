@@ -17,7 +17,7 @@ function Footer() {
           </div>
           <div className="col-lg-6">
             <div className="copyright-text copyright-text-s2">
-              Mega Trade Villa © 2017 All Rights Reserved
+              Mega Trade Villa © 2022 All Rights Reserved
             </div>
           </div>
         </div>

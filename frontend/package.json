@@ -29,7 +29,8 @@
       "react-app/jest"
     ],
     "ignorePatterns": [
-      "**/assets/js/*"
+      "**/assets/js/*",
+      "**/signup/script.ts"
     ]
   },
   "browserslist": {
