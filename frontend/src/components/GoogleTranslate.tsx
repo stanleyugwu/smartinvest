@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import injectScript from "../utils/injectScriptTag";
+import injectScript from "../utils/services/injectScriptTag";
 
 function GoogleTranslate() {
   useEffect(() => {
@@ -17,9 +17,9 @@ function GoogleTranslate() {
   return (
     <div className="text-center d-block" id="__translate-script-wrapper">
       <div id="google_translate_element"></div>
-      {/* The script tags for google translate will go here */}
+      {/* The script tags for google translate will be injected here */}
     </div>
   );
 }
 
-export default React.memo(GoogleTranslate);
+export default GoogleTranslate;

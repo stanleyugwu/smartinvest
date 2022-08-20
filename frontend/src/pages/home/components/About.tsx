@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import InjectScript from "../../utils/injectScriptTag";
 
 function About() {
   return (

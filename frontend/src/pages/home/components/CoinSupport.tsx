@@ -1,15 +1,15 @@
 import React from "react";
-import btc from '../../assets/images/coins/btc.png';
-import eth from '../../assets/images/coins/eth.png';
-import bch from '../../assets/images/coins/bch.png';
-import lit from '../../assets/images/coins/lit.png';
-import tet from '../../assets/images/coins/tet.png';
-import shib from '../../assets/images/coins/shib.png';
-import doge from '../../assets/images/coins/doge.png';
-import bnb from '../../assets/images/coins/bnb.png';
-import sol from '../../assets/images/coins/sol.png';
-import crypto from '../../assets/images/coins/crypto.png';
-import cad from '../../assets/images/coins/cad.png';
+import btc from '../images/coins/btc.png';
+import eth from '../images/coins/eth.png';
+import bch from '../images/coins/bch.png';
+import lit from '../images/coins/lit.png';
+import tet from '../images/coins/tet.png';
+import shib from '../images/coins/shib.png';
+import doge from '../images/coins/doge.png';
+import bnb from '../images/coins/bnb.png';
+import sol from '../images/coins/sol.png';
+import crypto from '../images/coins/crypto.png';
+import cad from '../images/coins/cad.png';
 
 function CoinSupport() {
   return (

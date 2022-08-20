@@ -2,7 +2,7 @@ import React from "react";
 
 function PreloaderAnimation() {
   return (
-    <div className="preloader no-default">
+    <div className="preloader no-default d-none">
       <div className="text-zoom">
         <div className="text-item">
           <div className="text-small">MEGA</div>

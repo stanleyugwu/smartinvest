@@ -1,10 +1,10 @@
 import React from "react";
-import bull from '../../assets/images/board/bull.jpeg';
-import madaz from '../../assets/images/board/madaz.jpeg';
-import mm from '../../assets/images/board/mm.jpeg';
-import marc from '../../assets/images/board/marc.png';
-import astrones from '../../assets/images/board/astrones.jpeg';
-import michael from '../../assets/images/board/michael.jpeg';
+import bull from '../images/board/bull.jpeg';
+import madaz from '../images/board/madaz.jpeg';
+import mm from '../images/board/mm.jpeg';
+import marc from '../images/board/marc.png';
+import astrones from '../images/board/astrones.jpeg';
+import michael from '../images/board/michael.jpeg';
 
 
 function BoardMembers() {

@@ -1,9 +1,9 @@
 import React from "react";
-import chartScreenImageBig from '../../assets/images/sc-medium.png'
-import chartScreenImageSmall from '../../assets/images/sc-small.jpg'
-import circleShape from '../../assets/images/circle.png'
-import polygonShape from '../../assets/images/polygon-line.png'
-import triangleShape from '../../assets/images/triangle.png'
+import chartScreenImageBig from '../images/sc-medium.png'
+import chartScreenImageSmall from '../images/sc-small.jpg'
+import circleShape from '../images/circle.png'
+import polygonShape from '../images/polygon-line.png'
+import triangleShape from '../images/triangle.png'
 
 function WhyChooseUs() {
   return (

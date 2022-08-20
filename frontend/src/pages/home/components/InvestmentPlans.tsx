@@ -1,7 +1,7 @@
 import React from "react";
-import bronzeImg from '../../assets/images/investment_packages/bronze.jpg'
-import silverImg from '../../assets/images/investment_packages/silver.jpg'
-import goldImg from '../../assets/images/investment_packages/gold.jpg'
+import bronzeImg from '../images/investment_packages/bronze.jpg'
+import silverImg from '../images/investment_packages/silver.jpg'
+import goldImg from '../images/investment_packages/gold.jpg'
 
 function InvestmentPlans() {
   return (

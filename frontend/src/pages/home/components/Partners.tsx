@@ -1,9 +1,9 @@
 import React from "react";
-import tokenlot from '../../assets/images/partners/tokenlot.png';
-import blockchainil from '../../assets/images/partners/blockchainil.png';
-import blockex from '../../assets/images/partners/blockex.png';
-import stockholms from '../../assets/images/partners/stockholm.png';
-import bancor from '../../assets/images/partners/bancor.png';
+import tokenlot from '../images/partners/tokenlot.png';
+import blockchainil from '../images/partners/blockchainil.png';
+import blockex from '../images/partners/blockex.png';
+import stockholms from '../images/partners/stockholm.png';
+import bancor from '../images/partners/bancor.png';
 
 function Partners() {
   return (
