@@ -32,6 +32,12 @@ h6 {
   background-color: #486ff2;
   border-color: #486ff2;
 }
+#signup_wrapper .form-group {
+  margin-bottom: 0;
+}
+#signup_wrapper .btn:not(.btn-outline):hover {
+  color: yellow;
+}
 .authfy-login .btn.btn-lg {
   border-radius: 3px;
   box-shadow: 0 2px 3px #9c9c9c;
