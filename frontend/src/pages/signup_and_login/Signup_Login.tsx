@@ -5,8 +5,19 @@ import logoImg from "../../assets/images/logo.png";
 import SignupForm from "./components/signup/Signup";
 import LoginForm from "./components/login/Login";
 
-const SignupAndLogin = () => {
+const SignupAndLogin = ({
+  /** This will be used to determine whether to show sign in or sign up form when page loads*/
+  activeForm = "signin",
+}: {
+  activeForm?: "signin" | "signup";
+}) => {
   useEffect(() => {
+    if (activeForm === "signup") {
+      // switch to signup panel via jquery
+      // @ts-ignore 
+      $(".authfy-panel.active").removeClass("active");
+      $($(".lnk-toggler").data("panel")).addClass("active");
+    }
     // @ts-ignore
     pageScript(jQuery);
   }, []);
@@ -26,7 +37,11 @@ const SignupAndLogin = () => {
                 <div className="brand-logo">
                   <div className="text-center d-block">
                     <h2 style={{ fontSize: "24px", padding: "10px" }}>
-                      <img src={logoImg} style={{ width: "200px" }} alt="logo" />
+                      <img
+                        src={logoImg}
+                        style={{ width: "200px" }}
+                        alt="logo"
+                      />
                     </h2>
                   </div>
                 </div>
@@ -70,8 +85,8 @@ const SignupAndLogin = () => {
           <div className="col-sm-7 d-inline-block authfy-panel-right">
             {/* authfy-login start */}
             <div className="authfy-login">
-              <LoginForm/>
-              <SignupForm/>
+              <LoginForm />
+              <SignupForm />
             </div>{" "}
             {/* ./authfy-login */}
           </div>

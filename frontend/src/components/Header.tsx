@@ -1,7 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-} from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
@@ -14,13 +11,13 @@ function Header() {
   // below section will links navigate back to home page
   // when user is in signup page
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const handleMenuClick = useCallback(() => {
-    if (location.pathname === "/signup") {
+    if (pathname === "/signup" || pathname === "/signin") {
       navigate("/");
       window.location.reload();
     }
-  }, [navigate, location]);
+  }, [navigate, pathname]);
 
   return (
     <header
@@ -131,7 +128,7 @@ function Header() {
                 <ul className="menu-btns">
                   <li>
                     <Link
-                      to="/signup"
+                      to="/signin"
                       className="btn btn-sm btn-thin btn-outline btn-auto"
                     >
                       <span>Login</span>

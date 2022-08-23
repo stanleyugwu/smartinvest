@@ -7,7 +7,7 @@ import WinnerCard from "./components/WinnerCard";
 import "./assets/js/GetButton";
 import Home from "./pages/home";
 import { Routes, Route, Outlet } from "react-router-dom";
-import Signup from "./pages/signup_and_login";
+import SignupAndLogin from "./pages/signup_and_login";
 import AuthProvider from "./components/auth_provider/AuthProvider";
 
 /**
@@ -43,7 +43,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />}>
             <Route index element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<SignupAndLogin activeForm="signup" />} />
+            <Route path="/signin" element={<SignupAndLogin />} />
           </Route>
           <Route path="/dashboard" element={<div>HELLO</div>} />
         </Routes>
