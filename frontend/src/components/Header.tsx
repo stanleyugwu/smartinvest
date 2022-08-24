@@ -13,9 +13,8 @@ function Header() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const handleMenuClick = useCallback(() => {
-    if (pathname === "/signup" || pathname === "/signin") {
+    if (pathname !== "/") {
       navigate("/");
-      window.location.reload();
     }
   }, [navigate, pathname]);
 
@@ -34,7 +33,7 @@ function Header() {
               data-animate="fadeInDown"
               data-delay=".6"
             >
-              <a href="index.html" className="logo-link">
+              <a href="/" className="logo-link">
                 <img className="logo-light" src={logo} alt="logo" />
               </a>
             </div>
