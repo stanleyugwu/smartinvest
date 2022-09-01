@@ -9,7 +9,8 @@
 const InjectScript = (
   parentElemSelector?: string,
   url?: string,
-  jsContent?: string
+  jsContent?: string,
+  tagAttr?:Record<string, string>
 ) => {
   if (!url && !jsContent) return;
   const target = document.querySelector(parentElemSelector || "body");
@@ -23,10 +24,15 @@ const InjectScript = (
   if (url) {
     script.src = url;
   } else if (jsContent) {
-    script.innerText = jsContent;
+    script.innerHTML = jsContent;
   }
   // script.async = true;
   script.type = "text/javascript";
+  if(tagAttr){
+    for(let attr in tagAttr){
+      script.setAttribute(attr,tagAttr[attr]);
+    }
+  }
 
   target?.appendChild(script);
 

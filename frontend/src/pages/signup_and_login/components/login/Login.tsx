@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import ErrorField from "../ErrorField";
 import LoginSchema from "./login.schema";
+import useAuth from "../../../../hooks/useAuth";
 
 export interface LoginInputs {
   email: string;
@@ -19,6 +20,8 @@ const Login = () => {
 
   const [passwordMasked, setPasswordMasked] = useState(true);
 
+  const user = useAuth();
+
   /**
    * Handles login form submission
    */
@@ -26,6 +29,7 @@ const Login = () => {
   const onSubmit = handleSubmit((values) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
+    user.signIn?.(values.email,values.password)
     console.log(values);
   });
 

@@ -1,16 +1,13 @@
 import axiosInstance from "../axios";
 
-export type SignIn = (email: string, password: string) => void;
+export type SignIn<RT = any> = (email: string, password: string) => Promise<RT>;
 export type SignOut = () => void;
 
 /**
  * Handles signing in user
  */
-const signIn: SignIn = (email: string, password) => {
-  return axiosInstance.post("/signin", {
-    email,
-    password,
-  });
+const signIn: SignIn<any> = (email: string, password) => {
+  return Promise.resolve("Bearer 23jndnsndsnmnn234mdmsdn")
 };
 
 /**
