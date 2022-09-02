@@ -735,7 +735,6 @@ body#dashboardBody h1 {
 }
 .ms-navbar li.ms-nav-item .ms-user-img{
   display: block;
-  vertical-align: middle;
   max-width: 40px;
   cursor: pointer;
 }

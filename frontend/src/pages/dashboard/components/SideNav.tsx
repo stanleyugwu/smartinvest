@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import logo from '../../../assets/images/logo.png';
 
 /**
  * The Fixed Side Navigation
@@ -25,7 +26,7 @@ const SideNav = () => {
           style={{ color: "White", fontSize: 20, fontWeight: "bolder" }}
         >
           <img
-            src="https://www.megatradevilla.com/logo.png"
+            src={logo}
             style={{ width: 250 }}
           />
         </Link>
