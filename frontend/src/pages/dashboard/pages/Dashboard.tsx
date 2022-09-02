@@ -4,15 +4,19 @@ import "../styles/table.css";
 import ChartWidget from "../components/ChartWidget";
 import RateWidget from "../components/RateWidget";
 import TickerTapeWidget from "../components/TickerTapeWidget";
+import moneyBag from '../images/money_bag.svg';
+import useAppStore from "../../../store";
 
 const Dashboard = () => {
+  const {acct,user} = useAppStore(state => ({acct:state.account, user:state.profile}));
+
   return (
     <>
       {/* News Flash */}
       <div className="col-sm-12">
         <span style={{ fontSize: "35px", color: "black" }}>
           Welcome
-          <b style={{ color: "#FF4444", textDecoration: "underline" }}> Dev</b>
+          <b style={{ color: "#FF4444", textDecoration: "underline" }}> {user?.fullname}</b>
         </span>
       </div>
       <div className="col-sm-12 mb-4">
@@ -42,12 +46,13 @@ const Dashboard = () => {
               <div className="media-body">
                 <h6 style={{ color: "white" }}>Deposits</h6>
                 <p className="ms-card-change" style={{ color: "white" }}>
-                  {" "}
                   <img
-                    src="money-bag-with-dollar-symbol.svg"
+                    src={moneyBag}
                     style={{ width: "20px" }}
+                    alt="money"
                   />{" "}
-                  £0.00
+                  {user?.currency}
+                  {acct?.deposit}
                 </p>
                 <p className="fs-12" style={{ color: "#fff" }}>
                   Stats -{" "}
@@ -77,10 +82,12 @@ const Dashboard = () => {
                 <p className="ms-card-change" style={{ color: "white" }}>
                   {" "}
                   <img
-                    src="money-bag-with-dollar-symbol.svg"
+                    src={moneyBag}
                     style={{ width: "20px" }}
+                    alt="money"
                   />{" "}
-                  £0.00{" "}
+                  {user?.currency}
+                  {acct?.balance}
                 </p>
                 <p className="fs-12" style={{ color: "#fff" }}>
                   Stats
@@ -106,7 +113,8 @@ const Dashboard = () => {
                   <i className="material-icons" style={{ color: "#ff6666" }}>
                     arrow_upward
                   </i>{" "}
-                  £0.00
+                  {user?.currency}
+                  {acct?.profit}
                 </p>
                 <p className="fs-12" style={{ color: "#fff" }}>
                   Stats
@@ -148,7 +156,8 @@ const Dashboard = () => {
                     <i className="material-icons" style={{ color: "white" }}>
                       arrow_upward
                     </i>{" "}
-                    £0.00{" "}
+                    {user?.currency}
+                  {acct?.credit}
                   </p>
                   <p className="fs-12" style={{ color: "#fff" }}>
                     Stats
@@ -174,7 +183,8 @@ const Dashboard = () => {
                     <i className="material-icons" style={{ color: "white" }}>
                       arrow_upward
                     </i>{" "}
-                    £0.00
+                    {user?.currency}
+                  {acct?.withdrawal}
                   </p>
                   <p className="fs-12" style={{ color: "#fff" }}>
                     Stats
@@ -200,6 +210,7 @@ const Dashboard = () => {
                     <i className="material-icons" style={{ color: "white" }}>
                       arrow_upward
                     </i>
+                  {acct?.accountManager}
                   </p>
                   <p className="fs-12" style={{ color: "#fff" }}>
                     Stats
@@ -225,7 +236,7 @@ const Dashboard = () => {
                     <i className="material-icons" style={{ color: "white" }}>
                       arrow_upward
                     </i>{" "}
-                    0%
+                    {acct?.tradingPercentage}{"%"}
                   </p>
                   <p className="fs-12">Stats</p>
                 </div>
