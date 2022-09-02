@@ -13,19 +13,26 @@ const HeadAndBody = ({ children = <div /> }: { children?: JSX.Element }) => {
     // InjectScript("#dashboardBody","/assets/dashboard/js/jquery-ui.min.js");
 
     // Page specific scripts
-    InjectScript("#dashboardBody","/assets/dashboard/js/slick.min.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/moment.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/jquery.webticker.min.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/Chart.bundle.min.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/Chart.Financial.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/cryptocurrency.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/framework.js");
-    InjectScript("#dashboardBody","/assets/dashboard/js/settings.js");
-  }, [])
-  
+    InjectScript("#dashboardBody", "/assets/dashboard/js/slick.min.js");
+    InjectScript("#dashboardBody", "/assets/dashboard/js/moment.js");
+    InjectScript(
+      "#dashboardBody",
+      "/assets/dashboard/js/jquery.webticker.min.js"
+    );
+    InjectScript("#dashboardBody", "/assets/dashboard/js/Chart.bundle.min.js");
+    InjectScript("#dashboardBody", "/assets/dashboard/js/Chart.Financial.js");
+    InjectScript("#dashboardBody", "/assets/dashboard/js/cryptocurrency.js");
+    InjectScript("#dashboardBody", "/assets/dashboard/js/framework.js");
+    InjectScript("#dashboardBody", "/assets/dashboard/js/settings.js");
+  }, []);
+
   return (
     <>
-      <body className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar" id="dashboardBody">
+      <body
+        className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar"
+        id="dashboardBody"
+        style={{ backgroundColor: "#262626" }}
+      >
         {children}
         {/* <!-- SCRIPTS --> */}
         {/* <!-- Global Required Scripts Start --> */}

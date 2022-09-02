@@ -4,7 +4,7 @@ import countries from "./countries.json";
 /**
  * Country selection dropdown
  */
-const CountrySelect = React.forwardRef<HTMLSelectElement>(
+const CountrySelect = React.forwardRef<HTMLSelectElement,any>(
   (
     props,
     ref

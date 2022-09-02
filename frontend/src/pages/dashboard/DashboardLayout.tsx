@@ -3,13 +3,13 @@ import { Outlet } from "react-router-dom";
 import SideNavigation from "./components/SideNav";
 import HeadAndBody from "./components/HeadAndBody";
 import MainContent from "./components/MainContent";
-import RequireAuth from "../../components/RequireAuth";
-import './styles/flat-icons/flaticon.css';
-import './styles/cryptocoins/cryptocoins.css';
-import './styles/cryptocoins/cryptocoins-colors.css';
-import './styles/jquery-ui.min.css';
-import './styles/slick.css';
-import './styles/style.css';
+import logo from '../../assets/images/logo.png'
+import "./styles/flat-icons/flaticon.css";
+import "./styles/cryptocoins/cryptocoins.css";
+import "./styles/cryptocoins/cryptocoins-colors.css";
+import "./styles/jquery-ui.min.css";
+import "./styles/slick.css";
+import "./styles/style.css";
 
 /**
  * Layout structure for dashboard routes
@@ -17,8 +17,7 @@ import './styles/style.css';
  */
 const DashboardLayout = () => {
   return (
-    <RequireAuth>
-      <>
+    <>
       <HeadAndBody>
         <>
           {/* Setting Panel */}
@@ -27,10 +26,7 @@ const DashboardLayout = () => {
           </div>
           {/* Preloader */}
           <div id="preloader-wrap" style={{ backgroundColor: "#272F3D" }}>
-            <img
-              src="https://klss.d"
-              style={{ width: 140 }}
-            />
+            <img src={logo} style={{ width: 140 }} />
           </div>
           {/* Overlays */}
           <div
@@ -48,10 +44,14 @@ const DashboardLayout = () => {
             {/* Outlet is the dynamic part of it. swicthes between dashboard pages*/}
             <Outlet />
           </MainContent>
+          <aside
+            id="ms-quick-bar"
+            className="ms-quick-bar fixed ms-d-block-lg"
+            style={{ backgroundColor: "#262626" }}
+          ></aside>
         </>
       </HeadAndBody>
-      </>
-    </RequireAuth>
+    </>
   );
 };
 

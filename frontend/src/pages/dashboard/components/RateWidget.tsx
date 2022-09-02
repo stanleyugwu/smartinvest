@@ -36,4 +36,4 @@ const RateWidget = () => {
   );
 };
 
-export default RateWidget;
+export default React.memo(RateWidget, (p,n) => true);

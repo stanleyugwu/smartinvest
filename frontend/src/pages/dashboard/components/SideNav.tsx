@@ -1,13 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 /**
  * The Fixed Side Navigation
  */
 const SideNav = () => {
-  const handleLogout = () => {
-
-  }
+  const {signOut} = useAuth()
   const {pathname:path} = useLocation();
   return (
     <aside
@@ -20,16 +19,16 @@ const SideNav = () => {
         className="logo-sn ms-d-block-lg"
         style={{ backgroundColor: "#272F3D" }}
       >
-        <a
+        <Link
           className={`pl-0 ml-0 text-center`}
-          href="index.php"
+          to="/"
           style={{ color: "White", fontSize: 20, fontWeight: "bolder" }}
         >
           <img
             src="https://www.megatradevilla.com/logo.png"
             style={{ width: 250 }}
           />
-        </a>
+        </Link>
       </div>
       {/* Navigation */}
       <ul
@@ -38,84 +37,84 @@ const SideNav = () => {
         style={{ backgroundColor: "#272F3D" }}
       >
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard" className={path === "/dashboard" ? 'active' : ''}>
+          <Link to="/" className={path === "/" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-home" style={{ fontSize: 17 }} />
               Dashboard
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/live-trading" className={path === "/dashboard/live-trading" ? 'active' : ''}>
+          <Link to="/live-trading" className={path === "/live-trading" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-window-maximize" style={{ fontSize: 17 }} />
               Live Trading
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/profile" className={path === "/dashboard/profile" ? 'active' : ''}>
+          <Link to="/profile" className={path === "/profile" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-user-circle" style={{ fontSize: 17 }} />
               Account Profile
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/deposit" className={path === "/dashboard/deposit" ? 'active' : ''}>
+          <Link to="/deposit" className={path === "/deposit" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-credit-card" style={{ fontSize: 17 }} /> Make
               Deposits
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/history" className={path === "/dashboard/history" ? 'active' : ''}>
+          <Link to="/trade-history" className={path === "/trade-history" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-clock" style={{ fontSize: 17 }} /> Trade
               History
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/invest" className={path === "/dashboard/invest" ? 'active' : ''}>
+          <Link to="/invest" className={path === "/invest" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-list-ul" style={{ fontSize: 17 }} />{" "}
               Investment Plans
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/withdraw" className={path === "/dashboard/withdraw" ? 'active' : ''}>
+          <Link to="/withdraw" className={path === "/withdraw" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-suitcase" style={{ fontSize: 17 }} />{" "}
               Withdrawals
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/wallet-connect" className={path === "/dashboard/wallet-connect" ? 'active' : ''}>
+          <Link to="/wallet-connect" className={path === "/wallet-connect" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-suitcase" style={{ fontSize: 17 }} /> Wallet
               Connect{" "}
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="/dashboard/support" className={path === "/dashboard/support" ? 'active' : ''}>
+          <Link to="/support" className={path === "/support" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-envelope" style={{ fontSize: 17 }} /> Our
               Support
             </span>
-          </a>
+          </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <a href="#" onClick={handleLogout}>
+          <Link to="#" onClick={signOut}>
             <span style={{ color: "white", textAlign: "center" }}>
               {" "}
               Log Out
             </span>
-          </a>
+          </Link>
         </li>
         {/* /Apps */}
       </ul>

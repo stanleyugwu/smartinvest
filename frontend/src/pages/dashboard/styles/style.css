@@ -708,6 +708,9 @@ ul {
 body#dashboardBody:not(.ms-aside-left-open) .ms-aside-toggler .ms-toggler-bar{
   width: 20px;
 }
+body#dashboardBody h1 {
+  font-size: 26px;
+}
 .ms-aside-toggler .ms-toggler-bar:nth-child(2){
   width:15px;
 }

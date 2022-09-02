@@ -9,6 +9,8 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const { token } = useAuth();
   const location = useLocation();
 
+  if(!token) console.log(("NO TOKEN"));
+  
   if (!token)
     return <Navigate to={"/signin"} state={{ from: location.pathname }} replace />;
   return children;

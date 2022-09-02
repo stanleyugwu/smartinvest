@@ -43,4 +43,4 @@ const ChartWidget = () => {
   );
 };
 
-export default ChartWidget;
+export default React.memo(ChartWidget);

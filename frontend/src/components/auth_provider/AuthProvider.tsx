@@ -8,21 +8,19 @@ import {
 } from "../../api/services/auth";
 import storeUserAccessToken from "../../api/services/storeUserAccessToken";
 import AuthContext from "../../contexts/authContext";
+import useAppStore from "../../store";
 
 /**
  * Provides authentication info and utilities
  */
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [token, setToken] = useState<string>();
-  const { state } = useLocation();
-  const navigate = useNavigate();
+  const [token, setToken] = useAppStore(state => [state.accessToken,state.setAccessToken]);
 
   const signIn: SignIn = async (email: string, password: string) => {
     try {
       let token = await _signIn(email, password);
       setToken(token);
       // storeUserAccessToken(token);
-      navigate((state as any)?.from || "/dashboard", { replace: true });
     } catch (error) {
       throw error;
     }
@@ -30,7 +28,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signOut: SignOut = () => {
     setToken(undefined);
     localStorage.removeItem("$__a_t");
-    return _signOut();
   };
 
   return (

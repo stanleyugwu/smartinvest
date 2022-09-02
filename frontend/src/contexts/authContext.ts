@@ -5,14 +5,14 @@ export type AuthContextType = {
   token?: string;
   signIn?: SignIn;
   signOut?: SignOut;
-  setToken?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setToken(token?:string):void;
 };
 
 const AuthContext = React.createContext<AuthContextType>({
   signIn: undefined,
   signOut: undefined,
   token: undefined,
-  setToken:undefined
+  setToken:(t) => t
 });
 
 export default AuthContext;

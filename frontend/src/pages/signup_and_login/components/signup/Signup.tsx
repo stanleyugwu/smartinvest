@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CountrySelect from "./CountrySelect";
+import CountrySelect from "../../../../components/country-select/CountrySelect";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import ErrorField from "../ErrorField";

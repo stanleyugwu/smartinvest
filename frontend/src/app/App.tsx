@@ -14,6 +14,12 @@ import Dashboard from "../pages/dashboard/pages/Dashboard";
 import useAuth from "../hooks/useAuth";
 import getUserAccessToken from "../api/services/getUserAccessToken";
 import LiveTrading from "../pages/dashboard/pages/LiveTrading";
+import useAppStore from "../store";
+import Profile from "../pages/dashboard/pages/Profile";
+import Deposit from "../pages/dashboard/pages/Deposit";
+import TradeHistory from "../pages/dashboard/pages/TradeHistory";
+import InvestmentPlans from "../pages/dashboard/pages/InvestmentPlans";
+import Support from "../pages/dashboard/pages/Support";
 
 /**
  * Initialises home page by running required scripts
@@ -57,6 +63,7 @@ function App() {
       console.log("ERROR WITH THREE SCRIPTS LOADED IN INDEX.HTML");
     }
   }, []);
+  const token = useAppStore((state) => state.accessToken);
 
   const { pathname } = useLocation();
   useEffect(() => {
@@ -70,22 +77,31 @@ function App() {
     <AuthProvider>
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomeLayout />}>
-            <Route index element={<Home />} />
-            <Route
-              path="/signup"
-              element={<SignupAndLogin activeForm="signup" />}
-            />
-            <Route
-              path="/signin"
-              element={<SignupAndLogin activeForm="signin" />}
-            />
-          </Route>
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="/dashboard/live-trading" element={<LiveTrading />} />
-          </Route>
-          <Route path="*" element={<Navigate to={"/"} />} />
+          {token ? (
+            <Route path="/" element={<DashboardLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="live-trading" element={<LiveTrading />} /> 
+              <Route path="profile" element={<Profile />} /> 
+              <Route path="deposit" element={<Deposit />} />
+              <Route path="trade-history" element={<TradeHistory />} />
+              <Route path="invest" element={<InvestmentPlans />} />
+              <Route path="support" element={<Support />} />
+              <Route path="*" element={<Navigate to={"/"} />} />
+            </Route>
+          ) : (
+            <Route path="/" element={<HomeLayout />}>
+              <Route index element={<Home />} />
+              <Route
+                path="signup"
+                element={<SignupAndLogin activeForm="signup" />}
+              />
+              <Route
+                path="signin"
+                element={<SignupAndLogin activeForm="signin" />}
+              />
+              <Route path="*" element={<Navigate to={"/signin"} />} />
+            </Route>
+          )}
         </Routes>
 
         {/* Google translate api scripts and container */}

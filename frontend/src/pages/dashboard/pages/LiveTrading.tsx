@@ -1,14 +1,14 @@
 import React from "react";
 import "../styles/trading-view.css";
+import "../styles/table.css";
 import ChartWidget from "../components/ChartWidget";
 import RateWidget from "../components/RateWidget";
 
 const LiveTrading = () => {
   return (
-    <div>
+    <>
       <div className="col-sm-12">
         <span style={{ fontSize: "35px", color: "black" }}>
-          {" "}
           Welcome To Live Trading
           <b style={{ color: "#4da3ff", textDecoration: "underline" }} />
         </span>
@@ -22,8 +22,9 @@ const LiveTrading = () => {
             color: "black",
             textAlign: "center",
           }}
-        />
-        {"{"}Date(){"}"}
+        >
+          {Date()}
+        </p>
       </div>
       <div className="col-md-12">
         <div
@@ -202,7 +203,6 @@ const LiveTrading = () => {
                           className="form-control"
                           name="bvolamount"
                           placeholder="Amount to buy"
-                          defaultValue
                           step="any"
                           required
                         />
@@ -313,50 +313,48 @@ const LiveTrading = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-6" style={{ float: "right", height: "72px" }}>
-          <input
-            type="submit"
-            defaultValue="BUY"
-            data-toggle="modal"
-            data-target="#modal-10"
-            className="btn btn-success"
-            style={{ float: "right", marginLeft: "10px" }}
-          />
-          <input
-            type="submit"
-            defaultValue="SELL"
-            data-toggle="modal"
-            data-target="#modal-11"
-            className="btn btn-danger"
-            style={{ float: "right" }}
-          />
+        <div className="col-md-12 w-full" id="tradeBtn">
+        <input
+          type="submit"
+          value="BUY"
+          data-toggle="modal"
+          data-target="#modal-10"
+          className="btn btn-success"
+          style={{ float: "right", marginLeft: "10px" }}
+        />
+        <input
+          type="submit"
+          value="SELL"
+          data-toggle="modal"
+          data-target="#modal-11"
+          className="btn btn-danger"
+          style={{ float: "right" }}
+        />
         </div>
-        <ChartWidget/>
       </div>
       <div className="col-xs-12 col-md-12" style={{ height: "auto" }}>
-        <RateWidget/>
+        <ChartWidget />
+        <RateWidget />
       </div>
       <br />
       <div
-        className="pcoded-content"
-        style={{ backgroundColor: "white", marginBottom: "200px" }}
+        className="pcoded-content w-full bg-white mb-10"
       >
-        {"{"}/* {/* [ breadcrumb ] end */} */{"}"}
+        {/* [ breadcrumb ] end */}
         <div
           className="pcoded-inner-content"
           style={{ backgroundColor: "white" }}
         >
-          {"{"}/* {/* Main-body start */} */{"}"}
+          {/* Main-body start */}
           <div className="main-body" style={{ backgroundColor: "white" }}>
             <div className="page-wrapper" style={{ backgroundColor: "white" }}>
-              {"{"}/* {/* Page-body start */} */{"}"}
+              {/* Page-body start */}
               <div className="page-body">
-                <div className="card"></div>
-                {"{"}/* {/* Inverse table card start */} */{"}"}
-                <div className="card">
+                {/* Inverse table card start */}
+                <div className="card" style={{ padding: "20px 15px" }}>
                   <div className="card-header">
-                    <h3>Order History</h3>
-                    <div className="card-header-right"> </div>
+                    <h5>Order History</h5>
+                    <div className="card-header-right"></div>
                   </div>
                   <div className="card-block table-border-style">
                     <div className="table-responsive">
@@ -381,15 +379,15 @@ const LiveTrading = () => {
                     </div>
                   </div>
                 </div>
-                {"{"}/* {/* Inverse table card end */} */{"}"}
+                {/* Inverse table card end */}
               </div>
-              {"{"}/* {/* Page-body end */} */{"}"}
+              {/* Page-body end */}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default LiveTrading;
+export default React.memo(LiveTrading, (p,n) => true);
