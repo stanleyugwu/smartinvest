@@ -3,14 +3,75 @@ import "../styles/trading-view.css";
 import "../styles/table.css";
 import ChartWidget from "../components/ChartWidget";
 import RateWidget from "../components/RateWidget";
+import SellOrderForm from "../components/SellOrderForm";
+import BuyOrderForm from "../components/BuyOrderForm";
+import useAppStore from "../../../store";
+export interface PlacedTrades {
+  orderId: string;
+  time: number | Date;
+  type: "buy" | "sell";
+  symbol: string;
+  volume: number;
+  stopLoss: number;
+  takeProfit: number;
+  status: string;
+  expiry: number | Date;
+  profit: string | number;
+  loss: string | number;
+}
+
+const fakeTrades: PlacedTrades[] = [
+  {
+    expiry: Date.now(),
+    loss: 1234,
+    orderId: "ASTR-111",
+    profit: 123,
+    status: "success",
+    stopLoss: 234,
+    symbol: "USD/CHF",
+    takeProfit: 1234,
+    time: Date.now(),
+    type: "sell",
+    volume: 1234,
+  },
+  {
+    expiry: Date.now(),
+    loss: 1234,
+    orderId: "ASTR-111",
+    profit: 123,
+    status: "success",
+    stopLoss: 234,
+    symbol: "USD/CHF",
+    takeProfit: 1234,
+    time: Date.now(),
+    type: "buy",
+    volume: 1234,
+  },
+  {
+    expiry: Date.now(),
+    loss: 1234,
+    orderId: "ASTR-111",
+    profit: 123,
+    status: "success",
+    stopLoss: 234,
+    symbol: "USD/CHF",
+    takeProfit: 1234,
+    time: Date.now(),
+    type: "buy",
+    volume: 1234,
+  },
+];
 
 const LiveTrading = () => {
+  const username = useAppStore((state) => state.profile?.fullname);
   return (
     <>
       <div className="col-sm-12">
         <span style={{ fontSize: "35px", color: "black" }}>
           Welcome To Live Trading
-          <b style={{ color: "#4da3ff", textDecoration: "underline" }} />
+          <b style={{ color: "#4da3ff", textDecoration: "underline" }}>
+            {username}
+          </b>
         </span>
       </div>
       <div className="col-sm-12">
@@ -27,309 +88,25 @@ const LiveTrading = () => {
         </p>
       </div>
       <div className="col-md-12">
-        <div
-          className="modal fade"
-          id="modal-11"
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby="modal-10"
-        >
-          <div
-            className="modal-dialog modal-dialog-centered modal-min"
-            role="document"
-          >
-            <div className="modal-content">
-              <div className="modal-body text-center">
-                <h1 className="text-danger">SELL ORDER</h1> <hr />
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-                <form role="form" method="post">
-                  <div className="row">
-                    <div className="col-md-12 pr-md-1">
-                      <div className="form-group">
-                        <label>Volume</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          name="svolamount"
-                          placeholder="Amount to buy"
-                          step="any"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-12 px-md-1">
-                      <div className="form-group">
-                        <label>Type</label>
-                        <select className="form-control" name="stype">
-                          <option value="Market Execution">
-                            Market Execution
-                          </option>
-                          <option value="Pending Order">Pending Order</option>
-                        </select>
-                        <input
-                          type="hidden"
-                          name="ordertype"
-                          defaultValue="buy"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-12 pl-md-1">
-                      <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Symbol</label>
-                        <select name="ssymbol" className="form-control">
-                          <option value="EURUSD ">
-                            EURUSD , Euro vs United state Dollar
-                          </option>
-                          <option value="USDJPY">
-                            USDJPY, UNITED STATE DOLLAR VS JAPANESE YEN
-                          </option>
-                          <option value="GBPUSD">
-                            GBPUSD, GREAT BRITAIN POUNDS VS UNITED STATE DOLLAR
-                          </option>
-                          <option value="USDCAD">
-                            USDCAD, UNITED STATE DOLLAR VS CANADIAN DOLLAR
-                          </option>
-                          <option value="USDCHF">
-                            USDCHF, UNITED STATE DOLLAR VS SWISS FRANC
-                          </option>
-                          <option value="NZDUSD">
-                            NZDUSD, NEW ZEALAND DOLLAR VS UNITED STATE DOLLAR
-                          </option>
-                          <option value="AUDUSD">
-                            AUDUSD, AUSTRALIAN DOLLAR VS UNITED STATE DOLLAR
-                          </option>
-                          <option value="AUDNZD">
-                            AUDNZD, AUSTRALIAN DOLLAR VS NEW ZEALAND DOLLAR
-                          </option>
-                          <option value="AUDCAD">
-                            AUDCAD, AUSTRALIAN DOLLAR VS CANADIAN DOLLAR
-                          </option>
-                          <option value="AUDCHF">
-                            AUDCHF, AUSTRALIAN DOLLAR VS SWISS FRANC
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6 pr-md-1">
-                      <div className="form-group">
-                        <label>
-                          Stop Loss <b>(SL)</b>
-                        </label>
-                        <input
-                          type="number"
-                          name="ssl"
-                          className="form-control"
-                          min={0}
-                          defaultValue={0.0}
-                          step="any"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 pl-md-1">
-                      <div className="form-group">
-                        <label>
-                          Take Profit <b>(TP)</b>
-                        </label>
-                        <input
-                          type="number"
-                          name="stp"
-                          className="form-control"
-                          min={0}
-                          defaultValue={0.0}
-                          step="any"
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <input
-                          type="submit"
-                          name="sell"
-                          className="btn btn-block btn-danger btn-lg "
-                          defaultValue="Sell by Market"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="modal fade"
-          id="modal-10"
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby="modal-10"
-        >
-          <div
-            className="modal-dialog modal-dialog-centered modal-min"
-            role="document"
-          >
-            <div className="modal-content">
-              <div className="modal-body text-center">
-                {" "}
-                <h1 className="text-success">BUY ORDER</h1>
-                <hr />
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-                <form role="form" method="post">
-                  <div className="row">
-                    <div className="col-md-12 pr-md-1">
-                      <div className="form-group">
-                        <label>Volume</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          name="bvolamount"
-                          placeholder="Amount to buy"
-                          step="any"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-12 px-md-1">
-                      <div className="form-group">
-                        <label>Type</label>
-                        <select className="form-control" name="btype">
-                          <option value="Market Execution">
-                            Market Execution
-                          </option>
-                          <option value="Pending Order">Pending Order</option>
-                        </select>
-                        <input
-                          type="hidden"
-                          name="ordertype"
-                          defaultValue="buy"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-12 pl-md-1">
-                      <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Symbol</label>
-                        <select name="bsymbol" className="form-control">
-                          <option value="EURUSD ">
-                            EURUSD , Euro vs United state Dollar
-                          </option>
-                          <option value="USDJPY">
-                            USDJPY, UNITED STATE DOLLAR VS JAPANESE YEN
-                          </option>
-                          <option value="GBPUSD">
-                            GBPUSD, GREAT BRITAIN POUNDS VS UNITED STATE DOLLAR
-                          </option>
-                          <option value="USDCAD">
-                            USDCAD, UNITED STATE DOLLAR VS CANADIAN DOLLAR
-                          </option>
-                          <option value="USDCHF">
-                            USDCHF, UNITED STATE DOLLAR VS SWISS FRANC
-                          </option>
-                          <option value="NZDUSD">
-                            NZDUSD, NEW ZEALAND DOLLAR VS UNITED STATE DOLLAR
-                          </option>
-                          <option value="AUDUSD">
-                            AUDUSD, AUSTRALIAN DOLLAR VS UNITED STATE DOLLAR
-                          </option>
-                          <option value="AUDNZD">
-                            AUDNZD, AUSTRALIAN DOLLAR VS NEW ZEALAND DOLLAR
-                          </option>
-                          <option value="AUDCAD">
-                            AUDCAD, AUSTRALIAN DOLLAR VS CANADIAN DOLLAR
-                          </option>
-                          <option value="AUDCHF">
-                            AUDCHF, AUSTRALIAN DOLLAR VS SWISS FRANC
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6 pr-md-1">
-                      <div className="form-group">
-                        <label>
-                          Stop Loss <b>(SL)</b>
-                        </label>
-                        <input
-                          type="number"
-                          name="bsl"
-                          className="form-control"
-                          min={0}
-                          defaultValue={0.0}
-                          step="any"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 pl-md-1">
-                      <div className="form-group">
-                        <label>
-                          Take Profit <b>(TP)</b>
-                        </label>
-                        <input
-                          type="number"
-                          name="btp"
-                          className="form-control"
-                          min={0}
-                          defaultValue={0.0}
-                          step="any"
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <input
-                          type="submit"
-                          name="buy"
-                          className="btn btn-block btn-success btn-lg "
-                          defaultValue="Buy by Market"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SellOrderForm />
+        <BuyOrderForm />
         <div className="col-md-12 w-full" id="tradeBtn">
-        <input
-          type="submit"
-          value="BUY"
-          data-toggle="modal"
-          data-target="#modal-10"
-          className="btn btn-success"
-          style={{ float: "right", marginLeft: "10px" }}
-        />
-        <input
-          type="submit"
-          value="SELL"
-          data-toggle="modal"
-          data-target="#modal-11"
-          className="btn btn-danger"
-          style={{ float: "right" }}
-        />
+          <input
+            type="submit"
+            value="BUY"
+            data-toggle="modal"
+            data-target="#modal-10"
+            className="btn btn-success"
+            style={{ float: "right", marginLeft: "10px" }}
+          />
+          <input
+            type="submit"
+            value="SELL"
+            data-toggle="modal"
+            data-target="#modal-11"
+            className="btn btn-danger"
+            style={{ float: "right" }}
+          />
         </div>
       </div>
       <div className="col-xs-12 col-md-12" style={{ height: "auto" }}>
@@ -337,9 +114,7 @@ const LiveTrading = () => {
         <RateWidget />
       </div>
       <br />
-      <div
-        className="pcoded-content w-full bg-white mb-10"
-      >
+      <div className="pcoded-content w-100 bg-white mb-10">
         {/* [ breadcrumb ] end */}
         <div
           className="pcoded-inner-content"
@@ -374,7 +149,27 @@ const LiveTrading = () => {
                             <th scope="col">Loss</th>
                           </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                          {fakeTrades.map((t) => {
+                            return (
+                              <tr
+                                style={{ color: "black", textAlign: "center" }}
+                              >
+                                <td>{t.orderId}</td>
+                                <td>{new Date(t.time).toISOString()}</td>
+                                <td>{t.type}</td>
+                                <td>{t.symbol}</td>
+                                <td>{t.volume}</td>
+                                <td>{t.stopLoss}</td>
+                                <td>{t.takeProfit}</td>
+                                <td>{t.status}</td>
+                                <td>{new Date(t.expiry).toISOString()}</td>
+                                <td>{t.profit}</td>
+                                <td>{t.loss}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
                       </table>
                     </div>
                   </div>
@@ -390,4 +185,4 @@ const LiveTrading = () => {
   );
 };
 
-export default React.memo(LiveTrading, (p,n) => true);
+export default React.memo(LiveTrading, (p, n) => true);

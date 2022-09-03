@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CountrySelect from "../../../../components/country-select/CountrySelect";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import ErrorField from "../ErrorField";
+import ErrorField from "../../../../components/ErrorField";
 import type { SignupInputs } from "./signup.d";
 import SignupSchema from "./signup.schema";
 

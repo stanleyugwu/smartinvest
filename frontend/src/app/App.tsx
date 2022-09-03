@@ -124,12 +124,12 @@ function App() {
  */
 export const HomeLayout = () => {
   // Check previous authentication
-  const { setToken } = useAuth();
-  const token = getUserAccessToken();
-  if (token) {
-    setToken?.(token);
-    return <Navigate to={"/dashboard"} replace />;
-  }
+  // const { setToken } = useAuth();
+  // const token = getUserAccessToken();
+  // if (token) {
+  //   setToken?.(token);
+  //   return <Navigate to={"/"} replace />;
+  // }
 
   return (
     <>
