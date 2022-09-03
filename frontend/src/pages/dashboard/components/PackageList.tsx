@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import moneyPlant from '../images/money_plant.svg';
 import './PackageList.css';
 
@@ -24,7 +25,7 @@ const PackageList = () => {
               <li className="list-group-item" style={{textAlign: 'center'}}>Account manager</li>
             </ul>
             <div className="card-footer d-flex justify-content-between bg-white">
-              <a href="amount.php" className="btn col-sm-12" style={{backgroundColor: '#339cff', color: 'white'}}>Purchase Contract</a>
+              <Link to="/purchase-contract" className="btn col-sm-12" style={{backgroundColor: '#339cff', color: 'white'}}>Purchase Contract</Link>
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@ const PackageList = () => {
               <li className="list-group-item" style={{textAlign: 'center'}}>Account manager</li>
             </ul>
             <div className="card-footer d-flex justify-content-between bg-white">
-              <a href="amount.php" className="btn col-sm-12" style={{backgroundColor: '#339cff', color: 'white'}}>Purchase Contract</a>
+            <Link to="/purchase-contract" className="btn col-sm-12" style={{backgroundColor: '#339cff', color: 'white'}}>Purchase Contract</Link>
             </div>
           </div>
         </div>
@@ -70,7 +71,7 @@ const PackageList = () => {
               <li className="list-group-item" style={{textAlign: 'center'}}>Account manager</li>
             </ul>
             <div className="card-footer d-flex justify-content-between bg-white">
-              <a href="amount.php" className="btn col-sm-12" style={{backgroundColor: '#339cff', color: 'white'}}>Purchase Contract</a>
+            <Link to="/purchase-contract" className="btn col-sm-12" style={{backgroundColor: '#339cff', color: 'white'}}>Purchase Contract</Link>
             </div>
           </div>
         </div>

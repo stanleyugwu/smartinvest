@@ -20,6 +20,8 @@ import Deposit from "../pages/dashboard/pages/Deposit";
 import TradeHistory from "../pages/dashboard/pages/TradeHistory";
 import InvestmentPlans from "../pages/dashboard/pages/InvestmentPlans";
 import Support from "../pages/dashboard/pages/Support";
+import ContractPurchase from "../pages/dashboard/pages/ContractPurchase";
+import ContractPayment from "../pages/dashboard/pages/ContractPayment";
 
 /**
  * Initialises home page by running required scripts
@@ -88,6 +90,10 @@ function App() {
               <Route path="trade-history" element={<TradeHistory />} />
               <Route path="invest" element={<InvestmentPlans />} />
               <Route path="support" element={<Support />} />
+
+              {/* Not Navigable by user */}
+              <Route path="purchase-contract" element={<ContractPurchase />} />
+              <Route path="contract-payment" element={<ContractPayment />} />
               <Route path="*" element={<Navigate to={"/"} />} />
             </Route>
           ) : (

@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
 import {
   SignIn,
   SignOut,
   signIn as _signIn,
-  signOut as _signOut,
 } from "../../api/services/auth";
-import storeUserAccessToken from "../../api/services/storeUserAccessToken";
 import AuthContext from "../../contexts/authContext";
 import useAppStore from "../../store";
 
