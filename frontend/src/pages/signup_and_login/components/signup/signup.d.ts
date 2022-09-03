@@ -5,7 +5,6 @@ export interface SignupInputs {
   mobileNumber: string;
   country: string;
   currency: Currency;
-  occupation?: string;
   password: string;
   confirmPassword: string;
 }

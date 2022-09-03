@@ -1,13 +1,62 @@
-import React, { useRef } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import CountrySelect from "../../../components/country-select/CountrySelect";
+import ErrorField from "../../../components/ErrorField";
+import useAppStore from "../../../store";
+import constants from "../../../utils/constants";
+import type { SignupInputs } from "../../signup_and_login/components/signup/signup.d";
+import SignupSchema from "../../signup_and_login/components/signup/signup.schema";
 import TickerTapeWidget from "../components/TickerTapeWidget";
 
+const UpdateProfileSchema = SignupSchema;
+export type ProfileInputs = SignupInputs;
+
 const Profile = () => {
-  const countryRef = useRef<HTMLSelectElement>(null);
+  const [profile, updateProfile] = useAppStore((state) => [
+    state.profile,
+    state.setProfile,
+  ]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ProfileInputs>({ resolver: yupResolver(UpdateProfileSchema) });
+  const referralLink = `${constants.BASE_URL || ""}/signup?ref=${
+    profile?.fullname ?? ""
+  }`;
+  const [updatingProfile, setUpdatingProfile] = useState(false);
+
+  /**
+   * Handles profile update form submission
+   */
+  const handleUpdateProfile = handleSubmit((data) => {
+    if (updatingProfile) return;
+    console.log(data);
+    setUpdatingProfile(true);
+    // TODO: hit server
+    
+    // server update successful
+    updateProfile({
+      country: data.country,
+      currency: data.currency,
+      email: data.email,
+      fullname: data.fullName,
+      password: data.password,
+      phoneNumber: data.mobileNumber,
+    });
+  });
 
   return (
     <>
-      <h6 style={{ color: "#000", fontWeight: "bolder", fontSize: "24px", paddingLeft:"30px" }}>
+      <h6
+        style={{
+          color: "#000",
+          fontWeight: "bolder",
+          fontSize: "24px",
+          paddingLeft: "30px",
+        }}
+      >
         Account Profile
       </h6>
       <div
@@ -29,40 +78,58 @@ const Profile = () => {
               Your Referral Link{" "}
               <i className="fa fa-arrow-right" style={{ color: "red" }} />
             </h6>
-            <span style={{ color: "white" }}>
-              https://megatradevilla.com/Meg-Villa/index.php?ref=
-            </span>
+            <span style={{ color: "white" }}>{referralLink}</span>
           </div>
           <div className="ms-panel-body">
-            <form method="post">
+            <form onSubmit={handleUpdateProfile}>
               <div className="col-sm-6" style={{ float: "left" }}>
                 <div className="form-group">
                   <label htmlFor="exampleText" style={{ color: "#fff" }}>
                     Full Name
                   </label>
-                  <input type="text" className="form-control" name="fn" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Full name"
+                    defaultValue={profile?.fullname}
+                    {...register("fullName")}
+                  />
+                  <ErrorField error={errors.fullName} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleEmail" style={{ color: "#fff" }}>
                     Email address
                   </label>
-                  <input type="email" className="form-control" name="emm" />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    className="form-control"
+                    defaultValue={profile?.email}
+                    {...register("email")}
+                  />
+                  <ErrorField error={errors.email} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleText" style={{ color: "#fff" }}>
                     Phone Number
                   </label>
-                  <input type="text" className="form-control" name="ph" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Mobile Number"
+                    defaultValue={profile?.phoneNumber}
+                    {...register("mobileNumber")}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleSelect" style={{ color: "#fff" }}>
                     Country
                   </label>
                   <CountrySelect
-                    ref={countryRef}
-                    name="cn"
-                    id="exampleSelect"
+                    defaultValue={profile?.country}
+                    {...register("country")}
                   />
+                  <ErrorField error={errors.country} />
                 </div>
               </div>
               <div className="col-sm-6" style={{ float: "left" }}>
@@ -72,14 +139,15 @@ const Profile = () => {
                   </label>
                   <select
                     className="form-control"
-                    name="cur"
                     id="exampleSelect"
+                    defaultValue={profile?.currency}
+                    {...register("currency")}
                   >
-                    <option />
                     <option value="$">US Dollar</option>
                     <option value="€">Euro</option>
                     <option value="£">British Pound Sterling</option>
                   </select>
+                  <ErrorField error={errors.currency} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="examplePassword" style={{ color: "#fff" }}>
@@ -88,27 +156,33 @@ const Profile = () => {
                   <input
                     type="text"
                     className="form-control"
+                    placeholder="New Password"
                     id="examplePassword"
-                    name="pw"
+                    defaultValue={profile?.password}
+                    {...register("password")}
                   />
+                  <ErrorField error={errors.password} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="examplePassword" style={{ color: "#fff" }}>
-                    Confrim Password
+                    Confirm Password
                   </label>
                   <input
                     type="text"
                     className="form-control"
+                    placeholder="Confirm New Password"
                     id="examplePassword"
-                    name="cpw"
+                    {...register("confirmPassword")}
                   />
+                  <ErrorField error={errors.confirmPassword} />
                 </div>
                 <div className="form-group">
                   <input
                     type="submit"
                     name="sub"
+                    disabled={updatingProfile}
                     className="btn btn-primary"
-                    defaultValue="Update"
+                    value={updatingProfile ? "Updating..." : "Update Profile"}
                     style={{
                       marginTop: "25px",
                       backgroundColor: "#E67E00",

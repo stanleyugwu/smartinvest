@@ -81,15 +81,6 @@ const SignupForm = () => {
               </select>
               <ErrorField error={errors.currency} />
             </div>
-            <div className="form-group wrap-input">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Occupation"
-                {...register("occupation")}
-              />
-            </div>
-            <ErrorField error={errors.occupation} />
             <div className="form-group wrap-input d-none">
               <input
                 type="text"

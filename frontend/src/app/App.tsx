@@ -39,6 +39,8 @@ const homePageInit = () => {
   // @ts-ignore
   if (window.$__onLoad) window.$__onLoad?.();
   // @ts-ignore
+  if(!window.$__drawChart) window.$__drawChart = AppInfo.Chart.ChartJs;
+  // @ts-ignore
   else window.$__onLoad = appInfo?.winLoad;
 };
 

@@ -6,7 +6,7 @@ export interface UserProfile {
     phoneNumber:string;
     country:string;
     currency:string;
-    occupation:string;
+    password:string;
 }
 
 export interface UserAccount {

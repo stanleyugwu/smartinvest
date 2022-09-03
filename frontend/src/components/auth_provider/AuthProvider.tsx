@@ -27,6 +27,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
   const signOut: SignOut = () => {
     setToken(undefined);
+    
+    // because user will be moved to home page, we need to initialise it
+    // @ts-ignore
+    window.$__onLoad?.();
+    // @ts-ignore
+    window.$__drawChart?.();
     localStorage.removeItem("$__a_t");
   };
 
