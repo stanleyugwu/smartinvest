@@ -1,7 +1,9 @@
+import constants from "../../utils/constants";
+
 (function () {
     var options = {
         whatsapp: "+1(919) 391-8132", // WhatsApp number
-        email: "support@megatradevilla.com", // Email
+        email: constants.SUPPORT_EMAIL, // Email
         call_to_action: "Message us", // Call to action
         button_color: "#E74339", // Color of button
         position: "left", // Position may be 'right' or 'left'

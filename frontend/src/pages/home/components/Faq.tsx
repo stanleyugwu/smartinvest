@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../../../utils/constants";
 
 function Faq() {
   return (
@@ -60,7 +61,7 @@ function Faq() {
                         data-toggle="collapse"
                         data-target="#acc-1-1"
                       >
-                        What is Mega Trade Villa{" "}
+                        What is {constants.COMPANY_NAME}
                         <span className="accordion-icon" />
                       </h5>
                       <div
@@ -70,7 +71,7 @@ function Faq() {
                       >
                         <div className="accordion-content">
                           <p>
-                            Mega Trade Villa is a professional trading &amp;
+                            {constants.COMPANY_NAME} is a professional trading &amp;
                             investment company with emphasis on cryptocurrency,
                             forex, binary option, CFDs. We are a group of
                             qualified and trained financiers with technical
@@ -134,7 +135,7 @@ function Faq() {
                         data-toggle="collapse"
                         data-target="#acc-1-3"
                       >
-                        Is using Mega Trade Villa free of charge?
+                        Is using {constants.COMPANY_NAME} free of charge?
                         <span className="accordion-icon" />
                       </h5>
                       <div
@@ -157,7 +158,7 @@ function Faq() {
                         data-toggle="collapse"
                         data-target="#acc-1-4"
                       >
-                        Is Mega Trade Villa a legitimate company?{" "}
+                        Is {constants.COMPANY_NAME} a legitimate company?{" "}
                         <span className="accordion-icon" />
                       </h5>
                       <div
@@ -167,7 +168,7 @@ function Faq() {
                       >
                         <div className="accordion-content">
                           <p>
-                            Mega Trade Villa LTD is a legal investment company
+                            {constants.COMPANY_NAME} LTD is a legal investment company
                             incorporated in the United Kingdom.
                           </p>
                         </div>
@@ -313,7 +314,7 @@ function Faq() {
                       >
                         <div className="accordion-content">
                           <p>
-                            Mega Trade Villa is open to everyone of legal age to
+                            {constants.COMPANY_NAME} is open to everyone of legal age to
                             make investments and financial decisions for
                             themselves. You are responsible for making sure that
                             you comply with local laws.

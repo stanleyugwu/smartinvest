@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../utils/constants";
 
 function Footer() {
   return (
@@ -17,7 +18,7 @@ function Footer() {
           </div>
           <div className="col-lg-6">
             <div className="copyright-text copyright-text-s2">
-              Mega Trade Villa © 2022 All Rights Reserved
+              {constants.COMPANY_NAME} © 2022 All Rights Reserved
             </div>
           </div>
         </div>

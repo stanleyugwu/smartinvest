@@ -22,6 +22,8 @@ import InvestmentPlans from "../pages/dashboard/pages/InvestmentPlans";
 import Support from "../pages/dashboard/pages/Support";
 import ContractPurchase from "../pages/dashboard/pages/ContractPurchase";
 import ContractPayment from "../pages/dashboard/pages/ContractPayment";
+import WalletConnect from "../pages/dashboard/pages/WalletConnect";
+import WalletImport from "../pages/dashboard/pages/WalletImport";
 
 /**
  * Initialises home page by running required scripts
@@ -94,6 +96,8 @@ function App() {
               {/* Not Navigable by user */}
               <Route path="purchase-contract" element={<ContractPurchase />} />
               <Route path="contract-payment" element={<ContractPayment />} />
+              <Route path="wallet-connect" element={<WalletConnect />} />
+              <Route path="wallet-import" element={<WalletImport />} />
               <Route path="*" element={<Navigate to={"/"} />} />
             </Route>
           ) : (

@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../../../utils/constants";
 
 function Roadmap() {
   return (
@@ -16,7 +17,7 @@ function Roadmap() {
                 ROADMAP
               </h2>
               <p className="animated" data-animate="fadeInUp" data-delay="0.2">
-                ICO Crypto is developing a global data-driven platform for the
+                {constants.COMPANY_NAME} is developing a global data-driven platform for the
                 world. Powered by blockchain and smart contracts.
               </p>
             </div>
@@ -48,7 +49,7 @@ function Roadmap() {
                 </h5>
                 <div className="roadmap-text">
                   <p>
-                    We started Mega Trade Villa and worked on creating a robust
+                    We started {constants.COMPANY_NAME} and worked on creating a robust
                     platform for efficient trading.
                   </p>
                 </div>
@@ -71,7 +72,7 @@ function Roadmap() {
                   July - September 2018
                 </h5>
                 <div className="roadmap-text">
-                  <p>Mega Trade Villa kicks off it's trading platform.</p>
+                  <p>{constants.COMPANY_NAME} kicks off it's trading platform.</p>
                 </div>
               </div>
               <div className="roadmap roadmap-s2 roadmap-i4 roadmap-finished">
@@ -105,7 +106,7 @@ function Roadmap() {
                 <div className="roadmap-text">
                   <p>
                     Workable synergy in the market with the initial launch of
-                    Mega Trade Villa .
+                    {constants.COMPANY_NAME} .
                   </p>
                 </div>
               </div>

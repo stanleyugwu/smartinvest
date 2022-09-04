@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import constants from "../../../utils/constants";
 
 function About() {
   return (
@@ -14,7 +15,7 @@ function About() {
                 title="What and Why"
                 style={{ visibility: "visible", animationDelay: "0.1s" }}
               >
-                ABOUT Mega Trade Villa
+                ABOUT {constants.COMPANY_NAME}
               </h2>
             </div>
           </div>
@@ -31,7 +32,7 @@ function About() {
                   data-delay="0.3"
                   style={{ visibility: "visible", animationDelay: "0.3s" }}
                 >
-                  Mega Trade Villa is an investment platform legally registered
+                  {constants.COMPANY_NAME} is an investment platform legally registered
                   with all the relevant authorities online, providing secure,
                   smart trading through our team of professionals with the aim
                   of minimizing losses and maximizing profits for investors.
@@ -42,7 +43,7 @@ function About() {
                   data-delay="0.4"
                   style={{ visibility: "visible", animationDelay: "0.4s" }}
                 >
-                  Mega Trade Villa is one of the most transformative
+                  {constants.COMPANY_NAME} is one of the most transformative
                   technologies since the invention of the Internet. Mega Trade
                   Villa stands firmly in support of financial freedom and the
                   liberty that Bitcoin provides globally for anyone to
@@ -60,7 +61,7 @@ function About() {
                   Trade Villa - where our clients will receive stable and
                   risk-free long-term returns by placing your Bitcoin, Ethereum
                   and Litecoin asset in our online profound asset management
-                  program. Mega Trade Villa is an active cryptocurrency mining
+                  program. {constants.COMPANY_NAME} is an active cryptocurrency mining
                   and trading participant, crypto-currency asset management,
                   which is built on many years of experience and deep market
                   knowledge in the stock and digital market.

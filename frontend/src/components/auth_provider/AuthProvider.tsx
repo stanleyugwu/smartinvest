@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SignIn,
   SignOut,
@@ -13,6 +13,15 @@ import useAppStore from "../../store";
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useAppStore(state => [state.accessToken,state.setAccessToken]);
 
+  useEffect(() => {
+    if(token === undefined){
+      // @ts-ignore
+      window.$__onLoad?.();
+      // @ts-ignore
+      window.$__drawChart?.();
+    }
+  },[token])
+
   const signIn: SignIn = async (email: string, password: string) => {
     try {
       let token = await _signIn(email, password);
@@ -24,12 +33,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
   const signOut: SignOut = () => {
     setToken(undefined);
-    
     // because user will be moved to home page, we need to initialise it
-    // @ts-ignore
-    window.$__onLoad?.();
-    // @ts-ignore
-    window.$__drawChart?.();
     localStorage.removeItem("$__a_t");
   };
 

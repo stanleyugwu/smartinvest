@@ -4,6 +4,7 @@ import chartScreenImageSmall from '../images/sc-small.jpg'
 import circleShape from '../images/circle.png'
 import polygonShape from '../images/polygon-line.png'
 import triangleShape from '../images/triangle.png'
+import constants from "../../../utils/constants";
 
 function WhyChooseUs() {
   return (
@@ -21,7 +22,7 @@ function WhyChooseUs() {
                 Why Choose Us?
               </h2>
               <p className="animated" data-animate="fadeInUp" data-delay="0.2">
-                Mega Trade Villa ?
+                {constants.COMPANY_NAME} ?
               </p>
             </div>
           </div>
@@ -74,7 +75,7 @@ function WhyChooseUs() {
                     <em className="icon icon-xs icon-circle fas fa-check" />
                   </div>
                   <div className="feature-text">
-                    <p>Mega Trade Villa is completely free of charge!</p>
+                    <p>{constants.COMPANY_NAME} is completely free of charge!</p>
                   </div>
                 </div>
                 <div
@@ -87,7 +88,7 @@ function WhyChooseUs() {
                   </div>
                   <div className="feature-text">
                     <p>
-                      Mega Trade Villa can help you trade in both the manual and
+                      {constants.COMPANY_NAME} can help you trade in both the manual and
                       automatic formats with an average of 87.35% Win Rate
                       across all compatible brokers.
                     </p>
@@ -103,7 +104,7 @@ function WhyChooseUs() {
                   </div>
                   <div className="feature-text">
                     <p>
-                      Mega Trade Villa is fully SSL and highly secure thereby
+                      {constants.COMPANY_NAME} is fully SSL and highly secure thereby
                       providing little or no chance for your personal details to
                       be phished by cyber-criminals.
                     </p>
@@ -135,7 +136,7 @@ function WhyChooseUs() {
                   </div>
                   <div className="feature-text">
                     <p>
-                      Mega Trade Villa can be synced with the Top-Class brokers
+                      {constants.COMPANY_NAME} can be synced with the Top-Class brokers
                       in the market providing you with security for your capital
                       and a peace of mind.
                     </p>

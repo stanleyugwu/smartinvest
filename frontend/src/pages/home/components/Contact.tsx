@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../../../utils/constants";
 
 function Contact() {
   return (
@@ -152,7 +153,7 @@ function Contact() {
                   >
                     <em className="contact-icon fas fa-envelope" />
                     <div className="contact-text">
-                      <span>support@megatradevilla.com</span>
+                      <span>{constants.SUPPORT_EMAIL}</span>
                     </div>
                   </li>
                 </ul>

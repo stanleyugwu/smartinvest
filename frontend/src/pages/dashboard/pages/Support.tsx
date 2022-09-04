@@ -1,8 +1,9 @@
 import React from "react";
+import constants from "../../../utils/constants";
 import headset from "../images/headset.svg";
 
 const Support = () => {
-  const email = "support@megatradevilla.com";
+  const email = constants.SUPPORT_EMAIL;
   return (
     <div className="col-xl-12 col-md-12" style={{ marginTop: "20px" }}>
       <div className="col-lg-12 col-md-12 col-sm-12">

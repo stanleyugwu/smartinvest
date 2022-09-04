@@ -10,6 +10,7 @@ import bnb from '../images/coins/bnb.png';
 import sol from '../images/coins/sol.png';
 import crypto from '../images/coins/crypto.png';
 import cad from '../images/coins/cad.png';
+import constants from "../../../utils/constants";
 
 function CoinSupport() {
   return (
@@ -24,7 +25,7 @@ function CoinSupport() {
                 data-delay="0.1"
                 title="Payment Methods"
               >
-                At Mega Trade Villa We Support
+                At {constants.COMPANY_NAME} We Support
               </h3>
             </div>
           </div>

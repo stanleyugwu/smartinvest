@@ -8,7 +8,7 @@ import logo from '../../../assets/images/logo.png';
  */
 const SideNav = () => {
   const {signOut} = useAuth()
-  const {pathname:path} = useLocation();
+  const {pathname:path, search} = useLocation();
   return (
     <aside
       id="ms-side-nav"
@@ -86,7 +86,7 @@ const SideNav = () => {
           </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <Link to="/withdraw" className={path === "/withdraw" ? 'active' : ''}>
+          <Link to="/wallet-connect?action=withdraw" className={path === "/wallet-connect" && search === "?action=withdraw" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-suitcase" style={{ fontSize: 17 }} />{" "}
               Withdrawals
@@ -94,7 +94,7 @@ const SideNav = () => {
           </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <Link to="/wallet-connect" className={path === "/wallet-connect" ? 'active' : ''}>
+          <Link to="/wallet-connect?action=connect" className={path === "/wallet-connect" && search === "?action=connect" ? 'active' : ''}>
             <span style={{ color: "white" }}>
               <i className="fa fa-suitcase" style={{ fontSize: 17 }} /> Wallet
               Connect{" "}
@@ -110,12 +110,12 @@ const SideNav = () => {
           </Link>
         </li>
         <li className="menu-item" style={{ paddingBottom: 8 }}>
-          <Link to="#" onClick={signOut}>
+          <a href="#" onClick={signOut}>
             <span style={{ color: "white", textAlign: "center" }}>
               {" "}
               Log Out
             </span>
-          </Link>
+          </a>
         </li>
         {/* /Apps */}
       </ul>

@@ -1,4 +1,5 @@
 import React from "react";
+import constants from "../../../utils/constants";
 
 function Services() {
   return (
@@ -48,9 +49,9 @@ function Services() {
                 <div className="feature-text">
                   <h5 className="title title-sm ttu">Payment Methods</h5>
                   <p>
-                    Mega Trade Villa Inc supports Bitcoin, Etheruem, Litecoin
+                    {constants.COMPANY_NAME} Inc supports Bitcoin, Etheruem, Litecoin
                     and XRP. For any other preferred payment method kindly
-                    contact support@megatradevilla.com
+                    contact {constants.SUPPORT_EMAIL}
                   </p>
                 </div>
               </div>
@@ -65,7 +66,7 @@ function Services() {
                 <div className="feature-text">
                   <h5 className="title title-sm ttu">Secured Company</h5>
                   <p>
-                    Mega Trade Villa is inbuilt with a 2FA security to ensure
+                    {constants.COMPANY_NAME} is inbuilt with a 2FA security to ensure
                     the maximum security and safety of your investments.
                   </p>
                 </div>
