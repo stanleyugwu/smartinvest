@@ -1,8 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
+import App from "../layouts/App";
+import reportWebVitals from "../reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import Admin from "./layouts/Admin";
+import "./assets/css/index.css";
+import "./assets/css/vendor.css";
+import "./assets/css/style.css";
+import "./assets/css/azaleae.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Admin/>
+      <App />
     </BrowserRouter>  
   </React.StrictMode>
 );

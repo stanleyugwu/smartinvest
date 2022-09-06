@@ -1,9 +1,19 @@
 import React from "react";
 import { FieldError } from "react-hook-form";
 
-const ErrorField = ({ error }: { error?: FieldError }): null | JSX.Element => {
+export type ErrorFieldProps = {
+  error?: FieldError;
+} & React.HTMLAttributes<HTMLParagraphElement>
+
+const ErrorField = ({
+  error,
+  ...others
+}: ErrorFieldProps): null | JSX.Element => {
   return (
-    <p className="text-danger text-left mb-2">
+    <p
+      className="text-danger text-left mb-2"
+      {...(others)}
+    >
       {error?.message ? error.message : ""}
     </p>
   );

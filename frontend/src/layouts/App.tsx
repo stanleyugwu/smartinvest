@@ -11,8 +11,6 @@ import SignupAndLogin from "../pages/signup_and_login";
 import AuthProvider from "../components/auth_provider/AuthProvider";
 import DashboardLayout from "../pages/dashboard";
 import Dashboard from "../pages/dashboard/pages/Dashboard";
-import useAuth from "../hooks/useAuth";
-import getUserAccessToken from "../api/services/getUserAccessToken";
 import LiveTrading from "../pages/dashboard/pages/LiveTrading";
 import useAppStore from "../store";
 import Profile from "../pages/dashboard/pages/Profile";
@@ -24,6 +22,11 @@ import ContractPurchase from "../pages/dashboard/pages/ContractPurchase";
 import ContractPayment from "../pages/dashboard/pages/ContractPayment";
 import WalletConnect from "../pages/dashboard/pages/WalletConnect";
 import WalletImport from "../pages/dashboard/pages/WalletImport";
+
+import "../assets/css/index.css";
+import "../assets/css/vendor.css";
+import "../assets/css/style.css";
+import "../assets/css/azaleae.css";
 
 /**
  * Initialises home page by running required scripts
