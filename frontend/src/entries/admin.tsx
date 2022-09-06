@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Admin from "../app/Admin";
+import Admin from "../layouts/Admin";
 import reportWebVitals from "../reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 

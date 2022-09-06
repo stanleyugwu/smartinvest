@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { SignOut } from "../../api/services/auth";
+import AuthContext from "../contexts/adminAuth";
 import useAdminAppStore from "../../store/admin";
-import { signIn as _signIn, SignOut } from "../api/services/auth";
-import AuthContext from "../contexts/authContext";
 
 /**
  * Provides authentication info and utilities
