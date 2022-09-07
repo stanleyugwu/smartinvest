@@ -8,10 +8,9 @@ import HeaderStats from "../admin/components/Headers/HeaderStats.js";
 import FooterAdmin from "../admin/components/Footers/FooterAdmin.js";
 import Sidebar from "../admin/components/Sidebar/Sidebar";
 
-import Dashboard from "../admin/views/admin/Dashboard.js";
-import Maps from "../admin/views/admin/Maps.js";
-import Settings from "../admin/views/admin/Settings.js";
-import Tables from "../admin/views/admin/Tables.js";
+import Home from "../admin/views/admin/Home";
+import ApprovedUsers from "../admin/views/admin/ApprovedUsers";
+import UnApprovedUsers from "../admin/views/admin/UnApprovedUsers";
 
 import Login from "../admin/views/auth/Login";
 import FooterSmall from "../admin/components/Footers/FooterSmall.js";
@@ -36,12 +35,11 @@ function Admin() {
             <AdminNavbar />
             {/* Header */}
             <HeaderStats />
-            <div className="px-4 md:px-10 mx-auto w-full -m-24">
+            <div className="px-4 md:px-10 mx-auto w-full">
               <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="maps" element={<Maps />} />
-                <Route path="settings" element={<Settings />} />
-                <Route path="tables" element={<Tables />} />
+                <Route path="/" element={<Home />} />
+                <Route path="approved-users" element={<ApprovedUsers />} />
+                <Route path="unapproved-users" element={<UnApprovedUsers />} />
                 <Route path="*" element={<Navigate to={"/"} />} />
               </Routes>
               <FooterAdmin />
