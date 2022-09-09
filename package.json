@@ -1,0 +1,37 @@
+{
+  "name": "trade-insider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "compile":"tsc",
+    "compile:watch":"tsc -w ",
+    "dev": "set NODE_ENV=development&& nodemon src/server.ts",
+    "start": "tsc || set NODE_ENV=production&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && nodemon dist/server.js",
+    "start:dev": "tsc || set NODE_ENV=development&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && nodemon dist/server.js",
+    "migrate_and_seed:dev": "set NODE_ENV=development&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "migrate_and_seed:prod": "set NODE_ENV=production&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.6.0",
+    "helmet": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.9",
+    "nodemon": "^2.0.19",
+    "sequelize-cli": "^6.4.1",
+    "ts-node": "^10.9.1"
+  }
+}
