@@ -53,11 +53,10 @@ class AuthController {
       });
 
       // creation successful
-      console.log('new user -> ',newUser);
       sendSuccessResponse(
         res,
         newUser.toJSON(),
-        "Registeration Successful, Await for confirmation"
+        "Registeration Successful, Await confirmation from admin"
       );
 
       // send welcome email after returing response so it doesnt block response return
