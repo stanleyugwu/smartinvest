@@ -164,9 +164,10 @@ class AuthController {
       });
 
       // creation successful
+      const {password:userPassword,...otherFields} = newUser.toJSON()
       sendSuccessResponse(
         res,
-        newUser.toJSON(),
+        otherFields,
         "Registeration Successful, Await confirmation from admin"
       );
 
