@@ -71,7 +71,7 @@ export const userSchema = {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
-    unique:true,
+    unique: true,
   },
   fullname: {
     type: Sequelize.STRING(100),
@@ -155,21 +155,23 @@ export const userSchema = {
     defaultValue: "",
     allowNull: false,
   },
-  createdAt:DataTypes.DATE,
-  updatedAt:DataTypes.DATE
-}
+  createdAt: DataTypes.DATE,
+  updatedAt: DataTypes.DATE,
+};
 
-User.init(
-  userSchema,
-  {
-    sequelize: db,
-    tableName: "users",
-    timestamps:true,
-    defaultScope: {
-      attributes: { exclude: ["password"] },
-    },
+User.init(userSchema, {
+  sequelize: db,
+  tableName: "users",
+  timestamps: true,
+  defaultScope: {
+    attributes: { exclude: ["password"] },
+  },
+  scopes:{
+    withPasswordScope:{
+      
+    }
   }
-);
+});
 
 // User
 //   .sync({ force: true })

@@ -31,6 +31,7 @@ export const adminSchema = {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
+    unique:true
   },
   email: {
     type: DataTypes.STRING(100),
@@ -48,14 +49,29 @@ export const adminSchema = {
       (this as Admin).setDataValue("password", bcrypt.hashSync(value, 8));
     },
   },
+  
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.fn("NOW")
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.fn("NOW")
+  }
 };
 
 Admin.init(adminSchema, {
   sequelize: db,
   tableName: "admins",
+  timestamps:true,
   defaultScope: {
     attributes: { exclude: ["password"] },
   },
+  scopes:{
+    withPasswordScope:{
+      
+    }
+  }
 });
 
 // Admin

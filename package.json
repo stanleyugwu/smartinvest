@@ -5,11 +5,11 @@
   "main": "server.js",
   "scripts": {
     "compile":"tsc",
-    "compile:watch":"tsc -w ",
+    "compile:watch":"tsc -w",
     "dev": "set NODE_ENV=development&& nodemon src/server.ts",
-    "start": "tsc || set NODE_ENV=production&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && nodemon dist/server.js",
-    "start:dev": "tsc || set NODE_ENV=development&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && nodemon dist/server.js",
-    "migrate_and_seed:dev": "set NODE_ENV=development&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "start": "npm run migrate_and_seed:prod && node dist/server.js",
+    "start:dev": "npm run migrate_and_seed:dev && nodemon src/server.ts",
+    "migrate_and_seed:dev": "npm run compile || set NODE_ENV=development&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "migrate_and_seed:prod": "set NODE_ENV=production&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "author": "",
