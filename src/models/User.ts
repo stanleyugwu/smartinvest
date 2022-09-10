@@ -29,10 +29,10 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare accountManager: CreationOptional<string>;
   declare tradingPercentage: CreationOptional<number>;
 
-  // // createdAt can be undefined during creation
-  // declare createdAt: Date;
-  // // updatedAt can be undefined during creation
-  // declare updatedAt: Date;
+  // createdAt can be undefined during creation
+  declare createdAt: CreationOptional<Date>;
+  // updatedAt can be undefined during creation
+  declare updatedAt: CreationOptional<Date>;
 
   generateToken() {
     return jwt.sign({ id: this.id }, process.env.JWT_SECRET!);
@@ -61,12 +61,23 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
       withdrawal: this.withdrawal,
       accountManager: this.accountManager,
       profit: this.profit,
-      tradinPercentage: this.tradingPercentage,
+      tradingPercentage: this.tradingPercentage,
     };
   }
 }
 
-export const userSchema = {
+export const userSchema: Sequelize.ModelAttributes<
+  User,
+  Sequelize.Optional<
+    Sequelize.InferAttributes<
+      User,
+      {
+        omit: never;
+      }
+    >,
+    never
+  >
+> = {
   id: {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -83,7 +94,7 @@ export const userSchema = {
     unique: true,
     validate: {
       isEmail: {
-        msg: "Provide a valid email address"
+        msg: "Provide a valid email address",
       },
     },
   },
@@ -91,7 +102,7 @@ export const userSchema = {
     type: DataTypes.STRING(11),
     validate: {
       isNumeric: {
-        msg: "Provide a valid phone number"
+        msg: "Provide a valid phone number",
       },
     },
   },
@@ -109,7 +120,7 @@ export const userSchema = {
     allowNull: false,
     validate: {
       isAlpha: {
-        msg: "Provide valid country name"
+        msg: "Provide valid country name",
       },
     },
   },
@@ -128,38 +139,66 @@ export const userSchema = {
   },
   balance: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 0,
     allowNull: false,
+    validate: {
+      isNumeric: {
+        msg: "Balance value must be a number",
+      },
+    },
   },
   credit: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 0,
     allowNull: false,
+    validate: {
+      isNumeric: {
+        msg: "Credit value must be a number",
+      },
+    },
   },
   deposit: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 0,
     allowNull: false,
+    validate: {
+      isNumeric: {
+        msg: "Deposit value must be a number",
+      },
+    },
   },
   profit: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 0,
     allowNull: false,
+    validate: {
+      isNumeric: {
+        msg: "Profit value must be a number",
+      },
+    },
   },
   withdrawal: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 0,
     allowNull: false,
+    validate: {
+      isNumeric: {
+        msg: "Withdrawal value must be a number",
+      },
+    },
   },
   tradingPercentage: {
     type: DataTypes.INTEGER.UNSIGNED,
-    defaultValue: 10,
     allowNull: false,
+    validate: {
+      isNumeric: {
+        msg: "Trading Percentage value must be a number",
+      },
+    },
   },
   accountManager: {
     type: DataTypes.STRING(50),
-    defaultValue: "",
     allowNull: false,
+    validate: {
+      isAlpha: {
+        msg: "Account Manager must be a text",
+      },
+    },
   },
   createdAt: DataTypes.DATE,
   updatedAt: DataTypes.DATE,
@@ -172,11 +211,9 @@ User.init(userSchema, {
   defaultScope: {
     attributes: { exclude: ["password"] },
   },
-  scopes:{
-    withPasswordScope:{
-      
-    }
-  }
+  scopes: {
+    withPasswordScope: {},
+  },
 });
 
 // User
