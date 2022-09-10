@@ -13,6 +13,8 @@ const adminRoutes = (app: Express) => {
   app.put("/api/admin/approve_user:userId", AdminController.approveUser);
   app.delete("/api/admin/delete_user:userId", AdminController.deleteUser);
   app.get("/api/admin/find_user:userEmail", AdminController.findUserByEmail);
+  app.get("/api/admin/latest_approved_users", AdminController.getLast30ApprovedUsers);
+  app.get("/api/admin/latest_unapproved_users", AdminController.getLast30UnApprovedUsers);
 };
 
 export default adminRoutes;
