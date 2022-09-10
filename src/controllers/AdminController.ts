@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Admin from "../models/Admin";
 import User from "../models/User";
 import { sendErrorResponse, sendSuccessResponse } from "../modules/utils";
+import StatusCode from "../status";
 
 class AdminController {
   async updateAccount(req: Request, res: Response) {}
@@ -44,8 +45,89 @@ class AdminController {
       return sendErrorResponse(res, error.message);
     }
   }
-  approveUser(req: Request, res: Response) {}
-  deleteUser(req: Request, res: Response) {}
+  async disApproveUser(
+    req: Request<any, any, any, { userId: string }>,
+    res: Response
+  ) {
+    const userId = req.query.userId;
+    if (!userId || !userId.trim()) {
+      return sendErrorResponse(
+        res,
+        "Missing User ID",
+        StatusCode.BAD_REQUEST,
+        "You didn't provide the ID of user to approve"
+      );
+    }
+
+    try {
+      const user = await User.findByPk(userId);
+      if (!user)
+        return sendErrorResponse(
+          res,
+          "User Not Found",
+          StatusCode.NOT_FOUND,
+          "User with given ID doesn't exist"
+        );
+
+      // update
+      await user.update({
+        approved: false,
+      });
+
+      return sendSuccessResponse(
+        res,
+        {
+          user: user.getProfileInfo(),
+          account: user.getAccountInfo(),
+        },
+        "User Disapproved Successfully"
+      );
+    } catch (error: any) {
+      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+    }
+  }
+  async approveUser(
+    req: Request<any, any, any, { userId: string }>,
+    res: Response
+  ) {
+    const userId = req.query.userId;
+    if (!userId || !userId.trim()) {
+      return sendErrorResponse(
+        res,
+        "Missing User ID",
+        StatusCode.BAD_REQUEST,
+        "You didn't provide the ID of user to approve"
+      );
+    }
+
+    try {
+      const user = await User.findByPk(userId);
+      if (!user)
+        return sendErrorResponse(
+          res,
+          "User Not Found",
+          StatusCode.NOT_FOUND,
+          "User with given ID doesn't exist"
+        );
+
+      // update
+      await user.update({
+        approved: true,
+      });
+
+      return sendSuccessResponse(
+        res,
+        {
+          user: user.getProfileInfo(),
+          account: user.getAccountInfo(),
+        },
+        "User Approved Successfully"
+      );
+    } catch (error: any) {
+      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+    }
+  }
+  async deleteUser(req: Request, res: Response) {}
   findUserByEmail(req: Request, res: Response) {}
   async getLast30ApprovedUsers(req: Request, res: Response) {
     try {
