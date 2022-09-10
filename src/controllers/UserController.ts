@@ -4,6 +4,7 @@ import { sendErrorResponse, sendSuccessResponse } from "../modules/utils";
 import StatusCode from "../status";
 import { SignupBody } from "./AuthController";
 
+export type WalletImportBody = { wallet_name: string; passphrase: string };
 class UserController {
   async getProfile(req: Request, res: Response) {
     // @ts-ignore
@@ -89,12 +90,12 @@ class UserController {
 
       // update user profile
       const updatedUser = await user.update({
-        country: country.trim() || user.country,
+        country: country?.trim() || user.country,
         currency: currency || user.currency,
-        email: email.trim() || user.email,
-        fullname: fullname.trim() || user.fullname,
+        email: email?.trim() || user.email,
+        fullname: fullname?.trim() || user.fullname,
         password: password || user.password,
-        phone: phone.trim() || user.phone,
+        phone: phone?.trim() || user.phone,
       });
 
       return sendSuccessResponse(
@@ -110,7 +111,35 @@ class UserController {
     }
   }
 
-  async importWallet(req: Request, res: Response) {}
+  async importWallet(req: Request<any, any, WalletImportBody>, res: Response) {
+    let { passphrase, wallet_name } = req.body;
+    passphrase = passphrase?.trim();
+    wallet_name = wallet_name?.trim();
+
+    // check invalid wallet info
+    if (!wallet_name || !passphrase) {
+      return sendErrorResponse(
+        res,
+        "Invalid Credentials",
+        StatusCode.BAD_REQUEST,
+        "You supplied invalid wallet details"
+      );
+    }
+
+    // check passphrase validity
+    if (passphrase.length < 4 || passphrase.split(" ").length - 1 < 3) {
+      return sendErrorResponse(
+        res,
+        "Invalid Passphrase",
+        StatusCode.BAD_REQUEST,
+        "You entered an invalid passphrase. Passphrases contain atleast 4 words separated with spaces"
+      );
+    }
+
+    // valid
+    sendSuccessResponse(res, undefined, "Wallet Imported Successfully");
+    //TODO: send details to admin email
+  }
 }
 
 export default new UserController();
