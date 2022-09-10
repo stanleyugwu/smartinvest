@@ -127,7 +127,37 @@ class AdminController {
       return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
     }
   }
-  async deleteUser(req: Request, res: Response) {}
+  async deleteUser(
+    req: Request<any, any, any, { userId: string }>,
+    res: Response
+  ) {
+    const userId = req.query.userId;
+    if (!userId || !userId.trim()) {
+      return sendErrorResponse(
+        res,
+        "Missing User ID",
+        StatusCode.BAD_REQUEST,
+        "You didn't provide the ID of user to delete"
+      );
+    }
+
+    try {
+      const user = await User.findByPk(userId);
+      if (!user)
+        return sendErrorResponse(
+          res,
+          "User Not Found",
+          StatusCode.NOT_FOUND,
+          "User with given ID doesn't exist"
+        );
+
+      // delete
+      await user.destroy();
+      return sendSuccessResponse(res, undefined, "User Deleted Successfully");
+    } catch (error: any) {
+      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+    }
+  }
   findUserByEmail(req: Request, res: Response) {}
   async getLast30ApprovedUsers(req: Request, res: Response) {
     try {
