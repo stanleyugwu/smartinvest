@@ -69,7 +69,7 @@ class UserController {
       return sendErrorResponse(
         res,
         "Empty update fields",
-        StatusCode.BAD_GATEWAY,
+        StatusCode.BAD_REQUEST,
         "You supplied empty updte values"
       );
     }

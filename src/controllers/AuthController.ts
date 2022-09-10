@@ -28,7 +28,9 @@ class AuthController {
     }
 
     try {
-      const user = await User.scope("withPasswordScope").findOne({ where: { email }});
+      const user = await User.scope("withPasswordScope").findOne({
+        where: { email },
+      });
 
       // check user existence
       if (!user) {
@@ -63,13 +65,17 @@ class AuthController {
 
       // user is approved and login cred is correct, sign him in
       const accessToken = user.generateToken();
-      return sendSuccessResponse(res, {
-        token: `Bearer ${accessToken}`,
-        data: {
-          profile: user.getProfileInfo(),
-          account: user.getAccountInfo(),
+      return sendSuccessResponse(
+        res,
+        {
+          token: accessToken,
+          data: {
+            profile: user.getProfileInfo(),
+            account: user.getAccountInfo(),
+          },
         },
-      }, "Sign-In Successful");
+        "Sign-In Successful"
+      );
     } catch (error: any) {
       return sendErrorResponse(res, error.message, StatusCode.FORBIDDEN);
     }
@@ -88,7 +94,9 @@ class AuthController {
     }
 
     try {
-      const admin = await Admin.scope("withPasswordScope").findOne({ where: { email }});
+      const admin = await Admin.scope("withPasswordScope").findOne({
+        where: { email },
+      });
 
       // check user existence
       if (!admin) {
@@ -114,11 +122,15 @@ class AuthController {
       // user is approved and login cred is correct, sign him in
       const accessToken = admin.generateToken();
       // we omit password frmo returned data
-      const {password:adminPass,...otherFields} = admin.toJSON();
-      return sendSuccessResponse(res, {
-        token: `Bearer ${accessToken}`,
-        data: otherFields,
-      }, "Sign-In Successful");
+      const { password: adminPass, ...otherFields } = admin.toJSON();
+      return sendSuccessResponse(
+        res,
+        {
+          token: accessToken,
+          data: otherFields,
+        },
+        "Sign-In Successful"
+      );
     } catch (error: any) {
       return sendErrorResponse(res, error.message, StatusCode.FORBIDDEN);
     }
@@ -161,10 +173,17 @@ class AuthController {
         password,
         phone,
         approved: false,
+        accountManager: "AD",
+        balance: 0,
+        credit: 0,
+        deposit: 0,
+        profit: 0,
+        tradingPercentage: 0,
+        withdrawal: 0,
       });
 
       // creation successful
-      const {password:userPassword,...otherFields} = newUser.toJSON()
+      const { password: userPassword, ...otherFields } = newUser.toJSON();
       sendSuccessResponse(
         res,
         otherFields,
