@@ -82,13 +82,17 @@ export const userSchema = {
     allowNull: false,
     unique: true,
     validate: {
-      isEmail: true,
+      isEmail: {
+        msg: "Provide a valid email address"
+      },
     },
   },
   phone: {
     type: DataTypes.STRING(11),
     validate: {
-      isNumeric: true,
+      isNumeric: {
+        msg: "Provide a valid phone number"
+      },
     },
   },
   currency: {
@@ -104,7 +108,9 @@ export const userSchema = {
     type: DataTypes.STRING(100),
     allowNull: false,
     validate: {
-      isAlpha: true,
+      isAlpha: {
+        msg: "Provide valid country name"
+      },
     },
   },
   password: {

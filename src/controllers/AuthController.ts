@@ -4,7 +4,7 @@ import { sendErrorResponse, sendSuccessResponse } from "../modules/utils";
 import StatusCode from "../status";
 import Admin from "../models/Admin";
 
-type SignupBody = {
+export type SignupBody = {
   fullname: string;
   email: string;
   phone: string;

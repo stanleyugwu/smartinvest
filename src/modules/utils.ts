@@ -16,16 +16,16 @@ export const sendErrorResponse = (
   status: number = 500,
   fix?: string
 ) => {
-  const response = {
-    message,
-    howToFix: fix,
-  };
+  message = message.replaceAll("Validation error:", "").trim();
 
   if (message.search("\n") > 0) {
-    response.message = message.split("\n").join(" and ");
+    message = message.split("\n").join(" and ");
   }
 
-  return res.status(status).json(response);
+  return res.status(status).json({
+    message,
+    howToFix: fix || "Check request parameters and try again",
+  });
 };
 
 export const sendSuccessResponse = <DT = any>(

@@ -1,38 +1,36 @@
 import { NextFunction, Request, Response } from "express";
+import Admin from "../models/Admin";
+import { sendErrorResponse } from "../modules/utils";
+import StatusCode from "../status";
 
-const adminChecker = (req: Request, res: Response, next: NextFunction) => {
-//   const { authorization } = req.headers;
+const adminChecker = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  // @ts-ignore
+  const userId = req.userId;
 
-//   if (!authorization) {
-//     return res.status(401).json({
-//       message: "Unauthorized request.",
-//       howToFix: "You forgot to send your authorization token.",
-//     });
-//   }
+  // req.userId should be made avail by authChecker
+  if (!userId) {
+    return sendErrorResponse(
+      res,
+      "Invalid Token",
+      StatusCode.UNAUTHORIZED,
+      "Provide a valid authorization token"
+    );
+  }
 
-//   if (authorization.indexOf("Bearer") !== 0) {
-//     return res.status(401).json({
-//       message: "Malformatted token.",
-//       howToFix: "Provide a valid authorization token.",
-//     });
-//   }
-
-//   const [, token] = authorization.split(" ");
-
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-//     // @ts-ignore
-//     req.userId = typeof decoded == "string" ? decoded : decoded.id;
-//   } catch (err) {
-//     console.log("midlewares.auth", err.message);
-
-//     return res.status(401).json({
-//       message: "Invalid token.",
-//       howToFix: "Provide a valid authorization token.",
-//     });
-//   }
-
-  return next();
+  // check if user is admin
+  const isAdmin = await Admin.findByPk(userId);
+  if (!isAdmin) {
+    return sendErrorResponse(
+      res,
+      "Unauthorized Operation",
+      StatusCode.UNAUTHORIZED,
+      "You are not an admin"
+    );
+  } else return next();
 };
 
 export default adminChecker;
