@@ -1,5 +1,6 @@
 import { AxiosError, AxiosRequestConfig } from "axios";
 import useAppStore from "../../store";
+import { ErrorRes } from "../../types";
 
 /**
  * Called before request is sent
@@ -15,7 +16,7 @@ const beforeRequest = (config: AxiosRequestConfig<any>) => {
 /**
  * Called when an error occured before request is sent, maybe bad config
  */
-const requestError = (error: AxiosError) => {
+const requestError = (error: AxiosError): Promise<ErrorRes> => {
   return Promise.reject({
     message: error.message || "An error occured",
     howToFix: "Please try again",

@@ -1,5 +1,3 @@
-import { AxiosResponse } from "axios";
-
 export type SuccessRes<DataType = any> = {
   message: string;
   data?: DataType;
@@ -45,4 +43,4 @@ export type SignUp = (
   currency: string,
   country: string,
   password: string
-) => Promise<AxiosResponse<SignUpRes>>;
+) => Promise<SuccessRes>;

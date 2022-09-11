@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { ErrorRes } from "../../types";
+import { ErrorRes, SuccessRes } from "../../types";
 
 /**
  * Any status codes that falls outside the range of 2xx cause this function to trigger
@@ -40,7 +40,7 @@ export const errorResponse = (error: AxiosError<ErrorRes>) => {
  * Any status code that lie within the range of 2xx cause this function to trigger
  * Do something with response data
  */
-export const successResponse = (res: AxiosResponse) => {
+export const successResponse = (res: AxiosResponse):SuccessRes => {
   // return relevant response data from server
   return {
     message: res.data?.message || "Request Successful",

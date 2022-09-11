@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import ErrorField from "../../../../components/ErrorField";
 import type { SignupInputs } from "./signup.d";
 import SignupSchema from "./signup.schema";
+import { signUp } from "../../../../api/services/auth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   const {
@@ -14,15 +17,33 @@ const SignupForm = () => {
   } = useForm<SignupInputs>({
     resolver: yupResolver(SignupSchema),
   });
+  const navigate = useNavigate();
 
   /**
    * Handles signup after validation
    */
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const onSubmit = handleSubmit((values) => {
+  const onSubmit = handleSubmit(async (values) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    console.log(values);
+    try {
+      const res = await signUp(
+        values.fullName,
+        values.email,
+        values.mobileNumber,
+        values.currency,
+        values.country,
+        values.password
+      );
+      Swal.fire(undefined, res.message, "success");
+      setIsSubmitting(false);
+      // open sign in panel
+      // @ts-ignore
+      $?.(".lnk-toggler")?.trigger?.("click");
+    } catch (error: any) {
+      setIsSubmitting(false);
+      Swal.fire(error.message, error.howToFix, "error");
+    }
   });
   const [passwordMasked, setPasswordMasked] = useState(true);
   const [confirmPasswordMasked, setConfirmPasswordMasked] = useState(true);
