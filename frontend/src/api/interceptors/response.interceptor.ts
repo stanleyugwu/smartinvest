@@ -1,58 +1,49 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { ErrorRes } from "../../types";
 
-export const responseInterceptorSuccess = (response: AxiosResponse<any>) => {
-  /** reject if server responded with 2xx but response.body.status is false */
-  if (response.data?.status === false)
-    return Promise.reject({
-      message:
-        response.data?.message || "Sorry!, an error occured. Please try again",
-      _error: response.data,
+/**
+ * Any status codes that falls outside the range of 2xx cause this function to trigger
+ * Do something with response error
+ */
+export const errorResponse = (error: AxiosError<ErrorRes>) => {
+  //request wasn't made because of Internet Connection
+  if (error.code === "ERR_NETWORK") {
+    return Promise.reject<ErrorRes>({
+      message: `Network Error`,
+      howToFix: `Make sure you're connected to internet and try again`,
     });
+  }
 
-  return response;
+  //request timed out
+  if (error.code === "ECONNABORTED") {
+    return Promise.reject<ErrorRes>({
+      message: `Request Timed-out`,
+      howToFix: error.message || `Check your internet connection and try again`,
+    });
+  }
+
+  //Request Cancelled
+  if (axios.isCancel(error)) {
+    return Promise.reject<ErrorRes>({
+      message: error.message || "Request Cancelled",
+      howToFix: "Please try again",
+    });
+  }
+
+  return Promise.reject({
+    message: error.response?.data?.message || "Request Failed",
+    howToFix: error.response?.data?.howToFix || "Please try again",
+  });
 };
 
-export const responseInterceptorerror = (error: any) => {
-  //we made request, but server responded with error, return server response body
-  if (error.response) {
-    //transform Internal Server Error to friendlier message
-    if (error.response.status === 500) {
-      return Promise.reject({
-        message: `An error occured on our side, please try again. Report to us if the problem persists`,
-        _error: error.response,
-      });
-    }
-
-    // error message is not an object or error returned from server mismatch the expected
-    // error or error message is a string (as expected)
-    // Note: we're falling back to a default error message incase server response doesn't have `message` field
-    return Promise.reject({
-      message:
-        error.response.data?.message ||
-        "Sorry!, an error occured. Please try again",
-      _error: error.response,
-    });
-  }
-
-  //request wasn't made because of Network Connection or Timeout Errors
-  // we'll make sure error returned to caller is `RequestError` type
-  else if (error.request && !error.response) {
-    return Promise.reject({
-      message: `Request Failed!, Make Sure You're Connected To Internet`,
-      _error: error.request,
-    });
-  }
-  //Request Cancelled
-  else if (axios.isCancel(error)) {
-    return Promise.reject({
-      message: error.message || "Request Cancelled. Please try again",
-      _error: error,
-    });
-  }
-  //Request Config Error
-  else
-    return Promise.reject({
-      message: "Network Error!, Check Your Internet Connection",
-      _error: error.request || error.message,
-    });
+/**
+ * Any status code that lie within the range of 2xx cause this function to trigger
+ * Do something with response data
+ */
+export const successResponse = (res: AxiosResponse) => {
+  // return relevant response data from server
+  return {
+    message: res.data?.message || "Request Successful",
+    data: res.data?.data,
+  };
 };
