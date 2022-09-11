@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import getUserAccessToken from "../../api/services/getUserAccessToken";
 import PreloaderAnimation from "../../components/PreloaderAnimation";
+import useAuth from "../../hooks/useAuth";
 import About from "./components/About";
 import BoardMembers from "./components/BoardMembers";
 import CoinSupport from "./components/CoinSupport";
@@ -14,6 +16,14 @@ import Tokens from "./components/Tokens";
 import WhyChooseUs from "./components/WhyChooseUs";
 
 const Home = () => {
+  const auth = useAuth();
+  // Auto signin
+  useEffect(() => {
+    const token = getUserAccessToken();
+    if(token){
+      auth.setToken(token);
+    }
+  },[])
   return (
     <>
       {/* Main Page */}

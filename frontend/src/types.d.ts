@@ -1,3 +1,5 @@
+import { UserAccount, UserProfile } from "./store";
+
 export type SuccessRes<DataType = any> = {
   message: string;
   data?: DataType;
@@ -44,3 +46,15 @@ export type SignUp = (
   country: string,
   password: string
 ) => Promise<SuccessRes>;
+
+export type SignInRes = {
+  message: string;
+  data: {
+    token: string;
+    data: {
+      profile: UserProfile;
+      account: UserAccount;
+    };
+  };
+};
+export type SignIn = (email: string, password: string) => Promise<SignInRes>;

@@ -1,5 +1,6 @@
 import React from "react";
-import { SignIn, SignOut } from "../api/services/auth";
+import { SignOut } from "../api/services/auth";
+import { SignIn } from "../types";
 
 export type AuthContextType = {
   token?: string;

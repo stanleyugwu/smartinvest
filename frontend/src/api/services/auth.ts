@@ -1,14 +1,13 @@
-import { SignUp } from "../../types";
+import { SignIn, SignUp } from "../../types";
 import axiosInstance from "../axios";
 
-export type SignIn<RT = any> = (email: string, password: string) => Promise<RT>;
 export type SignOut = () => void;
 
 /**
  * Handles signing in user
  */
-const signIn: SignIn<any> = (email: string, password) => {
-  return axiosInstance.post("/auth/signup", { email, password });
+const signIn:SignIn = (email, password) => {
+  return axiosInstance.post("/auth/signin", { email, password });
 };
 
 /**

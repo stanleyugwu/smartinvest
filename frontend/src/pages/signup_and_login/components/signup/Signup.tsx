@@ -7,7 +7,6 @@ import type { SignupInputs } from "./signup.d";
 import SignupSchema from "./signup.schema";
 import { signUp } from "../../../../api/services/auth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   const {
@@ -17,8 +16,6 @@ const SignupForm = () => {
   } = useForm<SignupInputs>({
     resolver: yupResolver(SignupSchema),
   });
-  const navigate = useNavigate();
-
   /**
    * Handles signup after validation
    */

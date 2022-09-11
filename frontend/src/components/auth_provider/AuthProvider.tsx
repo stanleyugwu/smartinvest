@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import {
-  SignIn,
   SignOut,
   signIn as _signIn,
 } from "../../api/services/auth";
+import storeUserAccessToken from "../../api/services/storeUserAccessToken";
 import AuthContext from "../../contexts/authContext";
 import useAppStore from "../../store";
+import { SignIn } from "../../types";
 
 /**
  * Provides authentication info and utilities
@@ -23,13 +24,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   },[token])
 
   const signIn: SignIn = async (email: string, password: string) => {
-    try {
-      let token = await _signIn(email, password);
+    const updateProfile = useAppStore.getState().setProfile;
+    const updateAccount = useAppStore.getState().setAccount;
+    return _signIn(email,password).then(res => {
+      const token = res?.data?.token;
       setToken(token);
-      // storeUserAccessToken(token);
-    } catch (error) {
-      throw error;
-    }
+      storeUserAccessToken(token)
+      updateProfile(res.data.data.profile);
+      updateAccount(res.data.data.account);
+      return res;
+    });
   };
   const signOut: SignOut = () => {
     setToken(undefined);

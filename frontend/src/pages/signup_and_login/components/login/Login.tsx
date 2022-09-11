@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import ErrorField from "../../../../components/ErrorField";
 import LoginSchema from "./login.schema";
 import useAuth from "../../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 export interface LoginInputs {
   email: string;
@@ -26,11 +27,16 @@ const Login = () => {
    * Handles login form submission
    */
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const onSubmit = handleSubmit((values) => {
+  const onSubmit = handleSubmit(async (values) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    user.signIn?.(values.email,values.password)
-    console.log(values);
+    try {
+      const res = await user.signIn?.(values.email,values.password)
+      Swal.fire("Sign-In Successful",res?.message || "","success");
+    } catch (error:any) {
+      Swal.fire(error.message,error.howToFix,"error");
+      setIsSubmitting(false);
+    }
   });
 
   return (

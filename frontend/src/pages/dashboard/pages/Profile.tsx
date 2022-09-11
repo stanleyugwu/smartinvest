@@ -42,7 +42,6 @@ const Profile = () => {
       currency: data.currency,
       email: data.email,
       fullname: data.fullName,
-      password: data.password,
       phoneNumber: data.mobileNumber,
     });
   });
@@ -158,7 +157,6 @@ const Profile = () => {
                     className="form-control"
                     placeholder="New Password"
                     id="examplePassword"
-                    defaultValue={profile?.password}
                     {...register("password")}
                   />
                   <ErrorField error={errors.password} />

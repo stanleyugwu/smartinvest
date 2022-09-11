@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/trading-view.css";
 import "../styles/table.css";
 import ChartWidget from "../components/ChartWidget";
 import RateWidget from "../components/RateWidget";
 import TickerTapeWidget from "../components/TickerTapeWidget";
-import moneyBag from '../images/money_bag.svg';
+import moneyBag from "../images/money_bag.svg";
 import useAppStore from "../../../store";
+import Swal from "sweetalert2";
+import { ErrorRes } from "../../../types";
+import axiosInstance from "../../../api/axios";
 
 const Dashboard = () => {
-  const {acct,user} = useAppStore(state => ({acct:state.account, user:state.profile}));
+  const { acct, user,updateAcct,updateProf} = useAppStore((state) => ({
+    acct: state.account,
+    user: state.profile,
+    updateAcct: state.setAccount,
+    updateProf: state.setProfile,
+  }));
+  const [loadingProfile, setLoadingProfile] = useState(true);
+
+  // fetch and update profil with token on mount
+  useEffect(() => {
+    axiosInstance.get("/api/profile")
+    .then(res => {
+      updateProf(res.data.profile);
+      updateAcct(res.data.account);
+    })
+    .catch((error:ErrorRes) => {
+      Swal.fire(error.message,error.howToFix,"error");
+    }).finally(() => {
+      setLoadingProfile(false);
+    })
+  }, []);
 
   return (
     <>
@@ -16,7 +39,15 @@ const Dashboard = () => {
       <div className="col-sm-12">
         <span style={{ fontSize: "35px", color: "black" }}>
           Welcome
-          <b style={{ color: "#FF4444", textDecoration: "underline" }}> {user?.fullname}</b>
+          <b style={{ color: "#FF4444", textDecoration: "underline" }}>
+            {" "}
+            {user?.fullname}
+          </b>
+          {
+            loadingProfile ? (
+              <i className="fa fa-spinner fa-spin ml-2"></i>
+            ) : null
+          }
         </span>
       </div>
       <div className="col-sm-12 mb-4">
@@ -46,11 +77,7 @@ const Dashboard = () => {
               <div className="media-body">
                 <h6 style={{ color: "white" }}>Deposits</h6>
                 <p className="ms-card-change" style={{ color: "white" }}>
-                  <img
-                    src={moneyBag}
-                    style={{ width: "20px" }}
-                    alt="money"
-                  />{" "}
+                  <img src={moneyBag} style={{ width: "20px" }} alt="money" />{" "}
                   {user?.currency}
                   {acct?.deposit}
                 </p>
@@ -124,7 +151,7 @@ const Dashboard = () => {
             <i className="flaticon-statistics" style={{ color: "white" }} />
           </div>
         </div>
-        <TickerTapeWidget/>
+        <TickerTapeWidget />
       </div>
       <div
         className="col-xs-12 col-md-12"
@@ -135,8 +162,8 @@ const Dashboard = () => {
         {/* Two script tags will go here for trade chart */}
         {/* TradingView Widget END */}
 
-        <ChartWidget/>
-        <RateWidget/>
+        <ChartWidget />
+        <RateWidget />
       </div>
       <div className="ms-content-wrapper">
         <div className="row">
@@ -157,7 +184,7 @@ const Dashboard = () => {
                       arrow_upward
                     </i>{" "}
                     {user?.currency}
-                  {acct?.credit}
+                    {acct?.credit}
                   </p>
                   <p className="fs-12" style={{ color: "#fff" }}>
                     Stats
@@ -184,7 +211,7 @@ const Dashboard = () => {
                       arrow_upward
                     </i>{" "}
                     {user?.currency}
-                  {acct?.withdrawal}
+                    {acct?.withdrawal}
                   </p>
                   <p className="fs-12" style={{ color: "#fff" }}>
                     Stats
@@ -210,7 +237,7 @@ const Dashboard = () => {
                     <i className="material-icons" style={{ color: "white" }}>
                       arrow_upward
                     </i>
-                  {acct?.accountManager}
+                    {acct?.accountManager}
                   </p>
                   <p className="fs-12" style={{ color: "#fff" }}>
                     Stats
@@ -236,7 +263,8 @@ const Dashboard = () => {
                     <i className="material-icons" style={{ color: "white" }}>
                       arrow_upward
                     </i>{" "}
-                    {acct?.tradingPercentage}{"%"}
+                    {acct?.tradingPercentage}
+                    {"%"}
                   </p>
                   <p className="fs-12">Stats</p>
                 </div>
