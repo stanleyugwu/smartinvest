@@ -99,11 +99,15 @@ export const userSchema: Sequelize.ModelAttributes<
     },
   },
   phone: {
-    type: DataTypes.STRING(11),
+    type: DataTypes.STRING,
     validate: {
       isNumeric: {
         msg: "Provide a valid phone number",
       },
+      is:{
+        args:/^\d{11,14}$/i,
+        msg:"Provide a valid phone number"
+      }
     },
   },
   currency: {
