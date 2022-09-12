@@ -1,5 +1,5 @@
 const constants = {
-  BASE_URL: process.env.BASE_URL,
+  BASE_URL: "http://localhost:3000",
   COMPANY_NAME:"Trade Insider",
   SUPPORT_EMAIL: "support@tradeinsider.com",
   WALLET_ADDRESSES : {

@@ -1,22 +1,43 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { object, string } from "yup";
+import axiosInstance from "../../../api/axios";
 import CountrySelect from "../../../components/country-select/CountrySelect";
 import ErrorField from "../../../components/ErrorField";
-import useAppStore from "../../../store";
+import Toast from "../../../components/Toast";
+import useAppStore, { UserAccount, UserProfile } from "../../../store";
 import constants from "../../../utils/constants";
 import type { SignupInputs } from "../../signup_and_login/components/signup/signup.d";
 import SignupSchema from "../../signup_and_login/components/signup/signup.schema";
 import TickerTapeWidget from "../components/TickerTapeWidget";
 
-const UpdateProfileSchema = SignupSchema;
+const UpdateProfileSchema = object().shape({
+  ...SignupSchema.fields,
+  password: string().max(100),
+  confirmPassword: string()
+    .test(
+      "equals-password",
+      `passwords mismatch`,
+      (value, ctx) => value === ctx.parent.password
+    )
+});
+
 export type ProfileInputs = SignupInputs;
+export type UpdateProfileRes = {
+  message: string;
+  data: {
+    profile: UserProfile;
+    account: UserAccount;
+  };
+};
 
 const Profile = () => {
   const [profile, updateProfile] = useAppStore((state) => [
     state.profile,
     state.setProfile,
   ]);
+
   const {
     register,
     handleSubmit,
@@ -30,20 +51,26 @@ const Profile = () => {
   /**
    * Handles profile update form submission
    */
-  const handleUpdateProfile = handleSubmit((data) => {
+  const handleUpdateProfile = handleSubmit(async (data) => {
     if (updatingProfile) return;
-    console.log(data);
     setUpdatingProfile(true);
-    // TODO: hit server
-    
-    // server update successful
-    updateProfile({
-      country: data.country,
-      currency: data.currency,
-      email: data.email,
-      fullname: data.fullName,
-      phoneNumber: data.mobileNumber,
-    });
+    // Hit server
+    try {
+      const updated = (await axiosInstance.post("/api/update_profile", {
+        fullname: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        currency: data.currency,
+        country: data.country,
+        password: data.password,
+      })) as UpdateProfileRes;
+      Toast.fire(updated.message, undefined, "success");
+      updateProfile(updated.data.profile);
+    } catch (error: any) {
+      Toast.fire(error.message, error.howToFix, "error");
+    } finally {
+      setUpdatingProfile(false);
+    }
   });
 
   return (
@@ -116,8 +143,8 @@ const Profile = () => {
                     type="text"
                     className="form-control"
                     placeholder="Mobile Number"
-                    defaultValue={profile?.phoneNumber}
-                    {...register("mobileNumber")}
+                    defaultValue={profile?.phone}
+                    {...register("phone")}
                   />
                 </div>
                 <div className="form-group">
