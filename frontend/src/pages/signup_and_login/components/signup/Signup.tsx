@@ -6,7 +6,7 @@ import ErrorField from "../../../../components/ErrorField";
 import type { SignupInputs } from "./signup.d";
 import SignupSchema from "./signup.schema";
 import { signUp } from "../../../../api/services/auth";
-import Swal from "sweetalert2";
+import Toast from "../../../../components/Toast";
 
 const SignupForm = () => {
   const {
@@ -27,19 +27,19 @@ const SignupForm = () => {
       const res = await signUp(
         values.fullName,
         values.email,
-        values.mobileNumber,
+        values.phone,
         values.currency,
         values.country,
         values.password
       );
-      Swal.fire(undefined, res.message, "success");
+      Toast.fire(undefined, res.message, "success");
       setIsSubmitting(false);
       // open sign in panel
       // @ts-ignore
       $?.(".lnk-toggler")?.trigger?.("click");
     } catch (error: any) {
       setIsSubmitting(false);
-      Swal.fire(error.message, error.howToFix, "error");
+      Toast.fire(error.message, error.howToFix, "error");
     }
   });
   const [passwordMasked, setPasswordMasked] = useState(true);
@@ -82,10 +82,10 @@ const SignupForm = () => {
                 type="text"
                 className="form-control"
                 placeholder="Mobile Number"
-                {...register("mobileNumber")}
+                {...register("phone")}
               />
             </div>
-            <ErrorField error={errors.mobileNumber} />
+            <ErrorField error={errors.phone} />
             <div className="form-group wrap-input">
               <CountrySelect {...register("country")} />
               <ErrorField error={errors.country} />

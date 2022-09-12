@@ -6,9 +6,9 @@ import RateWidget from "../components/RateWidget";
 import TickerTapeWidget from "../components/TickerTapeWidget";
 import moneyBag from "../images/money_bag.svg";
 import useAppStore from "../../../store";
-import Swal from "sweetalert2";
 import { ErrorRes } from "../../../types";
 import axiosInstance from "../../../api/axios";
+import Toast from "../../../components/Toast";
 
 const Dashboard = () => {
   const { acct, user,updateAcct,updateProf} = useAppStore((state) => ({
@@ -27,7 +27,7 @@ const Dashboard = () => {
       updateAcct(res.data.account);
     })
     .catch((error:ErrorRes) => {
-      Swal.fire(error.message,error.howToFix,"error");
+      Toast.fire(error.message,error.howToFix,"error");
     }).finally(() => {
       setLoadingProfile(false);
     })

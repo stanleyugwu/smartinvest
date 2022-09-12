@@ -1,38 +1,43 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { number, object, string } from "yup";
 import ErrorField from "../../../components/ErrorField";
+import Toast from "../../../components/Toast";
 
 export interface SellFormInputs {
-    amount:number;
-    orderType:string;
-    symbol:string;
-    stopLoss?:number;
-    takeProfit?:number;
+  amount: number;
+  orderType: string;
+  symbol: string;
+  stopLoss?: number;
+  takeProfit?: number;
 }
 
 const SellOrderSchema = object().shape({
-    amount: number().required("Enter amount"),
-    orderType: string().oneOf(["Market Execution", "Pending Order"]),
-    symbol: string().max(6),
-    stopLoss: number(),
-    takeProfit: number()
-  })
-
+  amount: number().required("Enter amount"),
+  orderType: string().oneOf(["Market Execution", "Pending Order"]),
+  symbol: string().max(6),
+  stopLoss: number(),
+  takeProfit: number(),
+});
 
 const SellOrderForm = () => {
-    const {register,handleSubmit,formState:{errors}} = useForm<SellFormInputs>({
-        resolver:yupResolver(SellOrderSchema),
-        shouldFocusError:true,
-      })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SellFormInputs>({
+    resolver: yupResolver(SellOrderSchema),
+    shouldFocusError: true,
+  });
 
-      /**
-       * Handles form submission
-       */
-      const handleSell = handleSubmit((data) => {
-        console.log(data);
-      })
+  /**
+   * Handles form submission
+   */
+  const handleSell = handleSubmit((data) => {
+    Toast.fire("Sell Order Pending", "Contact support to complete trading", "info");
+    console.log(data);
+  });
 
   return (
     <div
@@ -87,7 +92,7 @@ const SellOrderForm = () => {
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Symbol</label>
                     <select {...register("symbol")} className="form-control">
-                      <option value="EURUSD ">
+                      <option value="EURUSD">
                         EURUSD , Euro vs United state Dollar
                       </option>
                       <option value="USDJPY">

@@ -5,7 +5,7 @@ const SignupSchema = object().shape({
   email: string()
     .email("Supply valid email address")
     .required("Supply email address"),
-  mobileNumber: string()
+  phone: string()
     .min(9, "Supply valid mobile number")
     .required("Supply mobile number"),
   occupation: string().optional(),

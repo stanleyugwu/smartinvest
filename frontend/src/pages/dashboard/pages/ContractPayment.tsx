@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import useAppStore from "../../../store";
 import logo from "../../../assets/images/logo.png";
 import constants from "../../../utils/constants";
+import Toast from "../../../components/Toast";
 
 /**
  * Navigation state passed from ContractPurchase page
@@ -15,7 +16,6 @@ type PassedState = {
 const ContractPayment = () => {
   const profile = useAppStore((state) => state.profile);
   const navState = useLocation().state as PassedState;
-  
 
   const companyEmail = constants.SUPPORT_EMAIL;
   const { BITCOIN, BNB, CARDANO, DOGE, ETHEREUM, RIPPLE, SOLANA, USDT } =
@@ -23,18 +23,22 @@ const ContractPayment = () => {
 
   const handlePaymentConfirmation = () => {
     //TODO: confirm payment
+    Toast.fire(
+      "Payment Queued",
+      "Payment queued for confirmation, contact support to proceed",
+      "info"
+    );
   };
 
   useEffect(() => {
-    let addr = document.querySelector(`.card-header.${navState.paymentMethod}`)
-    if(!addr){
-        addr = document.querySelector(`.card-header.BITCOIN`)
+    let addr = document.querySelector(`.card-header.${navState.paymentMethod}`);
+    if (!addr) {
+      addr = document.querySelector(`.card-header.BITCOIN`);
     }
     // @ts-ignore
-    addr?.click()
+    addr?.click();
     addr?.scrollIntoView();
-  }, [navState.paymentMethod])
-  
+  }, [navState.paymentMethod]);
 
   return (
     <section className="invoice-view-wrapper w-100">
@@ -120,7 +124,8 @@ const ContractPayment = () => {
               >
                 <span>
                   <div style={{ color: "#fff", fontSize: "18px" }}>
-                    Please make your payment to any of the crypto-currency address below.
+                    Please make your payment to any of the crypto-currency
+                    address below.
                   </div>
                 </span>
               </div>
@@ -170,7 +175,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request Bitcoin Address For Payment.
                           </b>
@@ -222,7 +227,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             <br /> to Request Etheruem Address For Payment.
                           </b>
@@ -271,7 +276,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request USDT Address For Payment.
                           </b>
@@ -320,7 +325,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request DOGECOIN Address For Payment.
                           </b>
@@ -369,7 +374,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request SOLANA Address For Payment.
                           </b>
@@ -418,7 +423,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request CARDANO Address For Payment.
                           </b>
@@ -467,7 +472,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request BNB Address For Payment.
                           </b>
@@ -516,7 +521,7 @@ const ContractPayment = () => {
                           <b>
                             Kindly Contact For Further Assitance
                             <a href={`mailto:${companyEmail}`}>
-                              {" "+companyEmail+" "}
+                              {" " + companyEmail + " "}
                             </a>
                             to Request XRP Wallet Address For Payment.
                           </b>
@@ -546,7 +551,12 @@ const ContractPayment = () => {
                         >
                           Confirm your payment by filling below form
                         </p>
-                        <form onSubmit={handlePaymentConfirmation}>
+                        <form
+                          onSubmit={(evt) => {
+                            evt.preventDefault();
+                            handlePaymentConfirmation();
+                          }}
+                        >
                           <input
                             type="text"
                             className="form-control"

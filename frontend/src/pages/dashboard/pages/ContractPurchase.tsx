@@ -61,7 +61,6 @@ const ContractPurchase = () => {
 
   const onPurchase = handleSubmit((data) => {
     const state = { amount: data.amount, paymentMethod: data.paymentMethod };
-    console.log(data);
     navigate("/contract-payment", { state });
   });
 

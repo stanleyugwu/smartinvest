@@ -4,7 +4,7 @@ export interface UserProfile {
   id: string;
   fullname: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
   country: string;
   currency: string;
 }

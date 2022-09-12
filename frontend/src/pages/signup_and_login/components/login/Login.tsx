@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ErrorField from "../../../../components/ErrorField";
 import LoginSchema from "./login.schema";
 import useAuth from "../../../../hooks/useAuth";
-import Swal from "sweetalert2";
+import Toast from "../../../../components/Toast";
 
 export interface LoginInputs {
   email: string;
@@ -32,9 +32,9 @@ const Login = () => {
     setIsSubmitting(true);
     try {
       const res = await user.signIn?.(values.email,values.password)
-      Swal.fire("Sign-In Successful",res?.message || "","success");
+      Toast.fire("Sign-In Successful",res?.message || "","success");
     } catch (error:any) {
-      Swal.fire(error.message,error.howToFix,"error");
+      Toast.fire(error.message,error.howToFix,"error");
       setIsSubmitting(false);
     }
   });

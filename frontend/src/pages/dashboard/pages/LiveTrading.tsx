@@ -20,47 +20,7 @@ export interface PlacedTrades {
   loss: string | number;
 }
 
-const fakeTrades: PlacedTrades[] = [
-  {
-    expiry: Date.now(),
-    loss: 1234,
-    orderId: "ASTR-111",
-    profit: 123,
-    status: "success",
-    stopLoss: 234,
-    symbol: "USD/CHF",
-    takeProfit: 1234,
-    time: Date.now(),
-    type: "sell",
-    volume: 1234,
-  },
-  {
-    expiry: Date.now(),
-    loss: 1234,
-    orderId: "ASTR-111",
-    profit: 123,
-    status: "success",
-    stopLoss: 234,
-    symbol: "USD/CHF",
-    takeProfit: 1234,
-    time: Date.now(),
-    type: "buy",
-    volume: 1234,
-  },
-  {
-    expiry: Date.now(),
-    loss: 1234,
-    orderId: "ASTR-111",
-    profit: 123,
-    status: "success",
-    stopLoss: 234,
-    symbol: "USD/CHF",
-    takeProfit: 1234,
-    time: Date.now(),
-    type: "buy",
-    volume: 1234,
-  },
-];
+const fakeTrades: PlacedTrades[] = [];
 
 const LiveTrading = () => {
   const username = useAppStore((state) => state.profile?.fullname);
@@ -69,7 +29,7 @@ const LiveTrading = () => {
       <div className="col-sm-12">
         <span style={{ fontSize: "35px", color: "black" }}>
           Welcome To Live Trading
-          <b style={{ color: "#4da3ff", textDecoration: "underline" }}>
+          <b style={{ color: "#4da3ff", textDecoration: "underline", marginLeft:"1rem" }}>
             {username}
           </b>
         </span>

@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { number, object, string } from "yup";
 import ErrorField from "../../../components/ErrorField";
+import Toast from "../../../components/Toast";
 import { SellFormInputs } from "./SellOrderForm";
 
 type BuyFormInputs = SellFormInputs;
@@ -30,7 +31,7 @@ const BuyOrderForm = () => {
    */
   const handleBuy = handleSubmit((data) => {
     console.log(data);
-
+    Toast.fire("Buy Order Pending","Contact support to complete trading","info");
   })
 
   return (
@@ -88,7 +89,7 @@ const BuyOrderForm = () => {
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Symbol</label>
                     <select  className="form-control" {...register("symbol")}>
-                      <option value="EURUSD ">
+                      <option value="EURUSD">
                         EURUSD , Euro vs United state Dollar
                       </option>
                       <option value="USDJPY">
