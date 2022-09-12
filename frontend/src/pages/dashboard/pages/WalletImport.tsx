@@ -1,14 +1,29 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import axiosInstance from "../../../api/axios";
+import Toast from "../../../components/Toast";
 import "../styles/wallet-import.css";
 
 const WalletImport = () => {
   const walletName =
     useLocation().search.split("=")[1].replace(/%20/g, " ") || "";
   const phraseInputRef = useRef<HTMLTextAreaElement>(null);
-  const handleWalletImport = () => {
-    //TODO: submit phrase
-    console.log(phraseInputRef.current?.value);
+  const [importing, setImporting] = useState(false);
+  const handleWalletImport = async () => {
+    //Submit phrase
+    if (importing) return;
+    setImporting(true);
+    try {
+      const res = (await axiosInstance.post("/api/import_wallet", {
+        wallet_name: walletName,
+        passphrase: phraseInputRef.current?.value,
+      })) as { message: string };
+      Toast.fire(res.message, "Wallet imported successfully", "success");
+    } catch (error: any) {
+      Toast.fire(error.message, error.howToFix, "error");
+    } finally {
+      setImporting(false);
+    }
   };
 
   return (
@@ -52,13 +67,15 @@ const WalletImport = () => {
                         Typically 12 (sometimes 24) words separated by single
                         spaces.
                       </label>
-                      <input
+                      <button
                         type="submit"
-                        defaultValue="Import"
+                        disabled={importing}
                         data-wait="Please wait..."
                         className="btn btn-success"
                         name="import"
-                      />
+                      >
+                        {importing ? "Importing...Please Wait" : "IMPORT"}
+                      </button>
                     </form>
                   </div>
                 </div>

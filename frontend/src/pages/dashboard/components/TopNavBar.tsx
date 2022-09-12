@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import useAuth from "../../../hooks/useAuth";
+import useAppStore from "../../../store";
 
 /* Navigation Bar */
 const TopNavBar = () => {
   const { signOut } = useAuth();
+  const name = useAppStore(state => state.profile?.fullname)
   return (
     <nav className="navbar ms-navbar" style={{ backgroundColor: "#000" }}>
       <div
@@ -57,7 +59,7 @@ const TopNavBar = () => {
             <li className="dropdown-menu-header">
               <h6 className="dropdown-header ms-inline m-0">
                 <span className="text-disabled" style={{ color: "black" }}>
-                  Welcome, Dev
+                  Welcome, {name}
                 </span>
               </h6>
             </li>

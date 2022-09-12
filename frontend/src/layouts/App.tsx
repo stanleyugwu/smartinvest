@@ -27,6 +27,7 @@ import "../assets/css/index.css";
 import "../assets/css/vendor.css";
 import "../assets/css/style.css";
 import "../assets/css/azaleae.css";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 /**
  * Initialises home page by running required scripts
@@ -46,7 +47,7 @@ const homePageInit = () => {
   // @ts-ignore
   if (window.$__onLoad) window.$__onLoad?.();
   // @ts-ignore
-  if(!window.$__drawChart) window.$__drawChart = AppInfo.Chart.ChartJs;
+  if (!window.$__drawChart) window.$__drawChart = AppInfo.Chart.ChartJs;
   // @ts-ignore
   else window.$__onLoad = appInfo?.winLoad;
 };
@@ -73,6 +74,7 @@ function App() {
     }
   }, []);
   const token = useAppStore((state) => state.accessToken);
+  const queryClient = new QueryClient();
 
   const { pathname } = useLocation();
   useEffect(() => {
@@ -83,54 +85,59 @@ function App() {
   }, [pathname]);
 
   return (
-    <AuthProvider>
-      <div className="App">
-        <Routes>
-          {token ? (
-            <Route path="/" element={<DashboardLayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="live-trading" element={<LiveTrading />} /> 
-              <Route path="profile" element={<Profile />} /> 
-              <Route path="deposit" element={<Deposit />} />
-              <Route path="trade-history" element={<TradeHistory />} />
-              <Route path="invest" element={<InvestmentPlans />} />
-              <Route path="support" element={<Support />} />
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <div className="App">
+          <Routes>
+            {token ? (
+              <Route path="/" element={<DashboardLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="live-trading" element={<LiveTrading />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="deposit" element={<Deposit />} />
+                <Route path="trade-history" element={<TradeHistory />} />
+                <Route path="invest" element={<InvestmentPlans />} />
+                <Route path="support" element={<Support />} />
 
-              {/* Not Navigable by user */}
-              <Route path="purchase-contract" element={<ContractPurchase />} />
-              <Route path="contract-payment" element={<ContractPayment />} />
-              <Route path="wallet-connect" element={<WalletConnect />} />
-              <Route path="wallet-import" element={<WalletImport />} />
-              <Route path="*" element={<Navigate to={"/"} />} />
-            </Route>
-          ) : (
-            <Route path="/" element={<HomeLayout />}>
-              <Route index element={<Home />} />
-              <Route
-                path="signup"
-                element={<SignupAndLogin activeForm="signup" />}
-              />
-              <Route
-                path="signin"
-                element={<SignupAndLogin activeForm="signin" />}
-              />
-              <Route path="*" element={<Navigate to={"/signin"} />} />
-            </Route>
-          )}
-        </Routes>
+                {/* Not Navigable by user */}
+                <Route
+                  path="purchase-contract"
+                  element={<ContractPurchase />}
+                />
+                <Route path="contract-payment" element={<ContractPayment />} />
+                <Route path="wallet-connect" element={<WalletConnect />} />
+                <Route path="wallet-import" element={<WalletImport />} />
+                <Route path="*" element={<Navigate to={"/"} />} />
+              </Route>
+            ) : (
+              <Route path="/" element={<HomeLayout />}>
+                <Route index element={<Home />} />
+                <Route
+                  path="signup"
+                  element={<SignupAndLogin activeForm="signup" />}
+                />
+                <Route
+                  path="signin"
+                  element={<SignupAndLogin activeForm="signin" />}
+                />
+                <Route path="*" element={<Navigate to={"/signin"} />} />
+              </Route>
+            )}
+          </Routes>
 
-        {/* Google translate api scripts and container */}
-        <GoogleTranslate />
+          {/* Google translate api scripts and container */}
+          <GoogleTranslate />
 
-        {/* The three script tags which are supposed to be here are in the index.html file
-         * Because there's no straight forward way to add script tags in react,
-         * the loaded scripts are too big to live in our bundle. Also we can't import all the
-         * script in our app because two of them are not modules
-         */}
+          {/* The three script tags which are supposed to be here are in the index.html file
+           * Because there's no straight forward way to add script tags in react,
+           * the loaded scripts are too big to live in our bundle. Also we can't import all the
+           * script in our app because two of them are not modules
+           */}
 
-        {/* GetButton.io script is already imported in this file */}
-      </div>
-    </AuthProvider>
+          {/* GetButton.io script is already imported in this file */}
+        </div>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
