@@ -1,5 +1,5 @@
 import React from "react";
-import { AdminSignOut } from "../api/services/auth";
+import { AdminSignOut } from "../api/services/auth.admin";
 
 export type AdminAuthContextType = {
   token?: string;

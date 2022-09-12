@@ -1,10 +1,13 @@
 import axios from "axios";
 import constants from "../../utils/constants";
-import requestInterceptor from "./interceptors/request.interceptor";
 import {
-  responseInterceptorerror,
-  responseInterceptorSuccess,
-} from "./interceptors/response.interceptor";
+  beforeRequest,
+  requestError,
+} from "./interceptors/request.interceptor.admin";
+import {
+  errorResponse,
+  successResponse,
+} from "./interceptors/response.interceptor.admin";
 
 const axiosInstance = axios.create({
   baseURL: constants.BASE_URL,
@@ -12,10 +15,7 @@ const axiosInstance = axios.create({
   timeoutErrorMessage: "Request took too long to satisfy, try again",
 });
 
-axiosInstance.interceptors.request.use(requestInterceptor);
-axiosInstance.interceptors.response.use(
-  responseInterceptorSuccess,
-  responseInterceptorerror
-);
+axiosInstance.interceptors.request.use(beforeRequest, requestError);
+axiosInstance.interceptors.response.use(successResponse, errorResponse);
 
 export default axiosInstance;

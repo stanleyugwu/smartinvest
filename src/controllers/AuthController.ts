@@ -89,7 +89,7 @@ class AuthController {
         res,
         "Invalid Credentials",
         StatusCode.BAD_REQUEST,
-        "Provide login credentials"
+        "Provide valid login credentials"
       );
     }
 
@@ -104,7 +104,7 @@ class AuthController {
           res,
           "Incorrect Credentials",
           StatusCode.NOT_FOUND,
-          "You are not an admin"
+          "Provide correct login credentials"
         );
       }
 

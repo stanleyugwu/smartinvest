@@ -1,8 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {useForm} from 'react-hook-form';
-import { object, string, boolean } from "yup";
+import { object, string } from "yup";
 import useAdminAppStore from "../../../store/admin";
+import Toast from '../../../components/Toast';
+import ErrorField from "../../../components/ErrorField";
+import { signIn } from "../../api/services/auth.admin";
+import storeAdminToken from '../../api/services/storeAdminAccessToken'
+import getAdminToken from '../../api/services/getAdminAccessToken'
 
 export interface AdminLoginInputs {
   email:string;
@@ -20,12 +25,32 @@ export default function Login() {
 
   const [loggingIn, setLoggingIn] = useState(false);
   const remeberMeRef = useRef<HTMLInputElement>(null);
-  const handleLogin = handleSubmit((data) => {
+  const handleLogin = handleSubmit(async (data) => {
     if(loggingIn) return;
-    const rememberMe = remeberMeRef.current?.checked;
     setLoggingIn(true);
-    setTimeout(() => setToken("Bearer ksdjfjsdfhjdf"), 1000);
+    const rememberMe = remeberMeRef.current?.checked;
+    try {
+      const res = await signIn(data.email,data.password);
+      if(rememberMe){
+        // store in localstorage
+        storeAdminToken(res.data.token);
+      }
+      Toast.fire(res.message, undefined, "success");
+      setToken(res.data.token);
+    } catch (error:any) {
+      Toast.fire(error.message,error.howToFix,"error")
+    } finally {
+      setLoggingIn(false);
+    }
   });
+
+  // Handles aut sign in
+  useEffect(() => {
+    const token = getAdminToken();
+    if(token){
+      setToken(token);
+    }
+  },[])
 
   return (
     <>
@@ -51,6 +76,7 @@ export default function Login() {
                       placeholder="Email"
                       {...register("email")}
                     />
+                    <ErrorField error={errors.email} />
                   </div>
 
                   <div className="relative w-full mb-5">
@@ -66,6 +92,7 @@ export default function Login() {
                       placeholder="Password"
                       {...register("password")}
                     />
+                    <ErrorField error={errors.password} />
                   </div>
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
