@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useQueries, useQuery } from "react-query";
+import { useQueries, useQuery, useQueryClient } from "react-query";
 import CardStats from "../Cards/CardStats";
 import axiosInstance from "../../api/axios";
 import useAdminAppStore from "../../../store/admin";
@@ -25,18 +25,18 @@ const statFnConstructor = (statType: "users" | "approved" | "unapproved") => {
 
 export default function HeaderStats() {
   const setToken = useAdminAppStore((state) => state.setAccessToken);
-  const {
-    "0": users,
-    "1": approved,
-    "2": unapproved,
-  } = useQueries([
-    { queryKey: ["users", 1], queryFn: statFnConstructor("users") },
-    { queryKey: ["approvedUsers", 2], queryFn: statFnConstructor("approved") },
-    {
-      queryKey: ["unApprovedUsers", 3],
-      queryFn: statFnConstructor("unapproved"),
-    },
-  ]);
+  const unapproved = useQuery("unApprovedUsersCount",statFnConstructor("unapproved"),{
+    refetchInterval: 3000,
+    retry: true,
+  });
+  const users = useQuery("usersCount", statFnConstructor("users"),{
+    refetchInterval: 3000,
+    retry: true,
+  })
+  const approved = useQuery("approvedUsersCount", statFnConstructor("approved"),{
+    refetchInterval: 3000,
+    retry: true,
+  } )
 
   // check if signed in user is an admin by making a request with his token
   // then loggin out if request fails cus of authorization
@@ -55,7 +55,7 @@ export default function HeaderStats() {
   useEffect(() => {
     checkAdmin();
   }, []);
-
+  
   return (
     <>
       {/* Header */}
@@ -69,13 +69,14 @@ export default function HeaderStats() {
                   statSubtitle="ALL USERS"
                   statTitle={
                     users.isLoading ? (
-                      <i className="fa fa-spinner fa-spin"></i>
+                      "spinner"
                     ) : (
                       users.data?.data || 0
                     )
                   }
                   statIconName="fas fa-users"
                   statIconColor="bg-red-500"
+                  key={users?.data?.data}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -90,6 +91,7 @@ export default function HeaderStats() {
                   }
                   statIconName="fas fa-check-circle"
                   statIconColor="bg-orange-500"
+                  key={approved?.data?.data}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -104,6 +106,7 @@ export default function HeaderStats() {
                   }
                   statIconName="fas fa-user"
                   statIconColor="bg-pink-500"
+                  key={unapproved?.data?.data}
                 />
               </div>
             </div>

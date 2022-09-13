@@ -136,17 +136,17 @@ export default function Sidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/unapproved-users"
+                  to="/find-user"
                 >
                   <i
                     className={
                       "fas fa-user mr-2 text-sm " +
-                      (pathname === "/unapproved-users"
+                      (pathname === "/find-user"
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  UnApproved Users
+                  Find A User
                 </Link>
               </li>
             </ul>
