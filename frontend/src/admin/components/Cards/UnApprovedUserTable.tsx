@@ -29,7 +29,7 @@ const unApprovedUsersFn = async (): Promise<UnApprovedUsersServerRes> => {
 export default function UnApprovedUserTable({
   color = "light",
 }: UnApprovedUserTableProps) {
-  const { data, error, isLoading, refetch } = useQuery<
+  const { data, error, isLoading, refetch,failureCount } = useQuery<
     UnApprovedUsersServerRes,
     ErrorRes,
     UnApprovedUsersServerRes
@@ -117,7 +117,7 @@ export default function UnApprovedUserTable({
                   <i className="fa fa-spinner fa-spin text-2xl text-blueGray-700"></i>
                 </div>
               ) : error ? (
-                (Toast.fire(error.message, error.howToFix, "error"),
+                (failureCount === 0 && Toast.fire(error.message, error.howToFix, "error"),
                 (
                   <div className="text-center w-full absolute bg-white px-6 p-4">
                     <p className="text-blueGray-700 text-lg font-bold">
