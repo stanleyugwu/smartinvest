@@ -25,7 +25,7 @@ class AdminController {
         res,
         "Missing User ID",
         StatusCode.BAD_REQUEST,
-        "You didn't provide the ID of user to approve"
+        "You didn't provide the ID of user to update"
       );
     }
 

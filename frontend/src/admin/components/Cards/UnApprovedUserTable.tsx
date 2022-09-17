@@ -29,13 +29,13 @@ const unApprovedUsersFn = async (): Promise<UnApprovedUsersServerRes> => {
 export default function UnApprovedUserTable({
   color = "light",
 }: UnApprovedUserTableProps) {
-  const { data, error, isLoading, refetch,failureCount } = useQuery<
+  const { data, error, isLoading, refetch } = useQuery<
     UnApprovedUsersServerRes,
     ErrorRes,
     UnApprovedUsersServerRes
   >("unApprovedUsers", unApprovedUsersFn, {
-    refetchInterval: 3000,
     retry: true,
+    refetchInterval:3000
   });
 
   return (
@@ -117,7 +117,7 @@ export default function UnApprovedUserTable({
                   <i className="fa fa-spinner fa-spin text-2xl text-blueGray-700"></i>
                 </div>
               ) : error ? (
-                (failureCount === 0 && Toast.fire(error.message, error.howToFix, "error"),
+                (Toast.fire(error.message, error.howToFix, "error"),
                 (
                   <div className="text-center w-full absolute bg-white px-6 p-4">
                     <p className="text-blueGray-700 text-lg font-bold">
@@ -133,7 +133,7 @@ export default function UnApprovedUserTable({
                 ))
               ) : (
                 data?.data?.length === 0 ? (
-                  <tr className="font-semibold ml-7">NO RECENT UNAPPROVED USER</tr>
+                  <tr className="font-semibold ml-7 text-sm text-blueGray-700">NO RECENTLY UNAPPROVED USER</tr>
                 ) : data?.data?.map((user) => (
                   <UnApprovedUser
                     country={user.country}
