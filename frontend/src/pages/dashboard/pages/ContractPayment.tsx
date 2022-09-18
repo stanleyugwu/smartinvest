@@ -146,7 +146,7 @@ const ContractPayment = () => {
                         <span className="collapsed collapse-title">
                           <img
                             alt="coin btc"
-                            src="/assets/dashboard/img/coins/btc.svg"
+                            src="/static/dashboard/img/coins/btc.svg"
                             style={{
                               width: "30px",
                               padding: "3px",
@@ -155,7 +155,7 @@ const ContractPayment = () => {
                           />
                           BITCOIN
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />
@@ -197,7 +197,7 @@ const ContractPayment = () => {
                       >
                         <span className="collapsed collapse-title">
                           <img
-                            src="/assets/dashboard/img/coins/eth.png"
+                            src="/static/dashboard/img/coins/eth.png"
                             alt="coin ETH"
                             style={{
                               width: "40px",
@@ -207,7 +207,7 @@ const ContractPayment = () => {
                           />
                           ETHERUEM
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />
@@ -247,7 +247,7 @@ const ContractPayment = () => {
                         <span className="collapsed collapse-title">
                           <img
                             alt="coin usdt"
-                            src="/assets/dashboard/img/coins/tether.png"
+                            src="/static/dashboard/img/coins/tether.png"
                             style={{
                               width: "40px",
                               padding: "3px",
@@ -256,7 +256,7 @@ const ContractPayment = () => {
                           />
                           USDT
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             style={{ width: "80px" }}
                             alt="blink"
                           />
@@ -295,7 +295,7 @@ const ContractPayment = () => {
                       >
                         <span className="collapsed collapse-title">
                           <img
-                            src="/assets/dashboard/img/coins/doge.png"
+                            src="/static/dashboard/img/coins/doge.png"
                             alt="coin DOGE"
                             style={{
                               width: "40px",
@@ -305,7 +305,7 @@ const ContractPayment = () => {
                           />
                           DOGE
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />
@@ -344,7 +344,7 @@ const ContractPayment = () => {
                       >
                         <span className="collapsed collapse-title">
                           <img
-                            src="/assets/dashboard/img/coins/sol.png"
+                            src="/static/dashboard/img/coins/sol.png"
                             alt="coin SOLANA"
                             style={{
                               width: "40px",
@@ -354,7 +354,7 @@ const ContractPayment = () => {
                           />
                           SOLANA
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />
@@ -393,7 +393,7 @@ const ContractPayment = () => {
                       >
                         <span className="collapsed collapse-title">
                           <img
-                            src="/assets/dashboard/img/coins/cad.png"
+                            src="/static/dashboard/img/coins/cad.png"
                             alt="coin CADANO"
                             style={{
                               width: "40px",
@@ -403,7 +403,7 @@ const ContractPayment = () => {
                           />
                           CARDANO
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />
@@ -442,7 +442,7 @@ const ContractPayment = () => {
                       >
                         <span className="collapsed collapse-title">
                           <img
-                            src="/assets/dashboard/img/coins/bnb.png"
+                            src="/static/dashboard/img/coins/bnb.png"
                             alt="coin BNB"
                             style={{
                               width: "40px",
@@ -452,7 +452,7 @@ const ContractPayment = () => {
                           />
                           BNB
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />
@@ -491,7 +491,7 @@ const ContractPayment = () => {
                       >
                         <span className="collapsed  collapse-title">
                           <img
-                            src="/assets/dashboard/img/coins/xrp.jpg"
+                            src="/static/dashboard/img/coins/xrp.jpg"
                             alt="coin RIPPLE"
                             style={{
                               width: "50px",
@@ -501,7 +501,7 @@ const ContractPayment = () => {
                           />
                           XRP
                           <img
-                            src="/assets/dashboard/img/coins/blink.gif"
+                            src="/static/dashboard/img/coins/blink.gif"
                             alt="blink"
                             style={{ width: "80px" }}
                           />

@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import "../assets/js/GetButton";
 import GoogleTranslate from "../components/GoogleTranslate";
 import WinnerCard from "../components/WinnerCard";
-import "../assets/js/GetButton";
 import Home from "../pages/home";
 import { Routes, Route, Outlet, useLocation, Navigate } from "react-router-dom";
 import SignupAndLogin from "../pages/signup_and_login";

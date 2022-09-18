@@ -45,6 +45,7 @@
       "react-app/jest"
     ],
     "ignorePatterns": [
+      "**/static/js/*",
       "**/assets/js/*",
       "**/signup/script.ts"
     ]
