@@ -1,7 +1,7 @@
 const constants = {
   BASE_URL: "http://localhost:3000",
-  COMPANY_NAME:"Trade Insider",
-  SUPPORT_EMAIL: "support@tradeinsider.com",
+  COMPANY_NAME:"Smart Pro Invest",
+  SUPPORT_EMAIL: "support@smartproinvest.com",
   WALLET_ADDRESSES : {
     BITCOIN:"0x1234567890abcdefghijklmnopqrstuvwxxyz",
     ETHEREUM:"0x1234567890abcdefghijklmnopqrstuvwxxyz",
