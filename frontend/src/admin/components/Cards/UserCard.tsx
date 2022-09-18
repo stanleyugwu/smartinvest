@@ -6,7 +6,12 @@ import { ErrorRes, SuccessRes } from "../../../types";
 import axiosInstance from "../../api/axios";
 import timeSince from "../../utils/timeAgo";
 
-export interface ApprovedUserProps {
+export interface UserProps {
+  /**
+   * afterAction function to be called after a delete or approve action is performed successfully
+   * May be used to refetch
+   */
+  afterAction?:Function;
   id: number;
   country: string;
   currency: string;
@@ -38,7 +43,7 @@ const DataField = ({ name, value }: { name: string; value: string }) => (
   </div>
 );
 
-const ApprovedUser = ({
+const User = ({
   accountManager,
   approved,
   balance,
@@ -55,11 +60,12 @@ const ApprovedUser = ({
   tradingPercentage,
   updatedAt,
   withdrawal,
-}: ApprovedUserProps) => {
+  afterAction
+}: UserProps) => {
   const [expanded, setExpanded] = useState(false);
   const handleExpand = () => setExpanded(!expanded);
   const navigate = useNavigate();
-  const [disapproving, setDisapproving] = useState(false);
+  const [changingStatus, setChangingStatus] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
   /**
@@ -88,20 +94,23 @@ const ApprovedUser = ({
   };
 
   /**
-   * Handles disapproving the user
+   * Handles disapproving or approving the user
    */
-  const handleDisApprove = async () => {
-    if (disapproving) return;
-    setDisapproving(true);
+  const handleChangeStatus = async () => {
+    if (changingStatus) return;
+    setChangingStatus(true);
     try {
-      const data = (await axiosInstance.get(
-        `/api/admin/disapprove_user?userId=${id}`
-      )) as SuccessRes;
-      Toast.fire(data.message, "User disapproved successfully", "success");
+      let statusUrl = approved
+        ? `/api/admin/disapprove_user?userId=${id}`
+        : `/api/admin/approve_user?userId=${id}`;
+
+      const data = (await axiosInstance.get(statusUrl)) as SuccessRes;
+      Toast.fire(data.message, "User status changed successfully", "success");
+      afterAction?.();
     } catch (error: any) {
       Toast.fire(error.message, error.howToFix, "error");
     } finally {
-      setDisapproving(false);
+      setChangingStatus(false);
     }
   };
 
@@ -112,10 +121,25 @@ const ApprovedUser = ({
     if (deleting) return;
     setDeleting(true);
     try {
-      const data = (await axiosInstance.delete(
-        `/api/admin/delete_user?userId=${id}`
-      )) as SuccessRes;
-      Toast.fire(data.message, "User deleted successfully", "success");
+      const action = await Toast.fire({
+        position:"center",
+        titleText:"Delete User?",
+        text: "Are you sure you want to delete this user?",
+        icon:"warning",
+        confirmButtonText:"Delete",
+        cancelButtonText:"Cancel",
+        showCancelButton:true,
+        showConfirmButton:true,
+        timer:undefined,
+        confirmButtonColor:"red",
+      });
+      if(action.isConfirmed){
+        const data = (await axiosInstance.delete(
+          `/api/admin/delete_user?userId=${id}`
+        )) as SuccessRes;
+        Toast.fire(data.message, "User deleted successfully", "success");
+        afterAction?.();
+      }
     } catch (error: any) {
       Toast.fire(error.message, error.howToFix, "error");
     } finally {
@@ -139,15 +163,20 @@ const ApprovedUser = ({
             Edit
           </button>
           <button
-            onClick={handleDisApprove}
+            onClick={handleChangeStatus}
             className="focus:ring focus:outline-none rounded-md p-1 lg:p-2 border text-sm uppercase bg-lightBlue-600 text-white font-semibold"
           >
-            {disapproving ? (
+            {changingStatus ? (
               <i className="fa fa-spinner fa-spin"></i>
-            ) : (
+            ) : approved ? (
               <>
                 <i className="fa fa-ban pr-1"></i>
                 DisApprove
+              </>
+            ) : (
+              <>
+                <i className="fa fa-check pr-1"></i>
+                Approve
               </>
             )}
           </button>
@@ -210,4 +239,4 @@ const ApprovedUser = ({
   );
 };
 
-export default ApprovedUser;
+export default User;

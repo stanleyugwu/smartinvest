@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {number, object, string } from "yup";
 import ErrorField from "../../../components/ErrorField";
 import Toast from "../../../components/Toast";
@@ -33,6 +33,7 @@ const EditUser = () => {
     resolver: yupResolver(AccountUpdateSchema),
   });
   const [updatingAccount, setUpdatingAccount] = useState(false);
+  const navigate = useNavigate()
 
   const onSubmit = handleSubmit(async (data) => {
     if (updatingAccount) return;
@@ -63,7 +64,7 @@ const EditUser = () => {
     <>
       <div className="p-1 md:p-4 relative flex flex-col min-w-0 break-words bg-gray-100 w-full mb-6 shadow-xl rounded-lg mt-4">
         <h1 className="mb-6 mt-4 text-blueGray-600 text-lg uppercase font-bold">
-          Edit User Account
+          <i className="fa fa-arrow-left cursor-pointer px-2" onClick={()=> navigate(-1)}></i> Edit User Account
         </h1>
         <form onSubmit={onSubmit}>
           <div className="relative w-full mb-3">

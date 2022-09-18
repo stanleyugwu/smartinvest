@@ -4,10 +4,10 @@ import Toast from "../../../components/Toast";
 import { ErrorRes, SuccessRes } from "../../../types";
 import axiosInstance from "../../api/axios";
 import ApprovedUser, {
-  ApprovedUserProps,
-} from "../../components/Cards/ApprovedUser";
+  UserProps,
+} from "../../components/Cards/UserCard";
 
-type ApprovedUsersRes = SuccessRes<ApprovedUserProps[]>;
+type ApprovedUsersRes = SuccessRes<UserProps[]>;
 export default function ApprovedUsers() {
   const { data, isLoading, error, failureCount, refetch } = useQuery<
     ApprovedUsersRes,
