@@ -105,7 +105,7 @@ export const userSchema: Sequelize.ModelAttributes<
         msg: "Provide a valid phone number",
       },
       is:{
-        args:/^\d{11,14}$/i,
+        args:/^\d{11,14}$/im,
         msg:"Provide a valid phone number"
       }
     },
