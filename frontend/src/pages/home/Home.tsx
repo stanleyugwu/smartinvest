@@ -49,7 +49,7 @@ const Home = () => {
         </div>
       </div>
       {/* Welcome name flash animation */}
-      <PreloaderAnimation />
+      {/* <PreloaderAnimation /> */}
     </>
   );
 };
