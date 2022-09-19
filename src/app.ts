@@ -25,7 +25,7 @@ const App = function () {
     }));
     application.use(cors());
     //set static folder
-    application.use("/", express.static(path.resolve("frontend/build")));
+    application.use(express.static(path.resolve("frontend/build")));
 
     // initialize the routes
     routes(application);

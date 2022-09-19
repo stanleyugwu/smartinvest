@@ -1,5 +1,5 @@
 const constants = {
-  BASE_URL: "http://localhost:3000",
+  BASE_URL: "/",
   COMPANY_NAME:"Smart Pro Invest",
   SUPPORT_EMAIL: "support@smartproinvest.com",
   WALLET_ADDRESSES : {
