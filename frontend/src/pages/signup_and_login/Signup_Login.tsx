@@ -39,7 +39,7 @@ const SignupAndLogin = ({
                     <h2 style={{ fontSize: "24px", padding: "10px" }}>
                       <img
                         src={logoImg}
-                        style={{ width: "200px" }}
+                        style={{ width: "100px" }}
                         alt="logo"
                       />
                     </h2>
