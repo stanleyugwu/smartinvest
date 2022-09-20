@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/js/GetButton";
@@ -8,19 +8,8 @@ import Home from "../pages/home";
 import { Routes, Route, Outlet, useLocation, Navigate } from "react-router-dom";
 import SignupAndLogin from "../pages/signup_and_login";
 import AuthProvider from "../components/auth_provider/AuthProvider";
-import DashboardLayout from "../pages/dashboard";
-import Dashboard from "../pages/dashboard/pages/Dashboard";
-import LiveTrading from "../pages/dashboard/pages/LiveTrading";
 import useAppStore from "../store";
-import Profile from "../pages/dashboard/pages/Profile";
-import Deposit from "../pages/dashboard/pages/Deposit";
-import TradeHistory from "../pages/dashboard/pages/TradeHistory";
-import InvestmentPlans from "../pages/dashboard/pages/InvestmentPlans";
-import Support from "../pages/dashboard/pages/Support";
-import ContractPurchase from "../pages/dashboard/pages/ContractPurchase";
-import ContractPayment from "../pages/dashboard/pages/ContractPayment";
-import WalletConnect from "../pages/dashboard/pages/WalletConnect";
-import WalletImport from "../pages/dashboard/pages/WalletImport";
+
 
 import "../assets/css/index.css";
 import "../assets/css/vendor.css";
@@ -50,6 +39,14 @@ const homePageInit = () => {
   // @ts-ignore
   else window.$__onLoad = appInfo?.winLoad;
 };
+
+// We lazy load the whole user dashboard assets and pages to improve speed
+const DashBoardRoutes = lazy(() => import('./DashboardRoutes'))
+const Loader = (
+  <div className="position-absolute w-100 h-100 text-white d-flex">
+    <i className="fa fa-spinner fa-spin text-white fa-3x m-auto"></i>
+  </div>
+)
 
 /**
  * The home page is a spa, so elements are arranged accordingly
@@ -87,28 +84,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <div className="App">
-          <Routes>
             {token ? (
-              <Route path="/" element={<DashboardLayout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="live-trading" element={<LiveTrading />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="deposit" element={<Deposit />} />
-                <Route path="trade-history" element={<TradeHistory />} />
-                <Route path="invest" element={<InvestmentPlans />} />
-                <Route path="support" element={<Support />} />
-
-                {/* Not Navigable by user */}
-                <Route
-                  path="purchase-contract"
-                  element={<ContractPurchase />}
-                />
-                <Route path="contract-payment" element={<ContractPayment />} />
-                <Route path="wallet-connect" element={<WalletConnect />} />
-                <Route path="wallet-import" element={<WalletImport />} />
-                <Route path="*" element={<Navigate to={"/"} />} />
-              </Route>
+              <>
+              <Suspense fallback={Loader}>
+                <DashBoardRoutes/>
+              </Suspense>
+              </>
             ) : (
+              <Routes>
               <Route path="/" element={<HomeLayout />}>
                 <Route index element={<Home />} />
                 <Route
@@ -121,8 +104,8 @@ function App() {
                 />
                 <Route path="*" element={<Navigate to={"/signin"} />} />
               </Route>
+              </Routes>
             )}
-          </Routes>
 
           {/* The three script tags which are supposed to be here are in the index.html file
            * Because there's no straight forward way to add script tags in react,
