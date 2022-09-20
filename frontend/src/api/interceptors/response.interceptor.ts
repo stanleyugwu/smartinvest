@@ -31,8 +31,8 @@ export const errorResponse = (error: AxiosError<ErrorRes>) => {
     });
   }
 
-  // Invalid token handler
-  if(error.response?.data.message?.toLowerCase?.().includes("invalid token")){
+  // interceptor to log out upon FORBIDDEN response
+  if(error.response?.status === 403){
     localStorage.removeItem("$__a_t");
     useAppStore.getState().setAccessToken(undefined);
     window.location.reload();
