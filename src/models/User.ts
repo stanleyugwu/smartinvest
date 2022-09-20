@@ -102,7 +102,7 @@ export const userSchema: Sequelize.ModelAttributes<
     type: DataTypes.STRING,
     validate: {
       is:{
-        args:/^\d{11,14}$/im,
+        args:/^\+?\d{11,14}$/im,
         msg:"Provide a valid phone number"
       }
     },

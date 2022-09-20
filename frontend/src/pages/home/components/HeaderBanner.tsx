@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import headerImg from '../images/gfx-e.png'
 
 const HeaderBanner = () => {
+  useEffect(() => {
+    // HIDE preloader as soon as rendered
+      var a = document.querySelector(".preloader"),
+        e = document.querySelector(".spinner");
+        document.body.classList.add("page-loaded");
+        // @ts-ignore
+        a?.style?.display = "none";
+        // @ts-ignore
+        e?.style?.display = "none";
+  },[])
   return (
     <div className="banner banner-fs tc-light">
       <div className="nk-block nk-block-sm nk-block-header my-auto">

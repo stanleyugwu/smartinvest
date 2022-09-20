@@ -32,7 +32,7 @@ class UserController {
         return sendErrorResponse(
           res,
           "Account not found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "Account not found, try re-logging in"
         );
 
@@ -84,7 +84,7 @@ class UserController {
         return sendErrorResponse(
           res,
           "Account not found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "Account not found, try re-logging in"
         );
       }

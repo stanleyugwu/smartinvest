@@ -25,7 +25,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to update"
       );
     }
@@ -63,7 +63,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
@@ -82,7 +82,7 @@ class AdminController {
         "User Account Updated Successfully"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+      return sendErrorResponse(res, error.message);
     }
   }
 
@@ -133,7 +133,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to approve"
       );
     }
@@ -144,7 +144,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
@@ -162,7 +162,7 @@ class AdminController {
         "User Disapproved Successfully"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+      return sendErrorResponse(res, error.message);
     }
   }
   async approveUser(
@@ -174,7 +174,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to approve"
       );
     }
@@ -185,7 +185,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
@@ -215,7 +215,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to delete"
       );
     }
@@ -226,7 +226,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 

@@ -59,7 +59,7 @@ class AuthController {
         return sendErrorResponse(
           res,
           "Account Not Approved",
-          StatusCode.FORBIDDEN,
+          StatusCode.UNAUTHORIZED,
           "Your account has not been approved yet. Wait for approval and contact support if the approval takes longer"
         );
       }
@@ -78,7 +78,7 @@ class AuthController {
         "Sign-In Successful"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.FORBIDDEN);
+      return sendErrorResponse(res, error.message, StatusCode.INTERNAL_SERVER_ERROR);
     }
   }
   async adminSignin(req: Request, res: Response) {
@@ -133,7 +133,7 @@ class AuthController {
         "Sign-In Successful"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.FORBIDDEN);
+      return sendErrorResponse(res, error.message, StatusCode.INTERNAL_SERVER_ERROR);
     }
   }
   async userSignup(req: Request<any, any, SignupBody>, res: Response) {
