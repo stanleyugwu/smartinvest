@@ -10,6 +10,7 @@ const userRoutes = (app: Express) => {
   app.get("/api/profile", UserController.getProfile);
   app.post("/api/update_profile", UserController.updateProfile);
   app.post("/api/import_wallet", UserController.importWallet);
+  app.post("/api/confirm_payment", UserController.confirmPayment);
 };
 
 export default userRoutes;

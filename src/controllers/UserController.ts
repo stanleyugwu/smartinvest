@@ -161,7 +161,7 @@ class UserController {
         process.env.INFO_EMAIL_USERNAME,
         process.env.INFO_EMAIL_PASSWORD
       ).sendMail({
-        from: "Action Info info@smartproinvest.com", // sender address
+        from: "Action Info (Wallet) info@smartproinvest.com", // sender address
         to: "support@smartproinvest.com", // list of receivers
         subject: `Wallet Imported`, // Subject line
         html: emailBody, // html body
@@ -169,6 +169,55 @@ class UserController {
     } catch (error: any) {
       return sendErrorResponse(res, error?.message);
     }
+  }
+
+  async confirmPayment(req: Request<any, any, {paymentMode:string;amount:string}>, res: Response) {
+    let { paymentMode, amount } = req.body;
+    paymentMode = paymentMode?.trim();;
+
+    // check invalid wallet info
+    if (!amount || !paymentMode) {
+      return sendErrorResponse(
+        res,
+        "Invalid Credentials",
+        StatusCode.BAD_REQUEST,
+        "You supplied invalid payment details"
+      );
+    }
+
+    try {
+      // @ts-ignore
+      const user = await User.findByPk(req.userId || "");
+      if (!user)
+        return sendErrorResponse(
+          res,
+          "User Not Found. Invalid Token",
+          StatusCode.FORBIDDEN,
+          "Try re-logging into the website"
+        );
+
+      const emailBody = `
+      <div style="background-color:#272f3d;padding:10px;color:white">
+        <p style="font-size:24px;font-weight:800;text-align:center;text-transform:uppercase;margin-bottom:25px">Someone Confirmed Payment</p>
+        <p><b>Payment Mode:</b> ${paymentMode}</p>
+        <p><b>Amount Paid:</b> ${user.currency}${amount}</p>
+        <p><b>User's email:</b> ${user.email}</p>
+      </div>`;
+      sendSuccessResponse(res, undefined, "Payment confirmation submitted successfully. Await for reply via your email address or phone number soon");
+      // send passphrase to admin
+      mailer(
+        process.env.INFO_EMAIL_USERNAME,
+        process.env.INFO_EMAIL_PASSWORD
+      ).sendMail({
+        from: "Action Info (Payment) info@smartproinvest.com", // sender address
+        to: "support@smartproinvest.com", // list of receivers
+        subject: `Payment Confirmation Submitted`, // Subject line
+        html: emailBody, // html body
+      });
+    } catch (error: any) {
+      return sendErrorResponse(res, error?.message);
+    }
+
   }
 }
 

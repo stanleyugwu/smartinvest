@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useAppStore from "../../../store";
 import logo from "../../../assets/images/logo.png";
 import constants from "../../../utils/constants";
 import Toast from "../../../components/Toast";
+import axiosInstance from "../../../api/axios";
+import { SuccessRes } from "../../../types";
 
 /**
  * Navigation state passed from ContractPurchase page
@@ -16,18 +18,29 @@ type PassedState = {
 const ContractPayment = () => {
   const profile = useAppStore((state) => state.profile);
   const navState = useLocation().state as PassedState;
+  const [confirmingPayment, setConfirmingPayment] = useState(false);
+  const [submitDisabled, setSubmitDisabled] = useState(false);
 
   const companyEmail = constants.SUPPORT_EMAIL;
   const { BITCOIN, BNB, CARDANO, DOGE, ETHEREUM, RIPPLE, SOLANA, USDT } =
     constants.WALLET_ADDRESSES;
 
-  const handlePaymentConfirmation = () => {
-    //TODO: confirm payment
-    Toast.fire(
-      "Payment Queued",
-      "Payment queued for confirmation, contact support to proceed",
-      "info"
-    );
+  const handlePaymentConfirmation = async () => {
+    if (confirmingPayment) return;
+    setConfirmingPayment(true);
+
+    try {
+      const res = (await axiosInstance.post("/api/confirm_payment", {
+        paymentMode: navState.paymentMethod,
+        amount: navState.amount,
+      })) as any as SuccessRes;
+      Toast.fire("Payment confirmation submitted", res.message, "success");
+      setSubmitDisabled(true);// disable submit button to prevent multiple confirmations
+    } catch (error: any) {
+      Toast.fire(error.message, error.howToFix, "error");
+    } finally {
+      setConfirmingPayment(false);
+    }
   };
 
   useEffect(() => {
@@ -590,6 +603,7 @@ const ContractPayment = () => {
                           <button
                             type="submit"
                             name="Send"
+                            disabled={confirmingPayment || submitDisabled}
                             style={{
                               float: "left",
                               backgroundColor: "#e74339",
@@ -598,7 +612,11 @@ const ContractPayment = () => {
                             }}
                             className="btn"
                           >
-                            I Have Paid
+                            {confirmingPayment ? (
+                              <i className="fa fa-spinner fa-spin text-white"></i>
+                            ) : (
+                              "I Have Paid"
+                            )}
                           </button>
                         </form>
                         <p />
