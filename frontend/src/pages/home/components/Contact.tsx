@@ -142,7 +142,7 @@ function Contact() {
                   >
                     <em className="contact-icon fas fa-phone" />
                     <div className="contact-text">
-                      <span>+1(919) 391-8132</span>
+                      <span>{constants.CONTACT_NUMBER}</span>
                     </div>
                   </li>
                   <li

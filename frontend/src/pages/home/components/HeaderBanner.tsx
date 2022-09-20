@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import headerImg from '../images/gfx-e.png'
 
 const HeaderBanner = () => {
@@ -43,9 +44,9 @@ const HeaderBanner = () => {
                   data-animate="fadeInUp"
                   data-delay={1}
                 >
-                  <a href="/signup" className="btn btn-primary btn-round">
+                  <Link to="/signup" className="btn btn-primary btn-round">
                     SIGN IN
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,7 +1,8 @@
 const constants = {
-  BASE_URL: "/",
+  BASE_URL: "http://localhost:3000",
   COMPANY_NAME:"Smart Pro Invest",
   SUPPORT_EMAIL: "support@smartproinvest.com",
+  CONTACT_NUMBER: "+1(313) 474-0141",
   WALLET_ADDRESSES : {
     BITCOIN:"bc1q39a5pfy0f5067lcrh0ffcyzjx4kfpjm7ml048z",
     ETHEREUM:"0x62a2BfC634E91970b5cf62B00215047FD18124ec",

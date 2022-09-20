@@ -124,9 +124,6 @@ function App() {
             )}
           </Routes>
 
-          {/* Google translate api scripts and container */}
-          <GoogleTranslate />
-
           {/* The three script tags which are supposed to be here are in the index.html file
            * Because there's no straight forward way to add script tags in react,
            * the loaded scripts are too big to live in our bundle. Also we can't import all the
@@ -162,6 +159,9 @@ export const HomeLayout = () => {
        * and the script is coupled with the WinnerCard component
        */}
       <WinnerCard />
+
+      {/* Google translate api scripts and container */}
+      <GoogleTranslate />
       <Footer />
     </>
   );

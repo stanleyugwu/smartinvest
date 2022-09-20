@@ -32,7 +32,7 @@ export const errorResponse = (error: AxiosError<ErrorRes>) => {
   }
 
   // Invalid token handler
-  if(error.response?.data.message.toLowerCase().includes("invalid token")){
+  if(error.response?.data.message?.toLowerCase?.().includes("invalid token")){
     localStorage.removeItem("$__a_t_admin");
     useAdminAppStore.getState().setAccessToken(undefined);
     window.location.reload();

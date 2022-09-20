@@ -2,7 +2,7 @@ import constants from "../../utils/constants";
 
 (function () {
     var options = {
-        whatsapp: "+1(313) 474-0141", // WhatsApp number
+        whatsapp: constants.CONTACT_NUMBER, // WhatsApp number
         email: constants.SUPPORT_EMAIL, // Email
         call_to_action: "Message us", // Call to action
         button_color: "#E74339", // Color of button

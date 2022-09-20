@@ -2,6 +2,7 @@ import React from "react";
 import bronzeImg from '../images/investment_packages/bronze.jpg'
 import silverImg from '../images/investment_packages/silver.jpg'
 import goldImg from '../images/investment_packages/gold.jpg'
+import { Link } from "react-router-dom";
 
 function InvestmentPlans() {
   return (
@@ -108,9 +109,9 @@ function InvestmentPlans() {
       </div>
       <div className="d-block text-center">
         <br />
-        <a href="/signup" className="btn btn-lg">
+        <Link to="/signup" className="btn btn-lg">
             Sign up for more higher Investment plans today
-        </a>
+        </Link>
       </div>
     </section>
   );

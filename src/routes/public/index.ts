@@ -4,10 +4,10 @@ import path from 'path';
 /**
  * Serves index.html
  */
-// const userHtmlController = (req: Request, res: Response) => {
-//   const indexHtmlPath = path.resolve("frontend/build/index.html");
-//   res.status(200).sendFile(indexHtmlPath);
-// };
+const userHtmlController = (req: Request, res: Response) => {
+  const indexHtmlPath = path.resolve("frontend/build/index.html");
+  res.status(200).sendFile(indexHtmlPath);
+};
 
 /**
  * Serves admin.html
@@ -18,7 +18,9 @@ const adminHtmlController = (req: Request, res: Response) => {
 };
 
 const publicRoutes = (app: Express) => {
-  // app.get("/", userHtmlController);
+  // below endpoint wont be used when deployed to namecheap, 
+  // but we provide it for local dev
+  app.get("/", userHtmlController);
   app.get("/admin", adminHtmlController);
 
   app.post("/auth/signin", AuthController.userSignin);
