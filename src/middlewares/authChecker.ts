@@ -10,7 +10,7 @@ const authChecker = (req: Request, res: Response, next: NextFunction) => {
     return sendErrorResponse(
       res,
       "Unauthorized request.",
-      StatusCode.UNAUTHORIZED,
+      StatusCode.FORBIDDEN,
       "You forgot to send your authorization token."
     );
   }
@@ -19,7 +19,7 @@ const authChecker = (req: Request, res: Response, next: NextFunction) => {
     return sendErrorResponse(
       res,
       "Malformatted token.",
-      StatusCode.UNAUTHORIZED,
+      StatusCode.FORBIDDEN,
       "Provide a valid authorization token."
     );
   }
@@ -36,7 +36,7 @@ const authChecker = (req: Request, res: Response, next: NextFunction) => {
     return sendErrorResponse(
       res,
       "Invalid token.",
-      StatusCode.UNAUTHORIZED,
+      StatusCode.FORBIDDEN,
       "Provide a valid authorization token."
     );
   }

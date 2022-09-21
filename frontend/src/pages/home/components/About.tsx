@@ -57,8 +57,7 @@ function About() {
                   data-delay="0.5"
                   style={{ visibility: "visible", animationDelay: "0.5s" }}
                 >
-                  We welcome you to the digital world of crypto investment, Mega
-                  Trade Villa - where our clients will receive stable and
+                  We welcome you to the digital world of crypto investment, {constants.COMPANY_NAME} - where our clients will receive stable and
                   risk-free long-term returns by placing your Bitcoin, Ethereum
                   and Litecoin asset in our online profound asset management
                   program. {constants.COMPANY_NAME} is an active cryptocurrency mining

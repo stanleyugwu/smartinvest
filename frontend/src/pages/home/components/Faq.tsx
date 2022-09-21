@@ -86,8 +86,7 @@ function Faq() {
                             problem. We have strong roots and believe in
                             customer service and transparency. We are committed
                             to optimum delivery and uprightness. We let our
-                            service do the talking. Any funds you put into Mega
-                            Trade Villa are only used to facilitate trading
+                            service do the talking. Any funds you put into {constants.COMPANY_NAME} are only used to facilitate trading
                             through your account. Unlike banks, we do not
                             operate on fractional reserves.{" "}
                           </p>
