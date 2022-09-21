@@ -4,6 +4,7 @@ import "./signup_login.css";
 import logoImg from "../../assets/images/logo.png";
 import SignupForm from "./components/signup/Signup";
 import LoginForm from "./components/login/Login";
+import GoogleTranslate from "../../components/GoogleTranslate";
 
 const SignupAndLogin = ({
   /** This will be used to determine whether to show sign in or sign up form when page loads*/
@@ -30,7 +31,7 @@ const SignupAndLogin = ({
           <div
             className="col-sm-5 authfy-panel-left d-inline-block"
             style={{ backgroundColor: "#272F3D" }}
-          >
+            >
             <div className="brand-col">
               <div className="headline">
                 {/* brand-logo start */}
@@ -41,7 +42,8 @@ const SignupAndLogin = ({
                         src={logoImg}
                         style={{ width: "100px" }}
                         alt="logo"
-                      />
+                        />
+                        <GoogleTranslate/>
                     </h2>
                   </div>
                 </div>
