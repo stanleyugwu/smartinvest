@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 function Header() {
@@ -7,16 +7,6 @@ function Header() {
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
-
-  // below section will links navigate back to home page
-  // when user is in signup page
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const handleMenuClick = useCallback(() => {
-    if (pathname !== "/") {
-      navigate("/");
-    }
-  }, [navigate, pathname]);
 
   return (
     <header
@@ -64,7 +54,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to={"/"}
-                      onClick={handleMenuClick}
+                      
                     >
                       Home
                     </Link>
@@ -73,7 +63,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to="#about"
-                      onClick={handleMenuClick}
+                      
                     >
                       About
                     </Link>
@@ -82,7 +72,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to="#ecosystems"
-                      onClick={handleMenuClick}
+                      
                     >
                       Our Services
                     </Link>
@@ -91,7 +81,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to="#features"
-                      onClick={handleMenuClick}
+                      
                     >
                       Features
                     </Link>
@@ -100,7 +90,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to="#plans"
-                      onClick={handleMenuClick}
+                      
                     >
                       Investment Plans
                     </Link>
@@ -109,7 +99,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to="#faq"
-                      onClick={handleMenuClick}
+                      
                     >
                       FAQ
                     </Link>
@@ -118,7 +108,7 @@ function Header() {
                     <Link
                       className="menu-link nav-link menu-toggle"
                       to="#contact"
-                      onClick={handleMenuClick}
+                      
                     >
                       Contact Us
                     </Link>

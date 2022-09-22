@@ -1,5 +1,4 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/js/GetButton";
 import GoogleTranslate from "../components/GoogleTranslate";
@@ -124,17 +123,8 @@ function App() {
  * Layout structure for home and sign up pages
  */
 export const HomeLayout = () => {
-  // Check previous authentication
-  // const { setToken } = useAuth();
-  // const token = getUserAccessToken();
-  // if (token) {
-  //   setToken?.(token);
-  //   return <Navigate to={"/"} replace />;
-  // }
-
   return (
     <>
-      <Header />
       <Outlet />
       {/*
        * Shows Winner periodically.

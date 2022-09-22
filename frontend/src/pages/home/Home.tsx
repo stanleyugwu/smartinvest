@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import getUserAccessToken from "../../api/services/getUserAccessToken";
-import PreloaderAnimation from "../../components/PreloaderAnimation";
+import Header from "../../components/Header";
 import useAuth from "../../hooks/useAuth";
 import About from "./components/About";
 import BoardMembers from "./components/BoardMembers";
@@ -30,6 +30,7 @@ const Home = () => {
       <div className="nk-wrap">
         {/* Main Content */}
         <main className="nk-pages tc-light">
+          <Header/>
           <HeaderBanner />
           <About />
           <Services />

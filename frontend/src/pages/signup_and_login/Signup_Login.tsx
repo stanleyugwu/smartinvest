@@ -24,12 +24,13 @@ const SignupAndLogin = ({
   }, []);
 
   return (
-    <div className="container-fluid" id="signup_wrapper">
+    <div style={{background:"linear-gradient(#305082, #ef5067)"}} className="container-fluid" id="signup_wrapper">
       {/* Main structure css file */}
       <div className="row">
         <div className="authfy-container mx-auto col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+          <GoogleTranslate/>
           <div
-            className="col-sm-5 authfy-panel-left d-inline-block"
+            className="col-sm-5 authfy-panel-left d-inline-block mt-4"
             style={{ backgroundColor: "#272F3D" }}
             >
             <div className="brand-col">
@@ -43,7 +44,6 @@ const SignupAndLogin = ({
                         style={{ width: "100px" }}
                         alt="logo"
                         />
-                        <GoogleTranslate/>
                     </h2>
                   </div>
                 </div>
