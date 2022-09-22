@@ -4,11 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "compile":"tsc",
-    "compile:watch":"tsc -w",
+    "compile": "tsc",
+    "compile:watch": "tsc -w",
     "dev": "set NODE_ENV=development&& nodemon src/server.ts",
     "start": "npm run migrate_and_seed:prod && node dist/server.js",
-    "start:dev": "npm run migrate_and_seed:dev && nodemon src/server.ts",
+    "start:dev": "npm run migrate_and_seed:dev && set NODE_ENV=development&& nodemon src/server.ts",
     "migrate_and_seed:dev": "npm run compile || set NODE_ENV=development&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "migrate_and_seed:prod": "set NODE_ENV=production&& npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
@@ -23,6 +23,7 @@
     "helmet": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.8",
     "sequelize": "^6.21.4"
   },
   "devDependencies": {
@@ -30,6 +31,7 @@
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.9",
+    "@types/nodemailer": "^6.4.6",
     "nodemon": "^2.0.19",
     "sequelize-cli": "^6.4.1",
     "ts-node": "^10.9.1"

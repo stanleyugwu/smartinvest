@@ -4,6 +4,7 @@ import blockchainil from '../images/partners/blockchainil.png';
 import blockex from '../images/partners/blockex.png';
 import stockholms from '../images/partners/stockholm.png';
 import bancor from '../images/partners/bancor.png';
+import { Link } from "react-router-dom";
 
 function Partners() {
   return (
@@ -235,10 +236,10 @@ function Partners() {
                           </div>
                         </div>
                         <div className="blog-action">
-                          <a href="#" className="link">
+                          <Link to="/signup" className="link">
                             <span> Learn More</span>{" "}
                             <em className="link-icon link-icon-sm fas fa-angle-right" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div
@@ -264,10 +265,10 @@ function Partners() {
                           </div>
                         </div>
                         <div className="blog-action">
-                          <a href="#" className="link">
+                          <Link to="/signup" className="link">
                             <span> Learn More</span>{" "}
                             <em className="link-icon link-icon-sm fas fa-angle-right" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div
@@ -295,10 +296,10 @@ function Partners() {
                           </div>
                         </div>
                         <div className="blog-action">
-                          <a href="#" className="link">
+                          <Link to="/signup" className="link">
                             <span> Learn More</span>{" "}
                             <em className="link-icon link-icon-sm fas fa-angle-right" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div
@@ -324,10 +325,10 @@ function Partners() {
                           </div>
                         </div>
                         <div className="blog-action">
-                          <a href="#" className="link">
+                          <Link to="/signup" className="link">
                             <span> Learn More</span>{" "}
                             <em className="link-icon link-icon-sm fas fa-angle-right" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div

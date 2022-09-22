@@ -5,6 +5,7 @@ import circleShape from '../images/circle.png'
 import polygonShape from '../images/polygon-line.png'
 import triangleShape from '../images/triangle.png'
 import constants from "../../../utils/constants";
+import { Link } from "react-router-dom";
 
 function WhyChooseUs() {
   return (
@@ -147,9 +148,9 @@ function WhyChooseUs() {
                   data-animate="fadeInUp"
                   data-delay="0.9"
                 >
-                  <a href="/signup" className="btn">
+                  <Link to="/signup" className="btn">
                     Get Started
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

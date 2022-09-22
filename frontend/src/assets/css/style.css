@@ -5372,62 +5372,6 @@ ul.progress-info {
 .breadcumb li a:hover:not([class]) {
     color: #23c99d !important
 }
-
-.preloader {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10000
-}
-
-.preloader:before,
-.preloader:after {
-    position: absolute;
-    left: 0;
-    height: 51%;
-    width: 100%;
-    transition: all .6s ease;
-    background: #fff;
-    content: ''
-}
-
-.preloader:before {
-    top: 0
-}
-
-.page-loaded .preloader:before {
-    transform: translate(0, -100%)
-}
-
-.preloader:after {
-    bottom: 0
-}
-
-.page-loaded .preloader:after {
-    transform: translate(0, 100%)
-}
-
-.preloader.no-default {
-    background-color: #122272
-}
-
-.page-loaded .preloader.no-default:before,
-.page-loaded .preloader.no-default:after {
-    transform: translate(0, 0)
-}
-
-.preloader.no-default:before,
-.preloader.no-default:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transition: all .6s;
-    background-color: #122272
-}
-
 .spinner {
     display: block;
     position: relative;
@@ -5483,27 +5427,6 @@ ul.progress-info {
         -ms-transform: rotate(360deg);
         transform: rotate(360deg)
     }
-}
-
-.text-zoom {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 700;
-    height: 100px;
-    width: 100px
-}
-
-.text-item {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0
 }
 
 .text-item:nth-child(2)>* {

@@ -3,7 +3,7 @@ import constants from "../utils/constants";
 
 function Footer() {
   return (
-    <footer className="nk-footer-bar section section-s">
+    <footer className="nk-footer-bar section section-s mt-4">
       <div className="container container-xxl">
         <div className="row gutter-vr-10px">
           <div className="col-lg-6 order-lg-last text-lg-right">

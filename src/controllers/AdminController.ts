@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Op } from "sequelize";
 import User from "../models/User";
 import { sendErrorResponse, sendSuccessResponse } from "../modules/utils";
 import StatusCode from "../status";
@@ -24,8 +25,8 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
-        "You didn't provide the ID of user to approve"
+        StatusCode.FORBIDDEN,
+        "You didn't provide the ID of user to update"
       );
     }
 
@@ -62,14 +63,14 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
       // update user account
       const updatedUser = await user.update({
         ...user.toJSON(),
-        ...req.body
+        ...req.body,
       });
 
       return sendSuccessResponse(
@@ -81,7 +82,7 @@ class AdminController {
         "User Account Updated Successfully"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+      return sendErrorResponse(res, error.message);
     }
   }
 
@@ -132,7 +133,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to approve"
       );
     }
@@ -143,7 +144,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
@@ -161,7 +162,7 @@ class AdminController {
         "User Disapproved Successfully"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
+      return sendErrorResponse(res, error.message);
     }
   }
   async approveUser(
@@ -173,7 +174,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to approve"
       );
     }
@@ -184,7 +185,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
@@ -214,7 +215,7 @@ class AdminController {
       return sendErrorResponse(
         res,
         "Missing User ID",
-        StatusCode.BAD_REQUEST,
+        StatusCode.FORBIDDEN,
         "You didn't provide the ID of user to delete"
       );
     }
@@ -225,7 +226,7 @@ class AdminController {
         return sendErrorResponse(
           res,
           "User Not Found",
-          StatusCode.NOT_FOUND,
+          StatusCode.FORBIDDEN,
           "User with given ID doesn't exist"
         );
 
@@ -236,44 +237,40 @@ class AdminController {
       return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
     }
   }
-  async findUserByEmail(
-    req: Request<any, any, any, { userEmail: string }>,
+  async findUserByEmailOrName(
+    req: Request<any, any, any, { userEmailOrName: string }>,
     res: Response
   ) {
-    const userEmail = req.query.userEmail;
-    console.log(userEmail);
+    const userEmailOrName = req.query.userEmailOrName;
 
-    if (!userEmail || !userEmail.trim()) {
+    if (!userEmailOrName || !userEmailOrName.trim()) {
       return sendErrorResponse(
         res,
-        "Missing User Email",
+        "Missing User Email or Full Name",
         StatusCode.BAD_REQUEST,
-        "You didn't provide the e-mail address of user to find"
+        "You didn't provide the e-mail address or fullname of user to find"
       );
     }
 
     try {
-      const user = await User.findOne({
+      const users = await User.findAll({
+        limit: 100,
         where: {
-          email: userEmail,
+          [Op.or]: [
+            { fullname: { [Op.substring]: userEmailOrName } },
+            { email: { [Op.substring]: userEmailOrName } },
+          ],
         },
       });
-      if (!user)
+      if (users.length === 0)
         return sendErrorResponse(
           res,
           "User Not Found",
           StatusCode.NOT_FOUND,
-          "User with given e-mail address doesn't exist"
+          "User with given e-mail address or fullname doesn't exist"
         );
 
-      return sendSuccessResponse(
-        res,
-        {
-          user: { ...user.getProfileInfo(), approved: user.approved },
-          account: user.getAccountInfo(),
-        },
-        "User Found"
-      );
+      return sendSuccessResponse(res, users, "Users Found");
     } catch (error: any) {
       return sendErrorResponse(res, error.message, StatusCode.BAD_REQUEST);
     }

@@ -16,7 +16,7 @@ export const sendErrorResponse = (
   status: number = 500,
   fix?: string
 ) => {
-  message = message.replaceAll("Validation error:", "").trim();
+  message = message.replace(/Validation error:/gi, "").trim();
 
   if (message.search("\n") > 0) {
     message = message.split("\n").join(" and ");

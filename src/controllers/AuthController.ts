@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { sendErrorResponse, sendSuccessResponse } from "../modules/utils";
 import StatusCode from "../status";
 import Admin from "../models/Admin";
+import mailer from "../services/mailer";
 
 export type SignupBody = {
   fullname: string;
@@ -58,7 +59,7 @@ class AuthController {
         return sendErrorResponse(
           res,
           "Account Not Approved",
-          StatusCode.FORBIDDEN,
+          StatusCode.UNAUTHORIZED,
           "Your account has not been approved yet. Wait for approval and contact support if the approval takes longer"
         );
       }
@@ -77,7 +78,7 @@ class AuthController {
         "Sign-In Successful"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.FORBIDDEN);
+      return sendErrorResponse(res, error.message, StatusCode.INTERNAL_SERVER_ERROR);
     }
   }
   async adminSignin(req: Request, res: Response) {
@@ -132,7 +133,7 @@ class AuthController {
         "Sign-In Successful"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.FORBIDDEN);
+      return sendErrorResponse(res, error.message, StatusCode.INTERNAL_SERVER_ERROR);
     }
   }
   async userSignup(req: Request<any, any, SignupBody>, res: Response) {
@@ -182,7 +183,37 @@ class AuthController {
         withdrawal: 0,
       });
 
-      // creation successful
+      // creation successful, send welcome email async
+      const firstName = fullname.split(" ")[0];
+      const welcomeEmailBody = `
+<div style="background-color:#272f3d;height:400px;width:100%;padding-top:10px;padding:5px">
+<center>
+<p style="color:white;text-align:justify">
+</p><h3 style="color:white">Welcome, ${fullname}</h3>
+<span style="color:white">
+We're excited to have you get started. Thank you for joining our community and signing up for the world's leading crypto trading platform. We're on a mission to provide financial freedom for users like you with the right education and resources to make your trading journey seamless and safe.
+</span><p></p>
+<br>
+ <span style="color:white">For more enquiries kindly
+contact us at <a href="mailto:support@smartproinvest.com" rel="noreferrer" target="_blank">support@smartproinvest.com</a><br>
+ Website Link : <a href="https://www.smartproinvest.com" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.smartproinvest.com&amp;source=gmail&amp;ust=1663616644898000&amp;usg=AOvVaw1gSMbqQNFGHImc8lgGSQGC">https://www.smartproinvest.com</a></span><br>
+<br>
+ <span style="color:white">Hearty Cheers,<br>
+Smart Pro Invest Team</span><br>
+<img src="https://i.ibb.co/D83khNB/logo-66fd1b92ab142925975f.png" style="width:80px" class="CToWUd" data-bit="iit">
+</center>`;
+
+      mailer().sendMail({
+        from: "Smart Pro Invest support@smartproinvest.com", // sender address
+        to: email, // list of receivers
+        subject: `Welcome Aboard! ${firstName}`, // Subject line
+        html: welcomeEmailBody, // html body
+      }).catch(error => {
+        console.log("WELCOME EMAIL SEND ERROR");
+        console.log(error);
+      });
+
+      // send success response
       const { password: userPassword, ...otherFields } = newUser.toJSON();
       sendSuccessResponse(
         res,
@@ -191,7 +222,6 @@ class AuthController {
       );
 
       // send welcome email after returing response so it doesnt block response return
-      //TODO: add emailing logic
     } catch (error: any) {
       return sendError(res, error.message, StatusCode.BAD_REQUEST);
     }

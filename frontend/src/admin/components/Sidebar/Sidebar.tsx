@@ -1,16 +1,33 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 import constants from "../../../utils/constants/index";
+import AdminAuthContext from "../../contexts/adminAuth";
 
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const { pathname } = useLocation();
-  const handleSignOut = () => {
-    // TODO: sign out
-  };
+  const auth = useContext(AdminAuthContext);
+  const handleSignOut = async () => {
+    const action = await Swal.fire({
+      position:"center",
+      titleText:"Sign Out",
+      text: "Are you sure you want to sign out?",
+      icon:"warning",
+      confirmButtonText:"Sign Out",
+      cancelButtonText:"Cancel",
+      showCancelButton:true,
+      showConfirmButton:true,
+      timer:undefined,
+      confirmButtonColor:"red",
+    });
+    if(action.isConfirmed){
+      auth.signOut?.();
+    }
+  }
 
   return (
     <>
@@ -132,7 +149,7 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (pathname === "/unapproved-users"
+                    (pathname === "/find-user"
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }

@@ -4,9 +4,9 @@ export default function EnvironmentVariables () {
 
   function init () {
     dotenv.config({
-      path: process.env.NODE_ENV === 'production'
-        ? '.env'
-        : '.env.dev'
+      path: process.env.NODE_ENV === 'development'
+        ? '.env.dev'
+        : '.env'
     })
   }
 

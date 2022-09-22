@@ -16,7 +16,7 @@ const adminChecker = async (
     return sendErrorResponse(
       res,
       "Invalid Token",
-      StatusCode.UNAUTHORIZED,
+      StatusCode.FORBIDDEN,
       "Provide a valid authorization token"
     );
   }
@@ -27,7 +27,7 @@ const adminChecker = async (
     return sendErrorResponse(
       res,
       "Unauthorized Operation",
-      StatusCode.UNAUTHORIZED,
+      StatusCode.FORBIDDEN,
       "You are not an admin"
     );
   } else return next();

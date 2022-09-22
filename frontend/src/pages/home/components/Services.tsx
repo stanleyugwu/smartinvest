@@ -83,7 +83,7 @@ function Services() {
                   <h5 className="title title-sm ttu">
                     Cryptocurrency Investments
                   </h5>
-                  <p>Start Earning Now On megatradevilla.com</p>
+                  <p>Start Earning Now On smartproinvest.com</p>
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import constants from "../../../utils/constants";
 
 function About() {
@@ -44,8 +45,7 @@ function About() {
                   style={{ visibility: "visible", animationDelay: "0.4s" }}
                 >
                   {constants.COMPANY_NAME} is one of the most transformative
-                  technologies since the invention of the Internet. Mega Trade
-                  Villa stands firmly in support of financial freedom and the
+                  technologies since the invention of the Internet. {constants.COMPANY_NAME} stands firmly in support of financial freedom and the
                   liberty that Bitcoin provides globally for anyone to
                   voluntarily participate in a permissionless and decentralized
                   network which empowers people to not be marginalized by
@@ -57,8 +57,7 @@ function About() {
                   data-delay="0.5"
                   style={{ visibility: "visible", animationDelay: "0.5s" }}
                 >
-                  We welcome you to the digital world of crypto investment, Mega
-                  Trade Villa - where our clients will receive stable and
+                  We welcome you to the digital world of crypto investment, {constants.COMPANY_NAME} - where our clients will receive stable and
                   risk-free long-term returns by placing your Bitcoin, Ethereum
                   and Litecoin asset in our online profound asset management
                   program. {constants.COMPANY_NAME} is an active cryptocurrency mining
@@ -73,13 +72,13 @@ function About() {
                     data-delay="0.6"
                     style={{ visibility: "visible", animationDelay: "0.6s" }}
                   >
-                    <a
-                      href="/signup"
+                    <Link
+                      to="/signup"
                       className="menu-link btn btn-primary btn-round btn-lg"
                     >
                       <span>Get Started</span>{" "}
                       <em className="icon ti ti-arrow-right" />
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

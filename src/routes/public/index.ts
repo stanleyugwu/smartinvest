@@ -18,6 +18,8 @@ const adminHtmlController = (req: Request, res: Response) => {
 };
 
 const publicRoutes = (app: Express) => {
+  // below endpoint wont be used when deployed to namecheap, 
+  // but we provide it for local dev
   app.get("/", userHtmlController);
   app.get("/admin", adminHtmlController);
 

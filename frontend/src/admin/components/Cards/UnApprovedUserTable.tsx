@@ -34,8 +34,8 @@ export default function UnApprovedUserTable({
     ErrorRes,
     UnApprovedUsersServerRes
   >("unApprovedUsers", unApprovedUsersFn, {
-    refetchInterval: 3000,
     retry: true,
+    refetchInterval:3000
   });
 
   return (
@@ -133,7 +133,7 @@ export default function UnApprovedUserTable({
                 ))
               ) : (
                 data?.data?.length === 0 ? (
-                  <tr className="font-semibold ml-7">NO RECENT UNAPPROVED USER</tr>
+                  <tr className="font-semibold ml-7 text-sm text-blueGray-700">NO RECENTLY UNAPPROVED USER</tr>
                 ) : data?.data?.map((user) => (
                   <UnApprovedUser
                     country={user.country}

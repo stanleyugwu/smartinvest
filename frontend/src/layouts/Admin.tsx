@@ -3,7 +3,7 @@ import "../admin/assets/styles/index.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import useAdminAppStore from "../store/admin";
 
-import AdminNavbar from "../admin/components/Navbars/AdminNavbar.js";
+import AdminNavbar from "../admin/components/Navbars/AdminNavbar";
 import HeaderStats from "../admin/components/Headers/HeaderStats";
 import FooterAdmin from "../admin/components/Footers/FooterAdmin.js";
 import Sidebar from "../admin/components/Sidebar/Sidebar";
@@ -20,6 +20,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../admin/assets/styles/tailwind.css";
 import AdminAuthProvider from "../admin/components/AdminAuthProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
+import EditUser from "../admin/views/admin/EditUser";
 
 /**
  * The home page is a spa, so elements are arranged accordingly
@@ -42,6 +43,10 @@ function Admin() {
                 <Routes>
                   <Route path="/" element={<UnApprovedUsers />} />
                   <Route path="approved-users" element={<ApprovedUsers />} />
+                  <Route
+                    path="edit-user"
+                    element={<EditUser />}
+                  />
                   <Route
                     path="find-user"
                     element={<FindUser />}

@@ -10,6 +10,7 @@ import "./styles/cryptocoins/cryptocoins-colors.css";
 import "./styles/jquery-ui.min.css";
 import "./styles/slick.css";
 import "./styles/style.css";
+import GoogleTranslate from "../../components/GoogleTranslate";
 
 /**
  * Layout structure for dashboard routes
@@ -24,6 +25,7 @@ const DashboardLayout = () => {
           <div className="ms-toggler ms-settings-toggle ms-d-block-lg">
             <i className="flaticon-paint" />
           </div>
+          
           {/* Preloader */}
           <div id="preloader-wrap" style={{ backgroundColor: "#272F3D" }}>
             <img src={logo} style={{ width: 140 }} />
@@ -40,6 +42,8 @@ const DashboardLayout = () => {
             data-toggle="slideRight"
           />
           <SideNavigation />
+          {/* Google translate api scripts and container */}
+          <GoogleTranslate />
           <MainContent>
             {/* Outlet is the dynamic part of it. swicthes between dashboard pages*/}
             <Outlet />

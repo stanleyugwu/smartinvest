@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import useAdminAppStore from "../../../store/admin";
 import { ErrorRes, SuccessRes } from "../../../types";
 
 /**
@@ -28,6 +29,13 @@ export const errorResponse = (error: AxiosError<ErrorRes>) => {
       message: error.message || "Request Cancelled",
       howToFix: "Please try again",
     });
+  }
+
+  // interceptor to log out upon FORBIDDEN response
+  if(error.response?.status === 403){
+    localStorage.removeItem("$__a_t_admin");
+    useAdminAppStore.getState().setAccessToken(undefined);
+    window.location.reload();
   }
 
   return Promise.reject({

@@ -7,7 +7,7 @@ const { DB_SERVER, DB_NAME, DB_USER, DB_PASSWORD, DB_PORT } = process.env;
 
 const dialectOptions = {
   bigNumberStrings: true,
-  typeCast: function (field, next) {
+  typeCast: function (field:any, next:any) {
     if (field.type === "DATETIME" || field.type === "TIMESTAMP") {
       return new Date(field.string() + "Z");
     }

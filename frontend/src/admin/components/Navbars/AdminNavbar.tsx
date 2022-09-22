@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   return (
     <>
       {/* Navbar */}
@@ -11,23 +13,27 @@ export default function Navbar() {
           {/* Brand */}
           <p
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-            href="#"
           >
             Hello, Welcome
           </p>
           {/* Form */}
-          <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3 w-1/2">
+          <div 
+          className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3 w-1/2"
+          onClick={() => navigate("find-user")}
+          >
             <div className="relative flex w-full flex-wrap items-stretch">
               <span className="z-10 h-full leading-snug font-normal text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                 <i className="fas fa-search"></i>
               </span>
               <input
                 type="text"
+                readOnly
+                aria-readonly
                 placeholder="Search here..."
                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
               />
             </div>
-          </form>
+          </div>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
             <UserDropdown />
