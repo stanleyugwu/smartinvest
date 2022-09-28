@@ -31,6 +31,7 @@ const Dashboard = () => {
     }).finally(() => {
       setLoadingProfile(false);
     })
+    axiosInstance.get("/api/indicate_signin").catch(error => console.log(error))
   }, []);
 
   return (

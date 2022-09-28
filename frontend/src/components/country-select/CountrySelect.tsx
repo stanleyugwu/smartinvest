@@ -17,7 +17,7 @@ const CountrySelect = React.forwardRef<HTMLSelectElement,any>(
         className="form-control"
         {...props}
       >
-        <option disabled>Select Country</option>
+        <option>Select Country</option>
         {countries.map((country) => (
           <option value={country} key={country}>{country}</option>
         ))}

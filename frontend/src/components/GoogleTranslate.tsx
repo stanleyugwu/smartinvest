@@ -15,7 +15,13 @@ function GoogleTranslate() {
   }, []);
 
   return (
-    <div className="text-center d-block relative" style={{zIndex:10}} id="__translate-script-wrapper">
+    <div
+      className="text-center d-block position-relative mb-4"
+      style={{
+        zIndex: 10,
+      }}
+      id="__translate-script-wrapper"
+    >
       <div id="google_translate_element"></div>
       {/* The script tags for google translate will be injected here */}
     </div>

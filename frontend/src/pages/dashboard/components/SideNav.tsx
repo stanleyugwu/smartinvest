@@ -27,7 +27,7 @@ const SideNav = () => {
         >
           <img
             src={logo}
-            style={{ width: 100 }}
+            style={{ width: 180 }}
             alt="logo"
           />
         </Link>

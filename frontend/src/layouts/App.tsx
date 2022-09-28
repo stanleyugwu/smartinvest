@@ -9,7 +9,6 @@ import SignupAndLogin from "../pages/signup_and_login";
 import AuthProvider from "../components/auth_provider/AuthProvider";
 import useAppStore from "../store";
 
-
 import "../assets/css/index.css";
 import "../assets/css/vendor.css";
 import "../assets/css/style.css";
@@ -40,12 +39,12 @@ const homePageInit = () => {
 };
 
 // We lazy load the whole user dashboard assets and pages to improve speed
-const DashBoardRoutes = lazy(() => import('./DashboardRoutes'))
+const DashBoardRoutes = lazy(() => import("./DashboardRoutes"));
 const Loader = (
   <div className="position-absolute w-100 h-100 text-white d-flex">
     <i className="fa fa-spinner fa-spin text-white fa-3x m-auto"></i>
   </div>
-)
+);
 
 /**
  * The home page is a spa, so elements are arranged accordingly
@@ -83,14 +82,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <div className="App">
-            {token ? (
-              <>
+          {token ? (
+            <>
               <Suspense fallback={Loader}>
-                <DashBoardRoutes/>
+                <DashBoardRoutes />
               </Suspense>
-              </>
-            ) : (
-              <Routes>
+            </>
+          ) : (
+            <Routes>
               <Route path="/" element={<HomeLayout />}>
                 <Route index element={<Home />} />
                 <Route
@@ -103,8 +102,8 @@ function App() {
                 />
                 <Route path="*" element={<Navigate to={"/signin"} />} />
               </Route>
-              </Routes>
-            )}
+            </Routes>
+          )}
 
           {/* The three script tags which are supposed to be here are in the index.html file
            * Because there's no straight forward way to add script tags in react,
@@ -123,6 +122,7 @@ function App() {
  * Layout structure for home and sign up pages
  */
 export const HomeLayout = () => {
+  const { pathname: path } = useLocation();
   return (
     <>
       <Outlet />
@@ -134,7 +134,7 @@ export const HomeLayout = () => {
       <WinnerCard />
 
       {/* Google translate api scripts and container */}
-      <GoogleTranslate />
+      {(path === "/signup" || path === "/signin") ? null : <GoogleTranslate />}
       <Footer />
     </>
   );
