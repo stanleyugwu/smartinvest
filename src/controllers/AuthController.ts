@@ -66,6 +66,7 @@ class AuthController {
 
       // user is approved and login cred is correct, sign him in
       const accessToken = user.generateToken();
+
       return sendSuccessResponse(
         res,
         {

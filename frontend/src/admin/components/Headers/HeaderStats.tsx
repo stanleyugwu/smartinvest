@@ -59,7 +59,7 @@ export default function HeaderStats() {
   return (
     <>
       {/* Header */}
-      <div className="relative bg-lightBlue-600 md:pt-32 pb-10 pt-12">
+      <div className="relative bg-lightBlue-600 py-2 md:pt-32 lg:pb-10">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}

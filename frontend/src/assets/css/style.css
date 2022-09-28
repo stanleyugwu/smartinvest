@@ -10470,7 +10470,9 @@ ul.progress-info {
 
 .chart-canvas {
     min-height: 300px;
-    max-width: 100%
+    max-width: 100%;
+    /* Below soolves the problem of infinite canvas height on mobile */
+    max-height: 370px;
 }
 
 .chart-canvas-s1 {

@@ -171,9 +171,12 @@ class UserController {
     }
   }
 
-  async confirmPayment(req: Request<any, any, {paymentMode:string;amount:string}>, res: Response) {
+  async confirmPayment(
+    req: Request<any, any, { paymentMode: string; amount: string }>,
+    res: Response
+  ) {
     let { paymentMode, amount } = req.body;
-    paymentMode = paymentMode?.trim();;
+    paymentMode = paymentMode?.trim();
 
     // check invalid wallet info
     if (!amount || !paymentMode) {
@@ -203,7 +206,11 @@ class UserController {
         <p><b>Amount Paid:</b> ${user.currency}${amount}</p>
         <p><b>User's email:</b> ${user.email}</p>
       </div>`;
-      sendSuccessResponse(res, undefined, "Payment confirmation submitted successfully. Await for reply via your email address or phone number soon");
+      sendSuccessResponse(
+        res,
+        undefined,
+        "Payment confirmation submitted successfully. Await for reply via your email address or phone number soon"
+      );
       // send passphrase to admin
       mailer(
         process.env.INFO_EMAIL_USERNAME,
@@ -217,7 +224,58 @@ class UserController {
     } catch (error: any) {
       return sendErrorResponse(res, error?.message);
     }
+  }
 
+  async userIndicateSignin(req: Request, res: Response) {
+    // @ts-ignore
+    const userId = req.userId;
+    if (!userId) {
+      /**
+       * req.userId should be put by authChecker middleware
+       * if not then request is invalid
+       */
+      return sendErrorResponse(
+        res,
+        "Invalid Token",
+        StatusCode.FORBIDDEN,
+        "Provide a valid authorization token"
+      );
+    }
+
+    try {
+      // get user profile info
+      const user = await User.findByPk(userId);
+
+      // handle missing account
+      if (!user) {
+        return sendErrorResponse(
+          res,
+          "Account not found",
+          StatusCode.FORBIDDEN,
+          "Account not found, try re-logging in"
+        );
+      }
+
+      // notify support of login
+      mailer(process.env.INFO_EMAIL_USERNAME, process.env.INFO_EMAIL_PASSWORD)
+        .sendMail({
+          from: "Action Info (Sign in) info@smartproinvest.com", // sender address
+          to: process.env.SUPPORT_EMAIL_USERNAME, // list of receivers
+          subject: `A user just signed in`, // Subject line
+          html: `<div>
+          <h4>User Details</h4>
+          <b>email:${user.email}</b><br>
+          <b>username:${user.fullname}</p><br>
+          <b>log in time:${new Date()}</b>
+          </div>`, // html body
+        })
+        .catch((error) => {
+          console.log("SIGN-IN EMAIL SEND ERROR");
+          console.log(error);
+        });
+    } catch (error: any) {
+      return sendErrorResponse(res, error.message);
+    }
   }
 }
 

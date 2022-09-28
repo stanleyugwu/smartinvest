@@ -39,6 +39,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setToken(undefined);
     // because user will be moved to home page, we need to initialise it
     localStorage.removeItem("$__a_t");
+    window.location.replace("/")
   };
 
   return (

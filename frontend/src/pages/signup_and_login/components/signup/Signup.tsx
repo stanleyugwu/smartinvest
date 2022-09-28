@@ -92,7 +92,7 @@ const SignupForm = () => {
             </div>
             <div className="form-group wrap-input">
               <select className="form-control" {...register("currency")}>
-                <option disabled>Choose Currency</option>
+                <option>Choose Currency</option>
                 <option value="$">US Dollar</option>
                 <option value="€">Euro</option>
                 <option value="£">British Pound Sterling</option>
