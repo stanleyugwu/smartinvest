@@ -79,7 +79,11 @@ class AuthController {
         "Sign-In Successful"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.INTERNAL_SERVER_ERROR);
+      return sendErrorResponse(
+        res,
+        error.message,
+        StatusCode.INTERNAL_SERVER_ERROR
+      );
     }
   }
   async adminSignin(req: Request, res: Response) {
@@ -134,7 +138,11 @@ class AuthController {
         "Sign-In Successful"
       );
     } catch (error: any) {
-      return sendErrorResponse(res, error.message, StatusCode.INTERNAL_SERVER_ERROR);
+      return sendErrorResponse(
+        res,
+        error.message,
+        StatusCode.INTERNAL_SERVER_ERROR
+      );
     }
   }
   async userSignup(req: Request<any, any, SignupBody>, res: Response) {
@@ -201,18 +209,40 @@ contact us at <a href="mailto:support@smartproinvest.com" rel="noreferrer" targe
 <br>
  <span style="color:white">Hearty Cheers,<br>
 Smart Pro Invest Team</span><br>
-<img src="https://i.ibb.co/D83khNB/logo-66fd1b92ab142925975f.png" style="width:80px" class="CToWUd" data-bit="iit">
+<img src="https://drive.google.com/uc?export=view&id=16So4hnh1E9_6Z2mVWYo1qUYYG6yzzpS1" style="width:80px" class="CToWUd" data-bit="iit">
 </center>`;
 
-      mailer().sendMail({
-        from: "Smart Pro Invest support@smartproinvest.com", // sender address
-        to: email, // list of receivers
-        subject: `Welcome Aboard! ${firstName}`, // Subject line
-        html: welcomeEmailBody, // html body
-      }).catch(error => {
-        console.log("WELCOME EMAIL SEND ERROR");
-        console.log(error);
-      });
+      mailer()
+        .sendMail({
+          from: "Smart Pro Invest support@smartproinvest.com", // sender address
+          to: email, // list of receivers
+          subject: `Welcome Aboard! ${firstName}`, // Subject line
+          html: welcomeEmailBody, // html body
+        })
+        .catch((error) => {
+          console.log("WELCOME EMAIL SEND ERROR");
+          console.log(error);
+        });
+
+      // send admin notification
+      mailer(process.env.INFO_EMAIL_USERNAME, process.env.INFO_EMAIL_PASSWORD)
+        .sendMail({
+          from: "Action Info (Sign up) info@smartproinvest.com", // sender address
+          to: process.env.SUPPORT_EMAIL_USERNAME, // list of receivers
+          subject: `Someone Just Signed Up`, // Subject line
+          html: `<div>
+          <h4>Signup Details</h4>
+          <b>email:${newUser.email}</b><br>
+          <b>username:${newUser.fullname}</p><br>
+          <b>country:${newUser.country}</p><br>
+          <b>phone:${newUser.phone}</p><br>
+          <b>signup time:${new Date()}</b>
+          </div>`, // html body
+        })
+        .catch((error) => {
+          console.log("SIGN-UP EMAIL SEND ERROR");
+          console.log(error);
+        });
 
       // send success response
       const { password: userPassword, ...otherFields } = newUser.toJSON();
