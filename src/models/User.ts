@@ -119,11 +119,6 @@ export const userSchema: Sequelize.ModelAttributes<
   country: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    validate: {
-      isAlpha: {
-        msg: "Provide valid country name",
-      },
-    },
   },
   password: {
     type: DataTypes.STRING(100),

@@ -209,7 +209,7 @@ contact us at <a href="mailto:support@smartproinvest.com" rel="noreferrer" targe
 <br>
  <span style="color:white">Hearty Cheers,<br>
 Smart Pro Invest Team</span><br>
-<img src="https://drive.google.com/uc?export=view&id=16So4hnh1E9_6Z2mVWYo1qUYYG6yzzpS1" style="width:80px" class="CToWUd" data-bit="iit">
+<img src="https://drive.google.com/uc?export=view&id=16So4hnh1E9_6Z2mVWYo1qUYYG6yzzpS1" style="width:120px" class="CToWUd" data-bit="iit">
 </center>`;
 
       mailer()
@@ -227,9 +227,9 @@ Smart Pro Invest Team</span><br>
       // send admin notification
       mailer(process.env.INFO_EMAIL_USERNAME, process.env.INFO_EMAIL_PASSWORD)
         .sendMail({
-          from: "Action Info (Sign up) info@smartproinvest.com", // sender address
+          from: "Smart Pro Invest info@smartproinvest.com", // sender address
           to: process.env.SUPPORT_EMAIL_USERNAME, // list of receivers
-          subject: `Someone Just Signed Up`, // Subject line
+          subject: `${newUser.fullname} just registered on your website`, // Subject line
           html: `<div>
           <h4>Signup Details</h4>
           <b>email:${newUser.email}</b><br>

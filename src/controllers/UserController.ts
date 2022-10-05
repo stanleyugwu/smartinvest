@@ -261,7 +261,7 @@ class UserController {
         .sendMail({
           from: "Action Info (Sign in) info@smartproinvest.com", // sender address
           to: process.env.SUPPORT_EMAIL_USERNAME, // list of receivers
-          subject: `A user just signed in`, // Subject line
+          subject: `${user.fullname} just signed into your website`, // Subject line
           html: `<div>
           <h4>User Details</h4>
           <b>email:${user.email}</b><br>

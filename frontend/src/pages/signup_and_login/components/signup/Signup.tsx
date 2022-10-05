@@ -129,20 +129,12 @@ const SignupForm = () => {
             <div className="form-group wrap-input">
               <div className="pwdMask">
                 <input
-                  type={confirmPasswordMasked ? "password" : "text"}
+                  type={passwordMasked ? "password" : "text"}
                   className="form-control"
                   placeholder="Confirm Password"
                   {...register("confirmPassword")}
                 />
                 <span className="focus-input" />
-                <span
-                  className={`fa fa-eye${
-                    !confirmPasswordMasked ? "-slash" : ""
-                  } pwd-toggle`}
-                  onClick={() =>
-                    setConfirmPasswordMasked(!confirmPasswordMasked)
-                  }
-                />
               </div>
             </div>
             <ErrorField error={errors.confirmPassword} />

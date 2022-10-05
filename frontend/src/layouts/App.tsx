@@ -14,6 +14,9 @@ import "../assets/css/vendor.css";
 import "../assets/css/style.css";
 import "../assets/css/azaleae.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import removeDuplicateTranslateElem from "../utils/services/removeDuplicateTranslateElem";
+import useAuth from "../hooks/useAuth";
+import getUserAccessToken from "../api/services/getUserAccessToken";
 
 /**
  * Initialises home page by running required scripts
@@ -47,6 +50,22 @@ const Loader = (
 );
 
 /**
+ * Checks auth and redirects to appropriate page based on route.
+ * Used when route match no page because it's from dashboard.
+ * This will prevent logged in user from being taken to signin page on page reload
+ */
+const Redirector = () => {
+  const auth = useAuth();
+  const storedToken = getUserAccessToken();
+  if(storedToken) {
+    auth.setToken(storedToken);
+    return <div/>
+  }
+
+  return <Navigate to={"signin"} />
+}
+
+/**
  * The home page is a spa, so elements are arranged accordingly
  */
 function App() {
@@ -72,6 +91,7 @@ function App() {
 
   const { pathname } = useLocation();
   useEffect(() => {
+    setInterval(removeDuplicateTranslateElem, 1000);
     if (pathname === "/") {
       // we re-executes our scripts everytime user goes to home
       homePageInit();
@@ -100,7 +120,7 @@ function App() {
                   path="signin"
                   element={<SignupAndLogin activeForm="signin" />}
                 />
-                <Route path="*" element={<Navigate to={"/signin"} />} />
+                <Route path="*" element={<Redirector/>} />
               </Route>
             </Routes>
           )}

@@ -1,10 +1,9 @@
+import moment from "moment";
 import React, { useState } from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Toast from "../../../components/Toast";
-import { ErrorRes, SuccessRes } from "../../../types";
+import { SuccessRes } from "../../../types";
 import axiosInstance from "../../api/axios";
-import timeSince from "../../utils/timeAgo";
 
 export interface UserProps {
   /**
@@ -230,7 +229,7 @@ const User = ({
             />
             <DataField
               name="Reg. Date"
-              value={timeSince(new Date(createdAt).getMilliseconds())}
+              value={moment(createdAt).fromNow()}
             />
           </div>
         </div>

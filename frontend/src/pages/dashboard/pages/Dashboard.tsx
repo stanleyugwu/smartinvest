@@ -86,9 +86,11 @@ const Dashboard = () => {
                   Stats -{" "}
                   <b
                     style={{ padding: "3px", borderRadius: "5px" }}
-                    className=" btn-danger"
+                    className={acct?.deposit && acct.deposit > 0 ? "btn-success" : "btn-danger"}
                   >
-                    Pending Transaction
+                    {
+                      acct?.deposit && acct.deposit > 0 ? "Completed" : "Pending Transaction"
+                    }
                   </b>
                 </p>
               </div>

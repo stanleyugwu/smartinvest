@@ -28,4 +28,4 @@ function GoogleTranslate() {
   );
 }
 
-export default GoogleTranslate;
+export default React.memo(GoogleTranslate);

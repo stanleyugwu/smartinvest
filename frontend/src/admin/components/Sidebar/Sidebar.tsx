@@ -5,8 +5,6 @@ import Swal from "sweetalert2";
 import constants from "../../../utils/constants/index";
 import AdminAuthContext from "../../contexts/adminAuth";
 
-import UserDropdown from "../Dropdowns/UserDropdown.js";
-
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const { pathname } = useLocation();
@@ -48,12 +46,6 @@ export default function Sidebar() {
           >
             {constants.COMPANY_NAME}
           </Link>
-          {/* User */}
-          <ul className="md:hidden items-center flex flex-wrap list-none">
-            <li className="inline-block relative">
-              <UserDropdown />
-            </li>
-          </ul>
           {/* Collapse */}
           <div
             className={

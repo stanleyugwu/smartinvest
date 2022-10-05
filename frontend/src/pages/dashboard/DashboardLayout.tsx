@@ -11,6 +11,7 @@ import "./styles/jquery-ui.min.css";
 import "./styles/slick.css";
 import "./styles/style.css";
 import GoogleTranslate from "../../components/GoogleTranslate";
+import removeDuplicateTranslateElem from "../../utils/services/removeDuplicateTranslateElem";
 
 /**
  * Layout structure for dashboard routes

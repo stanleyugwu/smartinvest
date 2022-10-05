@@ -1,7 +1,7 @@
 import React from "react";
-import timeSince from "../../utils/timeAgo";
 import TableDropDown from "../Dropdowns/TableDropdown";
 import { UnApprovedUserTableProps } from "./UnApprovedUserTable";
+import moment from 'moment';
 
 export interface UnApprovedUserProps {
   color?: UnApprovedUserTableProps["color"];
@@ -51,7 +51,7 @@ const UnApprovedUser = ({
       </td>
       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
        {/* @ts-ignore */}
-       {timeSince(new Date(regDate))}
+       {moment(regDate).fromNow()}
       </td>
     </tr>
   );

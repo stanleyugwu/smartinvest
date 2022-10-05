@@ -25,16 +25,13 @@ export default function Login() {
 
   const [loggingIn, setLoggingIn] = useState(false);
   const remeberMeRef = useRef<HTMLInputElement>(null);
+  const [passwordMasked, setPasswordMasked] = useState(true);
   const handleLogin = handleSubmit(async (data) => {
     if(loggingIn) return;
     setLoggingIn(true);
-    const rememberMe = remeberMeRef.current?.checked;
     try {
       const res = await signIn(data.email,data.password);
-      if(rememberMe){
-        // store in localstorage
-        storeAdminToken(res.data.token);
-      }
+      storeAdminToken(res.data.token);
       Toast.fire(res.message, undefined, "success");
       setToken(res.data.token);
     } catch (error:any) {
@@ -86,15 +83,18 @@ export default function Login() {
                     >
                       Password
                     </label>
+                    <div className="flex flex-row justify-between items-center bg-white rounded shadow">
                     <input
-                      type="password"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      type={passwordMasked ? "password" : "text"}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
                       {...register("password")}
                     />
+                    <i onClick={() => setPasswordMasked(!passwordMasked)} className={`cursor-pointer fa fa-${passwordMasked ? 'eye' : 'eye-slash'} pr-2`}></i>
+                    </div>
                     <ErrorField error={errors.password} />
                   </div>
-                  <div>
+                  <div className="hidden">
                     <label className="inline-flex items-center cursor-pointer">
                       <input
                         id="customCheckLogin"

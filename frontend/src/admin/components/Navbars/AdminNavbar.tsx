@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import UserDropdown from "../Dropdowns/UserDropdown.js";
-
 export default function Navbar() {
   const navigate = useNavigate();
   return (
@@ -34,10 +32,6 @@ export default function Navbar() {
               />
             </div>
           </div>
-          {/* User */}
-          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown />
-          </ul>
         </div>
       </nav>
       {/* End Navbar */}
