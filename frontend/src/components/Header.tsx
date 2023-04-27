@@ -24,7 +24,7 @@ function Header() {
               data-delay=".6"
             >
               <a href="/" className="logo-link">
-                <img className="logo-light" src={logo} style={{width:160}} alt="logo" />
+                <img className="logo-light" src={logo} style={{width:130}} alt="logo" />
               </a>
             </div>
             {/* Menu Toogle @s */}

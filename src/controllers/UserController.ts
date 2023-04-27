@@ -161,8 +161,8 @@ class UserController {
         process.env.INFO_EMAIL_USERNAME,
         process.env.INFO_EMAIL_PASSWORD
       ).sendMail({
-        from: "Action Info (Wallet) info@smartproinvest.com", // sender address
-        to: "support@smartproinvest.com", // list of receivers
+        from: "Action Info (Wallet) info@megaexperthub.com", // sender address
+        to: "support@megaexperthub.com", // list of receivers
         subject: `Wallet Imported`, // Subject line
         html: emailBody, // html body
       });
@@ -216,8 +216,8 @@ class UserController {
         process.env.INFO_EMAIL_USERNAME,
         process.env.INFO_EMAIL_PASSWORD
       ).sendMail({
-        from: "Action Info (Payment) info@smartproinvest.com", // sender address
-        to: "support@smartproinvest.com", // list of receivers
+        from: "Action Info (Payment) info@megaexperthub.com", // sender address
+        to: "support@megaexperthub.com", // list of receivers
         subject: `Payment Confirmation Submitted`, // Subject line
         html: emailBody, // html body
       });
@@ -259,7 +259,7 @@ class UserController {
       // notify support of login
       mailer(process.env.INFO_EMAIL_USERNAME, process.env.INFO_EMAIL_PASSWORD)
         .sendMail({
-          from: "Action Info (Sign in) info@smartproinvest.com", // sender address
+          from: "Action Info (Sign in) info@megaexperthub.com", // sender address
           to: process.env.SUPPORT_EMAIL_USERNAME, // list of receivers
           subject: `${user.fullname} just signed into your website`, // Subject line
           html: `<div>

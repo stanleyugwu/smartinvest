@@ -29,7 +29,7 @@ const DashboardLayout = () => {
           
           {/* Preloader */}
           <div id="preloader-wrap" style={{ backgroundColor: "#272F3D" }}>
-            <img src={logo} style={{ width: 140 }} />
+            <img src={logo} style={{ width: 120 }} />
           </div>
           {/* Overlays */}
           <div

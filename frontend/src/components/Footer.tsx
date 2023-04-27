@@ -18,7 +18,7 @@ function Footer() {
           </div>
           <div className="col-lg-6">
             <div className="copyright-text copyright-text-s2">
-              {constants.COMPANY_NAME} © 2022 All Rights Reserved
+              {constants.COMPANY_NAME} © {new Date().getFullYear()} All Rights Reserved
             </div>
           </div>
         </div>
