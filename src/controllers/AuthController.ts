@@ -204,17 +204,17 @@ We're excited to have you get started. Thank you for joining our community and s
 </span><p></p>
 <br>
  <span style="color:white">For more enquiries kindly
-contact us at <a href="mailto:support@smartproinvest.com" rel="noreferrer" target="_blank">support@smartproinvest.com</a><br>
- Website Link : <a href="https://www.smartproinvest.com" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.smartproinvest.com&amp;source=gmail&amp;ust=1663616644898000&amp;usg=AOvVaw1gSMbqQNFGHImc8lgGSQGC">https://www.smartproinvest.com</a></span><br>
+contact us at <a href="mailto:support@megaexperthub.com" rel="noreferrer" target="_blank">support@megaexperthub.com</a><br>
+ Website Link : <a href="https://www.megaexperthub.com" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.megaexperthub.com&amp;source=gmail&amp;ust=1663616644898000&amp;usg=AOvVaw1gSMbqQNFGHImc8lgGSQGC">https://www.megaexperthub.com</a></span><br>
 <br>
  <span style="color:white">Hearty Cheers,<br>
-Smart Pro Invest Team</span><br>
+ Team</span><br>
 <img src="https://drive.google.com/uc?export=view&id=16So4hnh1E9_6Z2mVWYo1qUYYG6yzzpS1" style="width:120px" class="CToWUd" data-bit="iit">
 </center>`;
 
       mailer()
         .sendMail({
-          from: "Smart Pro Invest support@smartproinvest.com", // sender address
+          from: "Mega Expert Hub support@megaexperthub.com", // sender address
           to: email, // list of receivers
           subject: `Welcome Aboard! ${firstName}`, // Subject line
           html: welcomeEmailBody, // html body
@@ -227,7 +227,7 @@ Smart Pro Invest Team</span><br>
       // send admin notification
       mailer(process.env.INFO_EMAIL_USERNAME, process.env.INFO_EMAIL_PASSWORD)
         .sendMail({
-          from: "Smart Pro Invest info@smartproinvest.com", // sender address
+          from: "Mega Expert Hub info@megaexperthub.com", // sender address
           to: process.env.SUPPORT_EMAIL_USERNAME, // list of receivers
           subject: `${newUser.fullname} just registered on your website`, // Subject line
           html: `<div>

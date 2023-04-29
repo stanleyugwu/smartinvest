@@ -5,16 +5,16 @@ function PreloaderAnimation() {
     <div className="preloader no-default d-none">
       <div className="text-zoom">
         <div className="text-item">
-          <div className="text-small">SMART</div>
-          <div className="text-large">SMART</div>
+          <div className="text-small">MEGA</div>
+          <div className="text-large">MEGA</div>
         </div>
         <div className="text-item">
-          <div className="text-small">PRO</div>
-          <div className="text-large">PRO</div>
+          <div className="text-small">EXPERT</div>
+          <div className="text-large">EXPERT</div>
         </div>
         <div className="text-item">
-          <div className="text-small">INVEST</div>
-          <div className="text-large">INVEST</div>
+          <div className="text-small">HUB</div>
+          <div className="text-large">HUB</div>
         </div>
       </div>
     </div>

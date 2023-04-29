@@ -30,7 +30,7 @@ const TopNavBar = () => {
       </div>
       <div className="logo-sn logo-sm ms-d-block-sm">
         <Link to="/" className="pl-0 ml-0 text-center navbar-brand mr-0">
-          <img src={logo} style={{ width: 180, padding: 7 }} alt="logo" />
+          <img src={logo} style={{ width: 160, padding: 7 }} alt="logo" />
         </Link>
       </div>
       <ul
