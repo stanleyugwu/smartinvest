@@ -32,11 +32,11 @@ export const errorResponse = (error: AxiosError<ErrorRes>) => {
   }
 
   // interceptor to log out upon FORBIDDEN response
-  if(error.response?.status === 403){
-    localStorage.removeItem("$__a_t");
-    useAppStore.getState().setAccessToken(undefined);
-    window.location.reload();
-  }
+  // if(error.response?.status === 403){
+  //   localStorage.removeItem("$__a_t");
+  //   useAppStore.getState().setAccessToken(undefined);
+  //   window.location.reload();
+  // }
 
   return Promise.reject({
     message: error.response?.data?.message || "Request Failed",
